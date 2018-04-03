@@ -1,0 +1,14 @@
+*{
+	padding:0;
+	margin:0;
+	 font-family: "Microsoft YaHei", "微软雅黑";
+}
+body{}
+/*a标签默认字体颜色，样式*/
+a{color:#333;text-decoration:none;} 
+a:hover{color:#F08080;cursor: pointer;} 
+li{list-style:none} 
+img{border:0;vertical-align:middle;}
+.clearfix{
+	clear: both;
+}

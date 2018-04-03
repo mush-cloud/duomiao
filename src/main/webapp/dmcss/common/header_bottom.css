@@ -1,0 +1,215 @@
+/*font-size:18px/14px 下划线颜色:#efefef*/
+
+.header {
+	width: 100%;
+	height: 100px;
+	border: 1px solid #efefef;
+	background-color: #FFFFFF;
+}
+
+.header>.container {
+	position: relative;
+	width: 100%;
+	max-width: 1080px;
+	margin: 0px auto;
+	height: 100px;
+	/*overflow: hidden;*/
+}
+
+.header .nav-logo {
+	float: left;
+}
+
+.header .nav-logo img {
+	display: block;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+.header .nav-menu {
+	float: left;
+	position: absolute;
+	margin-left: 252px;
+	height: 100px;
+	line-height: 100px;
+	overflow: hidden;
+}
+
+.header .nav-menu a {
+	margin: 0 20px 0 20px;
+	font-size: 18px;
+}
+
+.header .nav-user {
+	height: 100px;
+	float: left;
+	position: absolute;
+	margin-left: 780px;
+	/*overflow: hidden;*/
+	width: 200px;
+  z-index: 222;
+}
+
+.header .nav-user .entry {
+	float: left;
+	display: block;
+	width: 80px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 16px;
+	border: 1px solid #F08080;
+	color: #F08080;
+	cursor: pointer;
+	border-radius: 2px;
+	text-align: center;
+	margin: 35px 0px 0px 10px;
+}
+
+
+/*学生*/
+
+.header .nav-user .stu .stu-pic {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	float: left;
+	margin-top: 35px;
+	overflow: hidden;
+}
+.txpic{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+.header .stu-body {
+	display: inline-block;
+	height: auto;
+	background-color: #FFFFFF;
+}
+
+.header .stu .stu-info {
+	float: left;
+	display: inline-block;
+	margin-top: 35px;
+	margin-left: 8px;
+	font-size: 14px;
+}
+
+.header .stu .stu-info dd {
+	display: none;
+	z-index: 3;
+	padding: 4px 0 0px 0px;
+	border-top: 0;
+	width: 68px;
+}
+
+.header .stu .stu-info dd a {
+	display: block;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.header .stu .stu-info dt {
+	margin-left: 12px;
+}
+
+
+/*.stu-icon{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #d4d4d4;
+    margin-top: 5px;
+    float: right;
+}*/
+
+.header .jiantou {
+	width: 22px;
+	height: 20px;
+	display: block;
+	float: right;
+	margin-top: -1px;
+	transition: transform 0.4s ease-out;
+}
+
+
+/*.rotate{
+	transform: rotate(180deg);
+	transition: transform 0.5s ease-out;
+}
+.rotate2{
+	transform: rotate(180deg);
+}*/
+
+
+/*.jiantou:hover{
+	transform: rotate(180deg);
+}*/
+
+
+/*底部*/
+
+.bottom {
+	width: 100%;
+	height: 170px;
+	border-top: 1px solid #efefef;
+	background-color: #FFFFFF;
+	margin-bottom: 0;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.bottom .bottom-up {
+	position: relative;
+	width: 100%;
+	max-width: 1080px;
+	margin: 0 auto;
+	height: 110px;
+}
+
+.bottom .bottom-up .up1,
+.bottom .bottom-up .up2,
+.bottom .bottom-up .up3 {
+	float: right;
+	margin-right: 200px;
+}
+
+.bottom .bottom-up ul li {
+	padding-top: 5px;
+}
+
+.bottom .bottom-up span {
+	color: #333333;
+	font-size: 20px;
+}
+
+.bottom a {
+	color: darkgray;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.bottom a:hover {
+	color: #F08080;
+	cursor: pointer;
+}
+
+.bottom .bottom-down {
+	width: 100%;
+	max-width: 1080px;
+	height: 52px;
+	margin: 6px auto 0 auto;
+	border-top: 1px solid #efefef;
+	line-height: 52px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.bottom .bottom-down .right,
+.bottom .bottom-down .left {
+	float: right;
+	margin-right: 170px;
+}

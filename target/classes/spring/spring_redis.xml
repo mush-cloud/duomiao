@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        ">
+        <!-- 单redis模式，非集群模式,非哨兵模式 -->
+        <!-- 添加properties文件 -->
+  
+	<bean 
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:spring/redisconfig.properties</value>
+			</list>
+		</property>
+		 <property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+        <!-- Redis连接池配置 -->
+ <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+
+    <property name="maxTotal" value="${redis.pool.maxActive}" />
+        <!--最大空闲连接数-->
+    <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <!--初始化连接数-->
+    <property name="minIdle" value="${redis.pool.minIdle}"/>
+        <!--最大等待时间-->
+    <property name="maxWaitMillis" value="${redis.pool.maxWait}" />
+        <!--对拿到的connection进行validateObject校验-->
+    <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+        <!--在进行returnObject对返回的connection进行validateObject校验-->
+    <property name="testOnReturn" value="${redis.pool.testOnReturn}" />
+        <!--定时对线程池中空闲的链接进行validateObject校验-->
+    <property name="testWhileIdle" value="false" />
+  </bean>  
+<!--   <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+    <constructor-arg index="0" ref="poolConfig"/>
+    <constructor-arg index="1" value="${redis.host}"/>
+    <constructor-arg index="2" value="${redis.port}" type="int"/>
+    <constructor-arg index="3" value="${redis.timeout}" type="int"/>
+    <constructor-arg index="4" value="${redis.pass}"/>
+  </bean>  -->
+  
+   <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
+    p:host-name="${redis.host}" 
+    p:port="${redis.port}" 
+    p:password="${redis.pass}" 
+    p:timeout="${redis.timeout}"  
+    p:pool-config-ref="poolConfig"/>
+    <!-- 主从服务器配置 -->
+  <!-- 封装spring对redis的各种操作 -->
+  <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">  
+    <property name="connectionFactory" ref="jedisConnectionFactory" />
+  </bean>     
+   <!-- 使用中间类解决RedisCache.jedisConnectionFactory的静态注入，从而使MyBatis实现第三方缓存 -->
+  <bean id="redisCacheTransfer" class="com.duomiao.util.RedisCacheTransfer">
+        <property name="jedisConnectionFactory" ref="jedisConnectionFactory"/>
+     </bean>
+  <!--    <bean id="redisCacheUtil" class="com.duomiao.service.RedisCacheUtil">
+        <constructor-arg name="id" value="6666"/>
+        <property name="jedisConnectionFactory" ref="jedisConnectionFactory"/>
+     </bean> -->
+</beans>

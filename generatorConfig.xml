@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<context id="mysqlTables" targetRuntime="MyBatis3">
+	<commentGenerator>
+  <property name="suppressAllComments" value="true" />
+</commentGenerator>
+	
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/duomiaodb" userId="root"
+			password="root4399">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.duomiao.entity"
+			targetProject="F:\实习平台模拟设计1.5（java作品）\duomiaoV2.0\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.duomiao.mapper"
+			targetProject="F:\实习平台模拟设计1.5（java作品）\duomiaoV2.0\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.duomiao.mapper"
+			targetProject="F:\实习平台模拟设计1.5（java作品）\duomiaoV2.0\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+<!--开启驼峰法则命名，并去掉缀  -->
+		<table tableName="DM_PUBLISH_JOB" domainObjectName="PublishJob">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID" sqlStatement="mysql"
+				identity="true" />
+				<columnRenamingRule searchString="^PJ_" replaceString=""/>
+		</table>
+
+	</context>
+</generatorConfiguration>

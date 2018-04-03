@@ -1,0 +1,62 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- <a href="/duomiao/intern/enLoginAndRegister">dinji</a>
+<input type="text" id="cxf"> -->
+<!-- <div id="conn" style="width:100px;height:100px;border:1px solid black"></div> -->
+<div class="test1">wukun</div>
+<div class="test2"></div>
+<button class="btn">点击</button>
+</body>
+<script src="/duomiao/dmjs/common/require.js"></script>
+<script src="/duomiao/dmjs/common/config.js"></script>
+<script>
+/* $(function(){
+	init();
+	function init(){
+		$.ajax({
+			type:"post",
+			contentType:"application/json",
+			url:"http://192.168.1.105:8080/wd/admin/login",
+			data:'{"name":"admin","password":"123456"}',
+			dataType:"json",
+			xhrFields: {
+	                withCredentials: true,
+	                useDefaultXhrHeader: false
+	            },
+			 xhrFields: {'Access-Control-Allow-Origin': '*'} ,
+			success:function(data){
+				alert("true");
+				 $("#cxf").val(data);
+			}
+		});
+	}
+}); */
+require(['util','jquery'],function(util){
+	init();
+	function init(){
+		util.bindEvents([
+			{
+				el:".btn",
+				event:"click",
+				handler:show
+			},{
+				el:".test1",
+				event:"mouseover",
+				handler:function(){
+					$(".test1").hide();
+				}
+			}
+		]);
+	}
+	function show(){
+		$(".test1").css("color","red");
+	}
+});
+</script>
+</html>

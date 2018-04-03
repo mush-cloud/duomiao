@@ -1,0 +1,508 @@
+/*height 440px*/
+.index{
+	font-size: 14px;
+	width: 100%;
+	max-width:1080px;
+	margin: 0px auto;
+	height: 1440px;
+	background-color:"#f8f8f8";
+	position: relative;
+}
+
+.index .intern-type{
+	height:410px;
+	width: 260px;
+	margin-top: 20px;
+	float: left;
+	background-color: #FFFFFF;
+}
+.index .intern-type .type-head{
+	height: 40px;
+	line-height: 40px;
+    width:260px;
+	color:#666666;
+	vertical-align: center;
+}
+.type-head .typefont{
+	float: left;
+	display: block;
+	margin-left: 15px;
+}
+.type-head .typepic{
+	width: 12px;
+	height: 12px;
+	display: block;
+	float: left;
+	margin-left: 160px;
+	margin-top: 13px;
+}
+.type-item{
+	height: 40px;
+	line-height: 40px;
+	position: relative;
+	/*border-bottom:1px solid #F0F0F0;*/
+}
+.type-item:hover{
+	border:1px solid #F08080;
+	border-right:1px solid #FFFFFF;
+}
+.type-item>a{
+	    display: inline-block;
+	    margin-left: 15px;
+}
+/*分类隐藏的列表长度需要调整*/
+.type-list {
+	width: 520px;
+	position: absolute;
+	left:258px;
+	background-color: #FFFFFF;
+	top:-1px;
+	border-bottom:1px solid #F08080;
+	display: none;
+}
+.type-list>div{
+	border:1px solid #F08080;
+	border-top:none ;
+	border-bottom:none ;
+}
+.type-list>div:first-child{border-left:none ;border-bottom:none ;
+border-top:1px solid #F08080;
+}
+.type-list a{
+	 display: inline-block;
+	    margin-left: 12px;
+	    color:#666666;
+	    }
+.type-list > div a:first-child{
+	color:#333;
+}
+.type-list > div a:first-child:hover{
+	color:#F08080;
+}
+/*搜索样式*/
+.banner{
+	float: left;
+	width:800px;
+	height:410px;
+	position: absolute;
+	margin-top: 20px;
+	/*background-color: #FFFFFF;*/
+	margin-left: 275px;
+}
+.banner .ban_top{
+	width: 800px;
+	height: 100px;
+	background-color: #FFFFFF;
+}
+
+/*图片策划展示台*/
+.banner .ban_body{
+	width: 800px;
+	height: 295px;
+	margin-top: 15px;
+	background-color: #FFFFFF;
+	position: relative;
+}
+.ban_body .showcase{
+	width: 100%;
+	height: 100%;
+	background-image:url(../imgs/index_header_bottom/ban_1.jpg);
+	background-repeat: no-repeat;
+}
+.ban_body .content{
+	width:100%;
+    max-width: 600px;
+	height: 30px;
+	position: absolute;
+	left:50%;
+	margin-left: -310px;
+	bottom:20px;
+}
+.ban_body .content>span{
+	display: block;
+	float: left;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color:rgba(51,51,51,.5);
+	margin-left: 20px;
+	border-radius:3px ;
+	color: #FFFFFF;
+}
+.ban_body .content>span:hover{
+	background-color: rgba(189,45,48,.5);
+	cursor:default;
+}
+
+/*搜索部分*/
+.search{
+	width: 800px;
+	height: 65px;
+}
+.search input{
+	display: block;
+}
+.search .inp_srh{
+	float: left;
+	width: 660px;
+	height: 32px;
+	font-size: 15px;
+	margin-left:15px;
+	margin-top: 15px;
+	border:2px solid #F08080;
+	padding-left:15px;
+	outline:none;
+}
+.search .btn_srh{
+	float: left;
+	width: 95px;
+	height: 36px;
+	font-size: 15px;
+	color: #FFFFFF;
+	margin-top: 15px;
+	border: none;
+	border-bottom-right-radius:4px;
+    border-top-right-radius:4px;
+	background-color:#F08080;
+}
+.ban_top .heat_word{
+	width: 800px;
+	height:35px ;
+	color: #F08080;
+}
+.heat_word span{
+	float: left;
+	margin-left:15px ;
+}
+.ban_top .heat_word a{
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+.ban_top .heat_word a:hover{
+	text-decoration: underline;
+}
+
+/*company展示部分*/
+.index .company-show{
+	width: 100%;
+	height: 985px;
+	position: absolute;
+	margin-top: 455px;
+}
+.company-show .company-list{
+	width: 100%;
+	height: 100px;
+}
+.company-list div{
+	width: 980px;
+	height: 100px;
+	margin: 0 auto;
+}
+.company-list a{
+	display: block;
+	float: left;
+	margin-left: 20px;
+	background-color: #FFFFFF;
+	width: 100px;
+	height: 100px;
+}
+.company-list a img {
+	width: 70px;
+	height: 70px;
+	margin-top: 15px;
+	margin-left: 15px;
+	 transition: all 0.6s; 
+}
+.company-list a img:hover{
+	  transform: scale(1.2); 
+}
+.company-show .job{
+	height: 870px;
+    width:100%;
+    margin-top: 15px;
+}
+.job .job-choose{
+	width: 100%;
+	height: 40px;
+	background-color: rgba(189,45,48,.1);
+	position:relative;
+	color:#333;
+}
+.job .job-choose .choose{
+	float: left;
+	width: 100px;
+	height: 38px;
+}
+.job-choose  .c1{
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+}
+.job-choose  .c1:hover{
+	cursor: pointer;
+}
+.job-choose  .c2:hover{
+	cursor: pointer;
+}
+.job-choose .c2{
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+}
+/*点击之后样式变化*/
+.after_c1{
+	border-top:3px solid #F08080;
+	background-color: #FFFFFF;
+	color:#F08080;
+}
+.after_c2{
+	border-top:3px solid #F08080;
+	background-color: #FFFFFF;
+	color:#F08080;
+}
+
+.job-choose .c3{
+	position:absolute;
+	margin-left: 960px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+}
+.job-choose .c3 a{
+	display: block;
+	 color:#666666;
+	 width: 150px;
+}
+.job-choose .c3 a:hover{
+	color:#F08080;
+	text-decoration: underline;
+}
+.job .job-list{
+	width: 100%;
+	height: 830px;
+}
+/*hot职位*/
+.job-list .left{
+     width: 100%;
+	height: 830px;
+}
+.job-list .left .item{
+	width: 1080px;
+	height: 100px;
+	border-bottom: 1px dashed #eaeaea;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+.job-list .left .item .info{
+	float: left;
+	height: 100px;
+	width: 600px;
+	position: absolute;
+}
+.job-list .left .item .info .job_name{
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+}
+.job-list .left .item .info .job_name a{
+	display: block;
+	float: left;
+	margin-left:20px ;
+	font-size:18px;
+	color:#F27379;
+}
+.job-list .left .item .info .job_name a:hover{
+	text-decoration: underline;
+}
+.job-list .left .item .info .job_name span{
+	display: block;
+	float: left;
+	margin-left:10px ;
+	color: #666666;
+	font-size:12px;
+}
+.job-list .left .item .info .salary_btn{
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+}
+.job-list .left .item .info .salary_btn .salary{
+	float: left;
+	display: block;
+	color:#333;
+	font-size: 18px;
+	margin-left: 20px;
+}
+.job-list .left .item .info .salary_btn a{
+	position: absolute;
+	display: block;
+	float: left;
+	margin-left: 480px;
+	width: 90px;
+	height: 30px;
+	background-color: #F08080;
+	border-radius:4px ;
+	line-height: 30px;
+	text-align: center;
+	color: #FFFFFF;
+}
+.job-list .left .item .info .salary_btn a:hover{
+	text-decoration: underline;
+}
+.job-list .left .item .conpany{
+	float: left;
+	height: 100px;
+	width:480px;
+	border-left:1px dashed #eaeaea;
+	position: absolute;
+	margin-left: 600px;
+}
+.job-list .left .item .conpany .con_tx{
+	display: block;
+	float: left;
+	width:60px ;
+	height: 60px;
+	position: absolute;
+	top:50%;
+	margin-top: -30px;
+	margin-left: 20px;
+	border:1px solid #eaeaea;
+}
+.job-list .left .item .conpany .wrap{
+	height: 100px;
+	float: left;
+	margin-left:110px ;
+    width: 370px;
+}
+.job-list .left .item .conpany .wrap .con_name,.item .conpany .wrap .major,.item .conpany .wrap  p{
+	display: block;
+	font-size: 12px;
+	margin-top: 5px;
+	color: #333;
+}
+.job-list .left .item .conpany .wrap .con_name{
+	width: 200px;
+	margin-top: 20px;
+	font-size: 14px;
+}
+.job-list .left .item .conpany .wrap .con_name:hover{
+	text-decoration:underline ;
+}
+.job-list .left .item .conpany .wrap  p{
+	color:#666666;/*浅灰色*/
+}
+/*new 职位*/
+
+.job-list .right{
+     width: 100%;
+	height: 830px;
+	display: none;
+}
+.job-list .right .item{
+	width: 1080px;
+	height: 100px;
+	border-bottom: 1px dashed #eaeaea;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+.job-list .right .item .info{
+	float: left;
+	height: 100px;
+	width: 600px;
+	position: absolute;
+}
+.job-list .right .item .info .job_name{
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+}
+.job-list .right .item .info .job_name a{
+	display: block;
+	float: left;
+	margin-left:20px ;
+	font-size:18px;
+	color:#F27379;
+}
+.job-list .right .item .info .job_name a:hover{
+	text-decoration: underline;
+}
+.job-list .right .item .info .job_name span{
+	display: block;
+	float: left;
+	margin-left:10px ;
+	color: #666666;
+	font-size:12px;
+}
+.job-list .right .item .info .salary_btn{
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+}
+.job-list .right .item .info .salary_btn .salary{
+	float: left;
+	display: block;
+	color:#333;
+	font-size: 18px;
+	margin-left: 20px;
+}
+.job-list .right .item .info .salary_btn a{
+	position: absolute;
+	display: block;
+	float: left;
+	margin-left: 480px;
+	width: 90px;
+	height: 30px;
+	background-color: #F08080;
+	border-radius:4px ;
+	line-height: 30px;
+	text-align: center;
+	color: #FFFFFF;
+}
+.job-list .right .item .info .salary_btn a:hover{
+	text-decoration: underline;
+}
+.job-list .right .item .conpany{
+	float: left;
+	height: 100px;
+	width:480px;
+	border-left:1px dashed #eaeaea;
+	position: absolute;
+	margin-left: 600px;
+}
+.job-list .right .item .conpany .con_tx{
+	display: block;
+	float: left;
+	width:60px ;
+	height: 60px;
+	position: absolute;
+	top:50%;
+	margin-top: -30px;
+	margin-left: 20px;
+	border:1px solid #eaeaea;
+}
+.job-list .right .item .conpany .wrap{
+	height: 100px;
+	float: left;
+	margin-left:110px ;
+    width: 370px;
+}
+.job-list .right .item .conpany .wrap .con_name,.item .conpany .wrap .major,.item .conpany .wrap  p{
+	display: block;
+	font-size: 12px;
+	margin-top: 5px;
+	color: #333;
+}
+.job-list .right .item .conpany .wrap .con_name{
+	margin-top: 20px;
+	font-size: 14px;
+}
+.job-list .right .item .conpany .wrap .con_name:hover{
+	text-decoration:underline ;
+}
+.job-list .right .item .conpany .wrap  p{
+	color:#666666;/*浅灰色*/
+}

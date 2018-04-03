@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duomiao.mapper.JobReplyMapper">
+  <resultMap id="BaseResultMap" type="com.duomiao.entity.JobReply">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="JR_HR_ID" jdbcType="VARCHAR" property="hrId" />
+    <result column="JR_INT_ID" jdbcType="VARCHAR" property="intId" />
+    <result column="JR_MAIN_INFO" jdbcType="VARCHAR" property="mainInfo" />
+    <result column="JR_REPLY_TIME" jdbcType="TIMESTAMP" property="replyTime" />
+    <result column="JR_JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="JR_PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="JR_REPLY_NUM" jdbcType="VARCHAR" property="replyNum" />
+    <result column="JR_AGREE_NUM" jdbcType="VARCHAR" property="agreeNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duomiao.entity.JobReply">
+    <result column="JR_CLICK_USER" jdbcType="LONGVARCHAR" property="clickUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, JR_HR_ID, JR_INT_ID, JR_MAIN_INFO, JR_REPLY_TIME, JR_JOB_ID, JR_PARENT_ID, JR_REPLY_NUM, 
+    JR_AGREE_NUM
+  </sql>
+  <sql id="Blob_Column_List">
+    JR_CLICK_USER
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.duomiao.entity.JobReplyExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dm_job_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.duomiao.entity.JobReplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dm_job_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dm_job_reply
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dm_job_reply
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.duomiao.entity.JobReplyExample">
+    delete from dm_job_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.duomiao.entity.JobReply">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dm_job_reply (JR_HR_ID, JR_INT_ID, JR_MAIN_INFO, 
+      JR_REPLY_TIME, JR_JOB_ID, JR_PARENT_ID, 
+      JR_REPLY_NUM, JR_AGREE_NUM, JR_CLICK_USER
+      )
+    values (#{hrId,jdbcType=VARCHAR}, #{intId,jdbcType=VARCHAR}, #{mainInfo,jdbcType=VARCHAR}, 
+      #{replyTime,jdbcType=TIMESTAMP}, #{jobId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{replyNum,jdbcType=VARCHAR}, #{agreeNum,jdbcType=VARCHAR}, #{clickUser,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.duomiao.entity.JobReply">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dm_job_reply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hrId != null">
+        JR_HR_ID,
+      </if>
+      <if test="intId != null">
+        JR_INT_ID,
+      </if>
+      <if test="mainInfo != null">
+        JR_MAIN_INFO,
+      </if>
+      <if test="replyTime != null">
+        JR_REPLY_TIME,
+      </if>
+      <if test="jobId != null">
+        JR_JOB_ID,
+      </if>
+      <if test="parentId != null">
+        JR_PARENT_ID,
+      </if>
+      <if test="replyNum != null">
+        JR_REPLY_NUM,
+      </if>
+      <if test="agreeNum != null">
+        JR_AGREE_NUM,
+      </if>
+      <if test="clickUser != null">
+        JR_CLICK_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hrId != null">
+        #{hrId,jdbcType=VARCHAR},
+      </if>
+      <if test="intId != null">
+        #{intId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainInfo != null">
+        #{mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="replyNum != null">
+        #{replyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeNum != null">
+        #{agreeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="clickUser != null">
+        #{clickUser,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.duomiao.entity.JobReplyExample" resultType="java.lang.Long">
+    select count(*) from dm_job_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dm_job_reply
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hrId != null">
+        JR_HR_ID = #{record.hrId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intId != null">
+        JR_INT_ID = #{record.intId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainInfo != null">
+        JR_MAIN_INFO = #{record.mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyTime != null">
+        JR_REPLY_TIME = #{record.replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jobId != null">
+        JR_JOB_ID = #{record.jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        JR_PARENT_ID = #{record.parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyNum != null">
+        JR_REPLY_NUM = #{record.replyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agreeNum != null">
+        JR_AGREE_NUM = #{record.agreeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clickUser != null">
+        JR_CLICK_USER = #{record.clickUser,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update dm_job_reply
+    set ID = #{record.id,jdbcType=VARCHAR},
+      JR_HR_ID = #{record.hrId,jdbcType=VARCHAR},
+      JR_INT_ID = #{record.intId,jdbcType=VARCHAR},
+      JR_MAIN_INFO = #{record.mainInfo,jdbcType=VARCHAR},
+      JR_REPLY_TIME = #{record.replyTime,jdbcType=TIMESTAMP},
+      JR_JOB_ID = #{record.jobId,jdbcType=VARCHAR},
+      JR_PARENT_ID = #{record.parentId,jdbcType=VARCHAR},
+      JR_REPLY_NUM = #{record.replyNum,jdbcType=VARCHAR},
+      JR_AGREE_NUM = #{record.agreeNum,jdbcType=VARCHAR},
+      JR_CLICK_USER = #{record.clickUser,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dm_job_reply
+    set ID = #{record.id,jdbcType=VARCHAR},
+      JR_HR_ID = #{record.hrId,jdbcType=VARCHAR},
+      JR_INT_ID = #{record.intId,jdbcType=VARCHAR},
+      JR_MAIN_INFO = #{record.mainInfo,jdbcType=VARCHAR},
+      JR_REPLY_TIME = #{record.replyTime,jdbcType=TIMESTAMP},
+      JR_JOB_ID = #{record.jobId,jdbcType=VARCHAR},
+      JR_PARENT_ID = #{record.parentId,jdbcType=VARCHAR},
+      JR_REPLY_NUM = #{record.replyNum,jdbcType=VARCHAR},
+      JR_AGREE_NUM = #{record.agreeNum,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.duomiao.entity.JobReply">
+    update dm_job_reply
+    <set>
+      <if test="hrId != null">
+        JR_HR_ID = #{hrId,jdbcType=VARCHAR},
+      </if>
+      <if test="intId != null">
+        JR_INT_ID = #{intId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainInfo != null">
+        JR_MAIN_INFO = #{mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        JR_REPLY_TIME = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null">
+        JR_JOB_ID = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        JR_PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="replyNum != null">
+        JR_REPLY_NUM = #{replyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeNum != null">
+        JR_AGREE_NUM = #{agreeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="clickUser != null">
+        JR_CLICK_USER = #{clickUser,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.duomiao.entity.JobReply">
+    update dm_job_reply
+    set JR_HR_ID = #{hrId,jdbcType=VARCHAR},
+      JR_INT_ID = #{intId,jdbcType=VARCHAR},
+      JR_MAIN_INFO = #{mainInfo,jdbcType=VARCHAR},
+      JR_REPLY_TIME = #{replyTime,jdbcType=TIMESTAMP},
+      JR_JOB_ID = #{jobId,jdbcType=VARCHAR},
+      JR_PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      JR_REPLY_NUM = #{replyNum,jdbcType=VARCHAR},
+      JR_AGREE_NUM = #{agreeNum,jdbcType=VARCHAR},
+      JR_CLICK_USER = #{clickUser,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.duomiao.entity.JobReply">
+    update dm_job_reply
+    set JR_HR_ID = #{hrId,jdbcType=VARCHAR},
+      JR_INT_ID = #{intId,jdbcType=VARCHAR},
+      JR_MAIN_INFO = #{mainInfo,jdbcType=VARCHAR},
+      JR_REPLY_TIME = #{replyTime,jdbcType=TIMESTAMP},
+      JR_JOB_ID = #{jobId,jdbcType=VARCHAR},
+      JR_PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      JR_REPLY_NUM = #{replyNum,jdbcType=VARCHAR},
+      JR_AGREE_NUM = #{agreeNum,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
