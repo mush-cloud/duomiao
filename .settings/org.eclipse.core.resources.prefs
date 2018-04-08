@@ -1,7 +1,0 @@
-eclipse.preferences.version=1
-encoding//src/main/java/com/duomiao/entity/InternInfo.java=UTF-8
-encoding//src/main/java/com/duomiao/mapper/InternInfoMapper.java=UTF-8
-encoding//src/main/java/com/duomiao/util/DateHelper.java=UTF-8
-encoding//src/main/resources/spring/dbconfig.properties=UTF-8
-encoding//src/main/resources/spring/redisconfig.properties=UTF-8
-encoding/<project>=UTF-8
