@@ -200,11 +200,11 @@
 					<!-- <webDefaultXml>webdefault.xml</webDefaultXml> -->
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8083</port>
+							<port>8085</port>
 						</connector>
 					</connectors>
 					<stopKey>exit</stopKey>
-					<stopPort>8081</stopPort>
+					<stopPort>8082</stopPort>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 				</configuration>
 			</plugin>
