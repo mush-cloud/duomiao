@@ -1,15 +1,11 @@
 package com.duomiao.control;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.duomiao.entity.InternInfo;
+import com.duomiao.service.InternInfoService;
+import com.duomiao.util.AjaxResult;
+import com.duomiao.util.Constant;
+import com.duomiao.util.DateHelper;
+import com.duomiao.util.UUIDBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,16 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.duomiao.entity.InternInfo;
-import com.duomiao.service.InternInfoService;
-import com.duomiao.util.AjaxResult;
-import com.duomiao.util.Constant;
-import com.duomiao.util.DateHelper;
-import com.duomiao.util.UUIDBuilder;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/intern")
-public class InternInfoControl {
+@RequestMapping("/admin")
+public class AdminControl {
 	private AjaxResult ajaxResult = new AjaxResult();;
 	@Autowired
 	private InternInfoService internInfoService;
@@ -104,10 +102,10 @@ public class InternInfoControl {
     	return ajaxResult;
     }
     
-    //访问个人中心
+    //访问管理中心
     @RequestMapping("/adminlte/enIndex")
     public String enAdminLteIndex() {
-    	return "interncenter/adminlte/index";
+    	return "admincenter/adminlte/index";
     }
     
     //访问基本信息页面

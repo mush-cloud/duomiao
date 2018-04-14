@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实习生管理中心</title>
+  <title>后台管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/bootstrap.min.css">
@@ -20,7 +20,6 @@
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/skin-blue.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/resumeinfo.css">
   <link rel="stylesheet"
         href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/special.css">
 </head>
@@ -167,8 +166,7 @@
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#"><c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 1}">已激活</c:if>
-                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if>
-                    </a>
+                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if></a>
                   </div>
                   <div class="col-xs-4 text-center">
                     <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>
@@ -231,13 +229,15 @@
 
       <!-- Sidebar Menu 右侧导航栏-->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">个人中心</li>
+        <li class="header">管理中心</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
-        <li class="active"><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>我的收藏</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>企业信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>HR用户管理</span></a></li>
+        <li><a href="#"><i class="fa fa-link">></i> <span>实习生用户管理</span></a></li>
+        <li><a href="#"><i class="fa fa-link">></i> <span>管理员信息管理</span></a></li>
+        <li><a href="#"><i class="fa fa-link">></i> <span>职位类别管理</span></a></li>
+        <li><a href="#"><i class="fa fa-link">></i> <span>企业增值服务统计</span></a></li>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -259,53 +259,29 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-       <h1>
-         Personal Center
+      <h1>
+        Personal Center
         <small>Optional description</small>
-      </h1> 
+      </h1>
       <ol class="breadcrumb">
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enIndex"> <i class="fa fa-dashboard"></i>个人中心</a></li>
-        <li class="active">简历管理</li>
+        <li><a> <i class="fa fa-dashboard"></i>管理中心</a></li>
+        <!-- <li class="active">Here</li> -->
       </ol>
     </section>
 
     <!-- Main content width:1170px-->
     <section class="content container-fluid">
-<div class="main-body" style="margin-top: -10px">
-<form id="resumeinfo">
-  <input type="text" name="id" value="" hidden />
-  <table cellspacing="5" cellpadding="5">
-    <tr class="first_tr">
-      <td><font color="#a52a2a" size="5px">*</font>姓名:</td><td><input type="text" name="name" placeholder="真实姓名" id="name"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>性别:</td><td>男<input style="width:40px;" type="radio" name="sex" value="1" id="man"/>女<input style="width:40px;" type="radio" name="sex" value="0" id="woman"/></td>
-      <td>年龄:</td><td><input type="number" name="age" id="age"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>籍贯:</td><td><input type="text" name="hp" id="hp"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>手机号码:</td><td><input type="text" name="tel"  id="tel"/></td>
-      <td>邮箱:</td><td><input type="text" name="email"  id="email"/></td>
-    </tr>
-    <tr class="tr2">
-      <td><font color="#a52a2a" size="5px">*</font>专业:</td><td><input type="text" name="major" id="major"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>学校:</td><td><input type="text" name="colloge" id="colloge"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>学历:</td><td><input type="text" name="academic" id="academic"/></td>
-      <td>期望职位:</td><td><input type="text" name="jobName"  id="jobName"/></td>
-      <td>期望工作地点:</td><td><input type="text" name="workplace"  id="workplace"/></td>
-      <td>人生格言:</td><td><input type="text" name="motto" id="motto"/></td>
-    </tr>
-    <tr class="tr3">
-      <td>教育经历:</td><td colspan="5"><textarea  name="education" id="education" cols="50" rows="4"></textarea></td>
-      <td>证书奖励:</td><td colspan="5"><textarea  name="certReward" id="certReward" cols="50" rows="4"></textarea></td>
-    </tr>
-    <tr class="tr4">
-      <td>工作经历:</td><td colspan="5"><textarea  name="workExperience" id="workExperience" cols="50" rows="4"></textarea></td>
-      <td>项目经验:</td><td colspan="5"><textarea  name="proExperience" id="proExperience" cols="50" rows="4"></textarea></td>
-    </tr>
-    <tr class="tr4">
-      <td><font color="#a52a2a" size="5px">*</font>专业技能:</td><td colspan="5"><textarea  name="skill" id="skill" cols="50" rows="4"></textarea></td>
-      <td>自我评价:</td><td colspan="5"><textarea  name="valuation" id="valuation" cols="50" rows="4"></textarea></td>
-    </tr>
-    <tr><td colspan="12"><center><input class="btn resume_btn" type="button" value="提交" id="resumeinfosubmit"/></center></td></tr>
-  </table>
-</form>
+<div class="main-body">
+<div class="b1"><img width="250px" height="100px" src="${pageContext.request.contextPath}/imgs/index_header_bottom/logo.png"/></div>
+<div class="b2"><center><div style="font-size:20px" >@</div></center><div>
+<ul>
+<li><small>后</small></li>
+<li><small>台</small></li>
+<li><small>管</small></li>
+<li><small>理</small></li>
+<li><small>@</small></li>
+</ul>
+</div></div>
 </div>
       <!--------------------------
         | Your Page Content Here |
@@ -400,12 +376,11 @@
   </aside>
   <div class="control-sidebar-bg"></div>
 </div>
-<jsp:include page="../../public_page/public_js.jsp" />
+
 <script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/adminlte.min.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/resumeinfo.js"></script>
 </body>
 </html>

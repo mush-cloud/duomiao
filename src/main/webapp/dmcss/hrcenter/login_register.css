@@ -1,0 +1,94 @@
+.lr-box{
+	width:300px;
+	height:auto;
+	left:50%;
+	margin-top:100px;
+}
+.lr-box-header .main-title{
+	font-weight:normal;
+	color:#F08080;
+	font-size:55px;
+}
+.lr-box-header .sub-title{
+	padding-top:20px;
+	font-weight:normal;
+	font-size:18px;
+	color:#2D2C2B;
+}
+.lr-box-choice{
+	margin-top:15px;
+	font-size:18px;
+}
+.l-button{
+	display:block;
+	float:left;
+	margin-left:100px;
+}
+.r-button{
+	display:block;
+	float:left;
+	margin-left:30px;
+}
+.lr-box-main-l,.lr-box-main-r{
+	margin-top:20px;
+}
+input{
+	width:280px;
+	height:43px;
+    border:1px solid #EBEDEC;
+	border-bottom:none;
+	font-size:15px;
+	padding-left:15px;
+}
+input[name='loginName']{
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+.verify{
+	border:none;
+	width:200px;
+	display:block;
+	float:left;
+	padding-left:15px;
+}
+.special{
+	width:295px;
+	height:43px;
+	border:1px solid #EBEDEC;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	
+}
+.special span{
+	diplay:block;
+	float:left;
+	height:40px;
+	width:78px;
+	line-height:40px;
+	vertical-align:midden;
+	text-align:center;
+	background-color:#FFFFFF;
+	border:1px solid #EBEDEC;
+}
+.special span:hover{
+	cursor:default;
+} 
+input[type='button']:hover{
+	cursor:pointer;
+}
+.btn{
+	margin-top:20px;
+}
+.btn_lr{
+	background-color:rgba(225,69,73,0.9);
+	border-radius:5px;
+	border:none;
+	color:#FFFFFF;
+	font-size:15px;
+	height:40px;
+	width:297px;padding:0;
+}
+.after{
+	border-bottom:2px solid #F08080;
+	color:#F08080;
+}
