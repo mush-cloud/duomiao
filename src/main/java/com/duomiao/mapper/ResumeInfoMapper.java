@@ -4,6 +4,8 @@ import com.duomiao.entity.ResumeInfo;
 import com.duomiao.entity.ResumeInfoExample;
 import com.duomiao.entity.ResumeInfoWithBLOBs;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ResumeInfoMapper {
@@ -34,4 +36,10 @@ public interface ResumeInfoMapper {
     int updateByPrimaryKeyWithBLOBs(ResumeInfoWithBLOBs record);
 
     int updateByPrimaryKey(ResumeInfo record);
+
+    int  insertMyResumeInfo(Map<String,String> map);
+
+    ResumeInfo selectResumeInfoByIDOrEmail(Map<String,String> map);
+
+    int updateMyResumeInfoByEmail(Map<String,String> map);
 }

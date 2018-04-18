@@ -89,6 +89,191 @@
   <sql id="Blob_Column_List">
     RI_EDUCATION, RI_CERT_REWARD, RI_SKILL, RI_WORK_EXPERIENCE, RI_PRO_EXPERIENCE, RI_VALUATION
   </sql>
+
+  <!--自定义sql-->
+  <update id="updateMyResumeInfoByEmail" parameterType="java.util.Map">
+    update dm_resume_info
+    <set>
+      <if test="name != null and name != ''">
+        RI_NAME = #{name,jdbcType=VARCHAR},
+      </if>
+        RI_MOTTO = #{motto,jdbcType=VARCHAR},
+      <if test="sex != null and sex != ''">
+        RI_SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null and age != ''">
+        RI_AGE = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="hp != null and hp!= ''">
+        RI_HP = #{hp,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null and tel != ''">
+        RI_TEl = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null and major !=''">
+        RI_MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="colloge != null and colloge != ''">
+        RI_COLLOGE = #{colloge,jdbcType=VARCHAR},
+      </if>
+      <if test="academic != null and academic != ''">
+        RI_ACADEMIC = #{academic,jdbcType=VARCHAR},
+      </if>
+        RI_JOB_NAME = #{jobName,jdbcType=VARCHAR},
+        RI_WORKPLACE = #{workplace,jdbcType=VARCHAR},
+        RI_EDUCATION = #{education,jdbcType=LONGVARCHAR},
+        RI_CERT_REWARD = #{certReward,jdbcType=LONGVARCHAR},
+      <if test="skill != null and skill != ''">
+        RI_SKILL = #{skill,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workExperience != null">
+        RI_WORK_EXPERIENCE = #{workExperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proExperience != null">
+        RI_PRO_EXPERIENCE = #{proExperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="valuation != null">
+        RI_VALUATION = #{valuation,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+     where RI_EMAIL = #{email,jdbcType=VARCHAR}
+  </update>
+
+  <!--创建简历-->
+  <insert id ="insertMyResumeInfo" parameterType="map">
+    insert into dm_resume_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        RI_NAME,
+      </if>
+      <if test="motto != null">
+        RI_MOTTO,
+      </if>
+      <if test="sex != null">
+        RI_SEX,
+      </if>
+      <if test="age != null">
+        RI_AGE,
+      </if>
+      <if test="hp != null">
+        RI_HP,
+      </if>
+      <if test="tel != null">
+        RI_TEl,
+      </if>
+      <if test="email != null">
+        RI_EMAIL,
+      </if>
+      <if test="major != null">
+        RI_MAJOR,
+      </if>
+      <if test="colloge != null">
+        RI_COLLOGE,
+      </if>
+      <if test="academic != null">
+        RI_ACADEMIC,
+      </if>
+      <if test="jobName != null">
+        RI_JOB_NAME,
+      </if>
+      <if test="workplace != null">
+        RI_WORKPLACE,
+      </if>
+      <if test="education != null">
+        RI_EDUCATION,
+      </if>
+      <if test="certReward != null">
+        RI_CERT_REWARD,
+      </if>
+      <if test="skill != null">
+        RI_SKILL,
+      </if>
+      <if test="workExperience != null">
+        RI_WORK_EXPERIENCE,
+      </if>
+      <if test="proExperience != null">
+        RI_PRO_EXPERIENCE,
+      </if>
+      <if test="valuation != null">
+        RI_VALUATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="motto != null">
+        #{motto,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="hp != null">
+        #{hp,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="colloge != null">
+        #{colloge,jdbcType=VARCHAR},
+      </if>
+      <if test="academic != null">
+        #{academic,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="workplace != null">
+        #{workplace,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="certReward != null">
+        #{certReward,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="skill != null">
+        #{skill,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workExperience != null">
+        #{workExperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proExperience != null">
+        #{proExperience,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="valuation != null">
+        #{valuation,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <!--查看简历，根据简历ID或者邮箱-->
+  <select id="selectResumeInfoByIDOrEmail" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select
+    ID, RI_NAME, RI_MOTTO, RI_SEX, RI_AGE, RI_HP, RI_TEl, RI_EMAIL, RI_MAJOR, RI_COLLOGE,
+    RI_ACADEMIC, RI_JOB_NAME, RI_WORKPLACE, RI_EDUCATION, RI_CERT_REWARD, RI_SKILL, RI_WORK_EXPERIENCE, RI_PRO_EXPERIENCE, RI_VALUATION
+    from dm_resume_info
+    <where>
+      <if test="id != null and id != ''">ID = #{id,jdbcType=VARCHAR}</if>
+      <if test="id != null and id != ''">AND RI_EMAIL = #{email,jdbcType=VARCHAR}</if>
+    </where>
+  </select>
+
   <select id="selectByExampleWithBLOBs" parameterType="com.duomiao.entity.ResumeInfoExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">

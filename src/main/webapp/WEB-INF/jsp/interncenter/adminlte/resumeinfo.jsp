@@ -278,10 +278,10 @@
     <tr class="first_tr">
       <td><font color="#a52a2a" size="5px">*</font>姓名:</td><td><input type="text" name="name" placeholder="真实姓名" id="name"/></td>
       <td><font color="#a52a2a" size="5px">*</font>性别:</td><td>男<input style="width:40px;" type="radio" name="sex" value="1" id="man"/>女<input style="width:40px;" type="radio" name="sex" value="0" id="woman"/></td>
-      <td>年龄:</td><td><input type="number" name="age" id="age"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>年龄:</td><td><input type="text" name="age" id="age"/></td>
       <td><font color="#a52a2a" size="5px">*</font>籍贯:</td><td><input type="text" name="hp" id="hp"/></td>
       <td><font color="#a52a2a" size="5px">*</font>手机号码:</td><td><input type="text" name="tel"  id="tel"/></td>
-      <td>邮箱:</td><td><input type="text" name="email"  id="email"/></td>
+      <td>邮箱:</td><td><font color="#a52a2a">${sessionScope.SESSION_INTERN_INFO.loginName}</font><input type="text" name="email"  id="email" value="${sessionScope.SESSION_INTERN_INFO.loginName}" hidden/></td>
     </tr>
     <tr class="tr2">
       <td><font color="#a52a2a" size="5px">*</font>专业:</td><td><input type="text" name="major" id="major"/></td>
