@@ -16,6 +16,7 @@
     <result column="PJ_CUT_DATE" jdbcType="TIMESTAMP" property="cutDate" />
     <result column="PJ_URGENCY" jdbcType="CHAR" property="urgency" />
     <result column="PJ_SEND_NUM" jdbcType="INTEGER" property="sendNum" />
+    <result column="PJ_DESCRIBE" jdbcType="LONGVARCHAR" property="describe" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duomiao.entity.PublishJob">
     <result column="PJ_DESCRIBE" jdbcType="LONGVARCHAR" property="describe" />
@@ -86,6 +87,177 @@
   <sql id="Blob_Column_List">
     PJ_DESCRIBE
   </sql>
+  <sql id="Base_Columns">
+    ID, PJ_JOB_NAME, PJ_ENT_ID, PJ_PC_ID, PJ_MIN_SALARY, PJ_MAX_SALARY, PJ_MIN_EDUCATION_LEV,
+    PJ_WORK_PLACE, PJ_WORK_DAYS, PJ_WORK_MONTH, PJ_UPDATE_TIME, PJ_CUT_DATE, PJ_URGENCY,
+    PJ_SEND_NUM,PJ_DESCRIBE
+  </sql>
+
+<!--定制Sql-->
+  <!--HR查看自己所发布的职位信息|前端分页/没有条件查询-->
+  <select id="selectMyPubJobs" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Columns" />
+    from dm_publish_job
+   where PJ_ENT_ID = #{entId,jdbcType=VARCHAR}
+     order by PJ_UPDATE_TIME desc
+  </select>
+
+<!--hr自己删除根据主键删除-->
+
+  <!--发布职位-->
+  <insert id="insertPubJob" parameterType="com.duomiao.entity.PublishJob">
+    insert into dm_publish_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+       ID,
+      </if>
+      <if test="jobName != null">
+        PJ_JOB_NAME,
+      </if>
+      <if test="entId != null">
+        PJ_ENT_ID,
+      </if>
+      <if test="pcId != null">
+        PJ_PC_ID,
+      </if>
+      <if test="minSalary != null">
+        PJ_MIN_SALARY,
+      </if>
+      <if test="maxSalary != null">
+        PJ_MAX_SALARY,
+      </if>
+      <if test="minEducationLev != null">
+        PJ_MIN_EDUCATION_LEV,
+      </if>
+      <if test="workPlace != null">
+        PJ_WORK_PLACE,
+      </if>
+      <if test="workDays != null">
+        PJ_WORK_DAYS,
+      </if>
+      <if test="workMonth != null">
+        PJ_WORK_MONTH,
+      </if>
+      <if test="updateTime != null">
+        PJ_UPDATE_TIME,
+      </if>
+      <if test="cutDate != null">
+        PJ_CUT_DATE,
+      </if>
+      <if test="urgency != null">
+        PJ_URGENCY,
+      </if>
+      <if test="sendNum != null">
+        PJ_SEND_NUM,
+      </if>
+      <if test="describe != null">
+        PJ_DESCRIBE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcId != null">
+        #{pcId,jdbcType=VARCHAR},
+      </if>
+      <if test="minSalary != null">
+        #{minSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSalary != null">
+        #{maxSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="minEducationLev != null">
+        #{minEducationLev,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null">
+        #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="workDays != null">
+        #{workDays,jdbcType=VARCHAR},
+      </if>
+      <if test="workMonth != null">
+        #{workMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cutDate != null">
+        #{cutDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="urgency != null">
+        #{urgency,jdbcType=CHAR},
+      </if>
+      <if test="sendNum != null">
+        #{sendNum,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <!--hr自己修改职位,或投递简历时系统自动更新send数量-->
+  <update id="updateMyPubJobById" parameterType="map">
+    update dm_publish_job
+    <set>
+      <if test="jobName != null">
+        PJ_JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="pcId != null">
+        PJ_PC_ID = #{pcId,jdbcType=VARCHAR},
+      </if>
+      <if test="minSalary != null">
+        PJ_MIN_SALARY = #{minSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSalary != null">
+        PJ_MAX_SALARY = #{maxSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="minEducationLev != null">
+        PJ_MIN_EDUCATION_LEV = #{minEducationLev,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null">
+        PJ_WORK_PLACE = #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="workDays != null">
+        PJ_WORK_DAYS = #{workDays,jdbcType=VARCHAR},
+      </if>
+      <if test="workMonth != null">
+        PJ_WORK_MONTH = #{workMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        PJ_UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cutDate != null">
+        PJ_CUT_DATE = #{cutDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="urgency != null">
+        PJ_URGENCY = #{urgency,jdbcType=CHAR},
+      </if>
+      <if test="sendNum != null">
+        PJ_SEND_NUM = #{sendNum,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        PJ_DESCRIBE = #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--过期职位数据清除，定时删除-->
+
+<!--重点部分，公共职位搜索算法-->
+
+
+
+  <!--定制Sql-->
   <select id="selectByExampleWithBLOBs" parameterType="com.duomiao.entity.PublishJobExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">

@@ -33,4 +33,6 @@ public interface JobCollectMapper {
     int insertJobCollect(JobCollect jobCollect);
     //分页查询 start,length
     List<JobCollect>  selectJobCollectListByTerms(Map<String,Object> map);
+    //总记录数
+    int selectJobCollectListCount(Map<String,Object> map);
 }

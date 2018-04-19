@@ -72,6 +72,67 @@
   <sql id="Base_Column_List">
     ID, HI_HR_NAME, HI_PASSWORD, HI_IMG_URL, HI_ENTID, HI_FLAG, HI_TEL, HI_REGTIME
   </sql>
+  <!--自定Sql 分页多条件查询-->
+  <select id="selectHrInfoList" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_hr_info
+    <where>
+      <if test="hrNameLike != null and hrNameLike != ''">
+        HI_HR_NAME like '%${hrNameLike}%'
+      </if>
+      <if test="hrName != null and hrName!= ''">
+        and HI_HR_NAME = #{hrName,jdbcType=VARCHAR}
+      </if>
+      <if test="id != null and id != ''">
+       and ID = #{id,jdbcType=VARCHAR}
+      </if>
+    </where>
+      order by HI_REGTIME desc
+    <include refid="mysql-page.mysql_page" />
+  </select>
+  <select id="selectHrInfoListCount" parameterType="map" resultType="java.lang.Integer">
+    select count(ID)
+    from dm_hr_info
+    <where>
+      <if test="hrNameLike != null and hrNameLike != ''">
+        HI_HR_NAME like '%${hrNameLike}%'
+      </if>
+    </where>
+  </select>
+<!--注册HR-->
+  <insert id="insertHrInfo" parameterType="com.duomiao.entity.HrInfo">
+   insert into dm_hr_info (ID,HI_HR_NAME,HI_PASSWORD,HI_FLAG,HI_REGTIME) values(#{id,jdbcType=VARCHAR},#{hrName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{flag,jdbcType=VARCHAR},#{regtime,jdbcType=TIMESTAMP})
+  </insert>
+<!--登录验证-->
+  <select id="selectMyHrInfo" parameterType="com.duomiao.entity.HrInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_hr_info WHERE  HI_HR_NAME =#{hrName,jdbcType=VARCHAR} and HI_PASSWORD = #{password,jdbcType=VARCHAR}
+  </select>
+<!--HR个人修改-->
+
+  <update id="updateMyHrInfo" parameterType="map">
+    update dm_hr_info
+    <set>
+      <if test="password != null">
+        HI_PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        HI_IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="entid != null">
+        HI_ENTID = #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        HI_TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+    </set>
+  where ID = #{id，jdbcType=VARCHAR}
+  </update>
+
+
+  <!--自定义-->
   <select id="selectByExample" parameterType="com.duomiao.entity.HrInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

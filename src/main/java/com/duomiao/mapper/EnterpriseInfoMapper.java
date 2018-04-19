@@ -4,13 +4,15 @@ import com.duomiao.entity.EnterpriseInfo;
 import com.duomiao.entity.EnterpriseInfoExample;
 import com.duomiao.entity.EnterpriseInfoWithBLOBs;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface EnterpriseInfoMapper {
     long countByExample(EnterpriseInfoExample example);
 
     int deleteByExample(EnterpriseInfoExample example);
-
+//删除
     int deleteByPrimaryKey(String id);
 
     int insert(EnterpriseInfoWithBLOBs record);
@@ -34,4 +36,16 @@ public interface EnterpriseInfoMapper {
     int updateByPrimaryKeyWithBLOBs(EnterpriseInfoWithBLOBs record);
 
     int updateByPrimaryKey(EnterpriseInfo record);
+
+    //hr查看公司信息
+    List<EnterpriseInfo> selectByEntId(String id);
+
+    //hr注册公司信息
+    int insertMyEnt(EnterpriseInfo enterpriseInfo);
+    //管理员分页查看
+    List<EnterpriseInfo> selectEntInfoList(Map map);
+
+    //查看总记录数
+    int selectEntInfoListCount(Map map);
+
 }

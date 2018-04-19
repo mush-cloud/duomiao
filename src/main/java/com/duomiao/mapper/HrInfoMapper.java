@@ -3,6 +3,8 @@ package com.duomiao.mapper;
 import com.duomiao.entity.HrInfo;
 import com.duomiao.entity.HrInfoExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface HrInfoMapper {
@@ -27,4 +29,17 @@ public interface HrInfoMapper {
     int updateByPrimaryKeySelective(HrInfo record);
 
     int updateByPrimaryKey(HrInfo record);
+
+    List<HrInfo> selectHrInfoList(Map map);
+
+    int selectHrInfoListCount(Map map);
+
+    int insertHrInfo(HrInfo hrInfo);
+
+    List<HrInfo> selectMyHrInfo(HrInfo hrInfo);
+
+    int updateMyHrInfo(Map map);
+
+
+
 }

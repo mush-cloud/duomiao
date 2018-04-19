@@ -1,16 +1,21 @@
 package com.duomiao.service;
 
+import com.duomiao.entity.JobCollect;
 import com.duomiao.entity.ResumeInfo;
 
+import java.util.List;
 import java.util.Map;
 
 public interface JobCollectService {
-    //
-    public ResumeInfo selectMyResumeInfoByIdOrEmail(Map<String, String> map);
+    //根据ID删除职位收藏表记录
+    public int deleteById(String id);
 
-    //
-    public int updateMyResumeInfoByEmail(Map<String, String> map);
+    //添加收藏职位
+    public int insertJobCollect(JobCollect jobCollect);
 
-    //
-    public int insertMyResumeInfo(Map<String, String> map);
+    //分页查询 start,length
+    public List<JobCollect> selectJobCollectListByTerms(Map<String,Object> map);
+
+    //记录数
+    public int selectJobCollectListCount(Map<String,Object> map);
 }

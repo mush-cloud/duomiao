@@ -1,7 +1,7 @@
 package com.duomiao.control;
 
-import com.duomiao.entity.InternInfo;
-import com.duomiao.service.InternInfoService;
+import com.duomiao.entity.HrInfo;
+import com.duomiao.service.HrInfoService;
 import com.duomiao.util.AjaxResult;
 import com.duomiao.util.Constant;
 import com.duomiao.util.DateHelper;
@@ -28,21 +28,21 @@ import java.util.Map;
 public class HrInfoControl {
 	private AjaxResult ajaxResult = new AjaxResult();;
 	@Autowired
-	private InternInfoService internInfoService;
+	private HrInfoService hrInfoService;
 	
     @RequestMapping("/enLoginAndRegister")
 	public String enLoginAndRegisterPage() {
-		return "interncenter/login_register";
+		return "hrcenter/login_register";
 	}
 	
     @RequestMapping("/doLogin")
     @ResponseBody
-    public  AjaxResult doLogin(@RequestParam Map<String,Object> map,HttpSession session) {
-       List<InternInfo> internInfos = internInfoService.getInternInfoList(map);
-       if(internInfos != null && internInfos.size() > 0) {
+    public  AjaxResult doLogin(@ModelAttribute HrInfo hrInfo,HttpSession session) {
+       HrInfo hrInfo2 = hrInfoService.selectMyHrInfo(hrInfo);
+       if(hrInfo2 != null) {
     	   System.err.println("ok");
     	   ajaxResult.setSuccess(true);
-    	   session.setAttribute(Constant.SESSION_INTERN_INFO, internInfos.get(0));
+    	   session.setAttribute(Constant.SESSION_HR_INFO, hrInfo2);
     	   session.removeValue(Constant.SESSION_HR_INFO);
        }else {
     	   ajaxResult.setSuccess(false);
@@ -52,16 +52,16 @@ public class HrInfoControl {
     
     @RequestMapping("/doLoginOut")
     public  String doLoginOut(HttpSession session) {
-    	   session.setAttribute(Constant.SESSION_INTERN_INFO, null);
+    	   session.setAttribute(Constant.SESSION_HR_INFO, null);
     	   return "redirect:/public/index";
     }
     
     @RequestMapping("/doCheckSameName")
     @ResponseBody
     public AjaxResult doCheckSameName(HttpServletRequest request) {
-    	String name = request.getParameter("name");
+    	String name = request.getParameter("hrName");
     	ajaxResult.setSuccess(false);
-    	int count = internInfoService.validateSameName(name);
+    	int count = hrInfoService.validateSameName(name);
     	if(count > 0) {
     		ajaxResult.setSuccess(true);//名字已存在
     	}
@@ -70,14 +70,12 @@ public class HrInfoControl {
     
     @RequestMapping("/doRegister")
     @ResponseBody
-    public AjaxResult doRegister(@ModelAttribute InternInfo internInfo) {
-    	internInfo.setRegisterTime(DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
-    	internInfo.setId(UUIDBuilder.createUUID());
-    	internInfo.setDb("0");
-    	internInfo.setFlag("I");//唯一标识
-    	internInfo.setState("0");//默认未激活
-    	internInfo.setImgUrl("/imgs/index_header_bottom/default.png");//图像默认
-        int result = internInfoService.registerInternInfo(internInfo);
+    public AjaxResult doRegister(@ModelAttribute HrInfo hrInfo) {
+    	hrInfo.setRegtime(DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
+    	hrInfo.setId(UUIDBuilder.createUUID());
+    	hrInfo.setFlag("H");//唯一标识
+    	hrInfo.setImgUrl("/imgs/index_header_bottom/default.png");//图像默认
+        int result = hrInfoService.insertHrInfo(hrInfo);
         if(result>0) {
         	ajaxResult.setSuccess(true);
         }else {
@@ -86,19 +84,17 @@ public class HrInfoControl {
     	return ajaxResult;
     }
     
-    //基本信息修改,密码，真实姓名，图像
+    //基本信息修改,密码，联系方式，图像
     @RequestMapping("/adminlte/doEditMainInfo")
     @ResponseBody
-    public AjaxResult alertMainInfoByOwn(@ModelAttribute InternInfo internInfo,HttpSession session){
-    	if(internInfo.getImgUrl().equals("")) {
-    		internInfo.setImgUrl("/imgs/index_header_bottom/default.png");
-    	}
-    	internInfoService.updateInternInfoForOwn(internInfo);
+    public AjaxResult alertMainInfoByOwn(@RequestParam Map map,HttpSession session){
+    	hrInfoService.updateMyHrInfo(map);
     	//更新session
-    	Map<String,Object> map = new HashMap<String,Object>();
-    	map.put("id", internInfo.getId());
-    	 List<InternInfo> internInfos = internInfoService.getInternInfoList(map);
-    	 session.setAttribute(Constant.SESSION_INTERN_INFO, internInfos.get(0));
+    	Map<String,Object> map2 = new HashMap<String,Object>();
+    	map2.put("id", map.get("id"));
+    	 List<HrInfo> hrInfos = hrInfoService.selectHrInfoList(map2);
+    	 session.setAttribute(Constant.SESSION_HR_INFO, hrInfos.get(0));
+    	 ajaxResult.setSuccess(true);
     	return ajaxResult;
     }
     
@@ -137,7 +133,7 @@ public class HrInfoControl {
     @ResponseBody
     public AjaxResult upImg(@RequestParam(value = "file", required = false)MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException {
     	//物理路径
-    	String path = request.getSession().getServletContext().getRealPath("/imgs/imgs_server");
+    	String path = request.getSession().getServletContext().getRealPath("/imgs/imgs_server/hr");
     	Map<String,Object> map = new HashMap<String,Object>();
     	String fileName = file.getOriginalFilename();
     	File dir = new File(path,fileName);
@@ -145,7 +141,7 @@ public class HrInfoControl {
     		dir.mkdirs();
     	}
     	file.transferTo(dir);
-    	String enPath = "/imgs/imgs_server/"+ file.getOriginalFilename();
+    	String enPath = "/imgs/imgs_server/hr"+ file.getOriginalFilename();
     	map.put("imgPath", enPath);
     	ajaxResult.setMessage(map);
     	ajaxResult.setSuccess(true);

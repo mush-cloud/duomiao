@@ -1,5 +1,7 @@
 package com.duomiao.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class EnterpriseInfo {
@@ -20,12 +22,33 @@ public class EnterpriseInfo {
     private String industry;
 
     private String uniscid;
-
+    @DateTimeFormat
     private Date regtime;
 //注册资本
     private String regCapital;
 //企业审核状态，0未审核 1审核
     private String status;
+
+    //详细介绍
+    private String introduction;
+    //企业福利
+    private String welfare;
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    public String getWelfare() {
+        return welfare;
+    }
+
+    public void setWelfare(String welfare) {
+        this.welfare = welfare == null ? null : welfare.trim();
+    }
 
     public String getId() {
         return id;

@@ -130,16 +130,24 @@
     <include refid="Base_Column_List" />
     from dm_job_collect
     <where>
-      <if test="pjNameLike !=null">JC_PJ_NAME like '%${pjNameLike}%'</if>/*全模糊查询*/
-      <if test="pjNameLike !=null">and JC_ENT_NAME like '%${entNameLike}%'</if>
+      <if test="pjNameLike !=null and pjNameLike != ''">JC_PJ_NAME like '%${pjNameLike}%'</if>/*全模糊查询*/
+      <if test="entNameLike !=null and entNameLike">and JC_ENT_NAME like '%${entNameLike}%'</if>
     </where>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null and orderByClause != ''">
       order by ${orderByClause}
     </if>
     <include refid="mysql-page.mysql_page" />
   </select>
 
-
+<!--总记录数-->
+ <select id="selectJobCollectListCount" parameterType="map" resultType="java.lang.Integer">
+  select count(*)
+  from dm_job_collect
+  <where>
+    <if test="pjNameLike !=null and pjNameLike != ''">JC_PJ_NAME like '%${pjNameLike}%'</if>/*全模糊查询*/
+    <if test="entNameLike !=null and entNameLike">and JC_ENT_NAME like '%${entNameLike}%'</if>
+  </where>
+</select>
 
   <select id="selectByExample" parameterType="com.duomiao.entity.JobCollectExample" resultMap="BaseResultMap">
     select

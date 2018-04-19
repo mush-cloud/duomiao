@@ -16,7 +16,7 @@
 					<c:if  test="${sessionScope.SESSION_HR_INFO == null}">
 					<!--未登录时状态-->
 					<a href="${pageContext.request.contextPath}/intern/enLoginAndRegister" class="entry">个人入口</a>
-					<a href="#" class="entry">企业入口</a>
+					<a href="${pageContext.request.contextPath}/hr/enLoginAndRegister" class="entry">企业入口</a>
 					</c:if>
 					</c:if>
 				<c:if test="${!empty sessionScope.SESSION_INTERN_INFO}">

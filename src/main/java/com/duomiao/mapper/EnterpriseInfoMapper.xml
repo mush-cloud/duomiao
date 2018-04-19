@@ -14,6 +14,8 @@
     <result column="EI_REGTIME" jdbcType="DATE" property="regtime" />
     <result column="EI_REG_CAPITAL" jdbcType="VARCHAR" property="regCapital" />
     <result column="EI_STATUS" jdbcType="CHAR" property="status" />
+    <result column="EI_INTRODUCTION" jdbcType="LONGVARCHAR" property="introduction" />
+    <result column="EI_WELFARE" jdbcType="LONGVARCHAR" property="welfare" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duomiao.entity.EnterpriseInfoWithBLOBs">
     <result column="EI_INTRODUCTION" jdbcType="LONGVARCHAR" property="introduction" />
@@ -84,6 +86,134 @@
   <sql id="Blob_Column_List">
     EI_INTRODUCTION, EI_WELFARE
   </sql>
+
+  <!--自定义sql-->
+  <!--Hr查看-->
+  <select id="selectByEntId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, EI_ENINAME, EI_RESUME, EI_IMG_URL, EI_ADDRESS, EI_TEL, EI_EMPLOYEENUM, EI_INDUSTRY,
+    EI_UNISCID, EI_REGTIME, EI_REG_CAPITAL, EI_STATUS,EI_INTRODUCTION, EI_WELFARE
+    from dm_enterprise_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+<!--HR注册企业-->
+  <insert id="insertMyEnt" parameterType="com.duomiao.entity.EnterpriseInfo">
+    insert into dm_enterprise_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="eniname != null">
+        EI_ENINAME,
+      </if>
+      <if test="resume != null">
+        EI_RESUME,
+      </if>
+      <if test="imgUrl != null">
+        EI_IMG_URL,
+      </if>
+      <if test="address != null">
+        EI_ADDRESS,
+      </if>
+      <if test="tel != null">
+        EI_TEL,
+      </if>
+      <if test="employeenum != null">
+        EI_EMPLOYEENUM,
+      </if>
+      <if test="industry != null">
+        EI_INDUSTRY,
+      </if>
+      <if test="uniscid != null">
+        EI_UNISCID,
+      </if>
+      <if test="regtime != null">
+        EI_REGTIME,
+      </if>
+      <if test="regCapital != null">
+        EI_REG_CAPITAL,
+      </if>
+      <if test="status != null">
+        EI_STATUS,
+      </if>
+      <if test="introduction != null">
+        EI_INTRODUCTION,
+      </if>
+      <if test="welfare != null">
+        EI_WELFARE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eniname != null">
+        #{eniname,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null">
+        #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="employeenum != null">
+        #{employeenum,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="uniscid != null">
+        #{uniscid,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null">
+        #{regtime,jdbcType=DATE},
+      </if>
+      <if test="regCapital != null">
+        #{regCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="welfare != null">
+        #{welfare,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+<!--管理员删除-->
+
+  <!--管理员分页查看-->
+  <select id="selectEntInfoList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select ID, EI_ENINAME, EI_RESUME, EI_IMG_URL, EI_ADDRESS, EI_TEL, EI_EMPLOYEENUM, EI_INDUSTRY,
+    EI_UNISCID, EI_REGTIME, EI_REG_CAPITAL, EI_STATUS,EI_INTRODUCTION, EI_WELFARE
+    from dm_enterprise_info
+<where>
+  <if test="addressLike != null and addressLike != ''">EI_ADDRESS like '%${addressLike}%'</if>
+  <if test="eninameLike != null and eninameLike != ''">EI_ENINAME like '%${eninameLike}%'</if>/*根据企业名字模糊查询*/
+</where>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="mysql-page.mysql_page" />
+  </select>
+
+  <!--查看总记录数-->
+  <select id="selectEntInfoListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(ID)
+    from dm_enterprise_info
+    <where>
+      <if test="addressLike != null and addressLike != ''">EI_ADDRESS like '%${addressLike}%'</if>
+      <if test="eninameLike != null and eninameLike != ''">EI_ENINAME like '%${eninameLike}%'</if>/*根据企业名字模糊查询*/
+    </where>
+  </select>
+
   <select id="selectByExampleWithBLOBs" parameterType="com.duomiao.entity.EnterpriseInfoExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">

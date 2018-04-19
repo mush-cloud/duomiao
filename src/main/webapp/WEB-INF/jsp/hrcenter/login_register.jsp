@@ -13,7 +13,7 @@
 <div class="lr-box">
 <div class="lr-box-header">
 <h1 class="main-title">朵喵</h1>
-<h2 class="sub-title">实习如此简单 - Intern Easy</h2>
+<h2 class="sub-title">招聘如此简单 - Hr Easy</h2>
 </div>
 <div class="lr-box-choice">
 <a href="javascript:;" class="l-button after">登录</a><a href="javascript:;" class="r-button">注册</a>

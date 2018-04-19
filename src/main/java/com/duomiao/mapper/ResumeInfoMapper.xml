@@ -15,6 +15,12 @@
     <result column="RI_ACADEMIC" jdbcType="VARCHAR" property="academic" />
     <result column="RI_JOB_NAME" jdbcType="VARCHAR" property="jobName" />
     <result column="RI_WORKPLACE" jdbcType="VARCHAR" property="workplace" />
+    <result column="RI_EDUCATION" jdbcType="LONGVARCHAR" property="education" />
+    <result column="RI_CERT_REWARD" jdbcType="LONGVARCHAR" property="certReward" />
+    <result column="RI_SKILL" jdbcType="LONGVARCHAR" property="skill" />
+    <result column="RI_WORK_EXPERIENCE" jdbcType="LONGVARCHAR" property="workExperience" />
+    <result column="RI_PRO_EXPERIENCE" jdbcType="LONGVARCHAR" property="proExperience" />
+    <result column="RI_VALUATION" jdbcType="LONGVARCHAR" property="valuation" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duomiao.entity.ResumeInfoWithBLOBs">
     <result column="RI_EDUCATION" jdbcType="LONGVARCHAR" property="education" />
@@ -263,7 +269,7 @@
   </insert>
 
   <!--查看简历，根据简历ID或者邮箱-->
-  <select id="selectResumeInfoByIDOrEmail" parameterType="map" resultMap="ResultMapWithBLOBs">
+  <select id="selectResumeInfoByIDOrEmail" parameterType="map" resultMap="BaseResultMap">
     select
     ID, RI_NAME, RI_MOTTO, RI_SEX, RI_AGE, RI_HP, RI_TEl, RI_EMAIL, RI_MAJOR, RI_COLLOGE,
     RI_ACADEMIC, RI_JOB_NAME, RI_WORKPLACE, RI_EDUCATION, RI_CERT_REWARD, RI_SKILL, RI_WORK_EXPERIENCE, RI_PRO_EXPERIENCE, RI_VALUATION
