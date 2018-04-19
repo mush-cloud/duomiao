@@ -1,5 +1,7 @@
 package com.duomiao.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class PublishJob {
@@ -24,7 +26,8 @@ public class PublishJob {
     private String workMonth;
 
     private Date updateTime;
-
+//格式 1996-1-1
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cutDate;
 
     private String urgency;

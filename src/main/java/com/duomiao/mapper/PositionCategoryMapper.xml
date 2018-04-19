@@ -68,6 +68,52 @@
   <sql id="Base_Column_List">
     ID, PC_TYPE_NAME, PC_FATHER_ID, PC_URL
   </sql>
+
+  <!--自制-->
+  <!--添加类别-->
+  <insert id="insertCategory" parameterType="com.duomiao.entity.PositionCategory">
+    insert into dm_position_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="typeName != null">
+        PC_TYPE_NAME,
+      </if>
+      <if test="fatherId != null">
+        PC_FATHER_ID,
+      </if>
+      <if test="url != null">
+        PC_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherId != null">
+        #{fatherId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <!--根据父类ID删除类别-->
+  <delete id="deleteByFatherId" parameterType="java.lang.String">
+    delete from dm_position_category
+    where PC_FATHER_ID = #{fatherId,jdbcType=VARCHAR}
+  </delete>
+
+
+  <!--根据父类id查找职位二级列表-->
+
+  <!--自制-->
+
   <select id="selectByExample" parameterType="com.duomiao.entity.PositionCategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

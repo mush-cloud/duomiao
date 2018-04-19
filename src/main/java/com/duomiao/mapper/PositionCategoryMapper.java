@@ -27,4 +27,6 @@ public interface PositionCategoryMapper {
     int updateByPrimaryKeySelective(PositionCategory record);
 
     int updateByPrimaryKey(PositionCategory record);
+    //添加职位类别，基类和二级类公共方法
+    int insertCategory(PositionCategory positionCategory);
 }

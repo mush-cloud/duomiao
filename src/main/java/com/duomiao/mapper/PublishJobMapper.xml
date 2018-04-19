@@ -251,11 +251,106 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 
-  <!--过期职位数据清除，定时删除-->
-
+  <!--过期职位数据清除，定时删除TODO-->
+  <delete id="deleteAutoTimeout" >
+    delete from dm_publish_job
+   <![CDATA[ where  PJ_CUT_DATE <= NOW()]]>
+  </delete>
 <!--重点部分，公共职位搜索算法-->
+<!--一级类别查询-->
+  <select id="selectPublicMethodOne" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Columns" />
+    from dm_publish_job where PJ_PC_ID IN
+    <foreach collection="arrId"  item="id" separator="," open="(" close=")">
+    #{id}
+  </foreach>
+    order by PJ_UPDATE_TIME DESC
+    <include refid="mysql-page.mysql_page" />
+  </select>
+  <!--二级类别查询,搜索框查询-->
+  <select id="selectPublicMethodTwo" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Columns" />
+    from dm_publish_job
+    <where>
+    <if test="jobNameLike != null">
+      PJ_JOB_NAME like '%${jobNameLike}%'
+    </if>
+    <if test="pcId != null">
+     AND PJ_PC_ID = #{pcId,jdbcType=VARCHAR}
+    </if>
+    <if test="minSalary != null">
+     AND CAST(PJ_MIN_SALARY as INT) >= CAST(#{minSalary,jdbcType=VARCHAR} as INT )
+    </if>
+    <if test="maxSalary != null">
+     AND <![CDATA[ CAST(PJ_MAX_SALARY as INT )<= CAST(#{maxSalary,jdbcType=VARCHAR} as INT )]]>
+    </if>
+    <if test="minEducationLev != null">
+      and PJ_MIN_EDUCATION_LEV = #{minEducationLev,jdbcType=VARCHAR}
+    </if>
+    <if test="workPlace != null">
+     AND PJ_WORK_PLACE = #{workPlace,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTimeLimit != null">
+     AND PJ_UPDATE_TIME >= #{updateTimeLimit,jdbcType=TIMESTAMP}
+    </if>
+    </where>
+      order by PJ_UPDATE_TIME DESC
+    <include refid="mysql-page.mysql_page" />
+  </select>
 
+  <!--搜索框查询获取总记录数-->
+  <select id="selectPublicMethodTwoCount" parameterType="map" resultType="java.lang.Integer">
+    select
+    count(ID)
+    from dm_publish_job
+    <where>
+      <if test="jobNameLike != null">
+        PJ_JOB_NAME like '%${jobNameLike}%'
+      </if>
+      <if test="pcId != null">
+        AND PJ_PC_ID = #{pcId,jdbcType=VARCHAR}
+      </if>
+      <if test="minSalary != null">
+        AND CAST(PJ_MIN_SALARY as INT) >= CAST(#{minSalary,jdbcType=VARCHAR} as INT )
+      </if>
+      <if test="maxSalary != null">
+        AND <![CDATA[ CAST(PJ_MAX_SALARY as INT )<= CAST(#{maxSalary,jdbcType=VARCHAR} as INT )]]>
+      </if>
+      <if test="minEducationLev != null">
+        and PJ_MIN_EDUCATION_LEV = #{minEducationLev,jdbcType=VARCHAR}
+      </if>
+      <if test="workPlace != null">
+        AND PJ_WORK_PLACE = #{workPlace,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTimeLimit != null">
+        AND PJ_UPDATE_TIME >= #{updateTimeLimit,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
 
+<!--获取某一职位具体信息-->
+  <select id="selectPubJobById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  <include refid="Base_Columns" />
+    from dm_publish_job where ID = #{id,jdbcType=VARCHAR}
+  </select>
+<!--热门职位搜索 8个固定-->
+  <select id="selectHotPubJob"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Columns" />
+    from dm_publish_job
+    ORDER by PJ_SEND_NUM DESC
+    limit 0,8
+  </select>
+<!--最新职位展示-->
+  <select id="selectNewPubJob"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Columns" />
+    from dm_publish_job
+    ORDER by PJ_UPDATE_TIME DESC
+    limit 0,8
+  </select>
 
   <!--定制Sql-->
   <select id="selectByExampleWithBLOBs" parameterType="com.duomiao.entity.PublishJobExample" resultMap="ResultMapWithBLOBs">
