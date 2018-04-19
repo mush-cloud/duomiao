@@ -71,6 +71,76 @@
   <sql id="Base_Column_List">
     ID, JC_INT_ID, JC_PJ_ID, JC_PJ_NAME, JC_GO_URL, JC_ENT_NAME, JC_INPUT_TIME
   </sql>
+
+  <!--自定义sql 添加收藏职位-->
+  <insert id="insertJobCollect" parameterType="com.duomiao.entity.JobCollect">
+    insert into dm_job_collect
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="intId != null">
+        JC_INT_ID,
+      </if>
+      <if test="pjId != null">
+        JC_PJ_ID,
+      </if>
+      <if test="pjName != null">
+        JC_PJ_NAME,
+      </if>
+      <if test="goUrl != null">
+        JC_GO_URL,
+      </if>
+      <if test="entName != null">
+        JC_ENT_NAME,
+      </if>
+      <if test="inputTime != null">
+        JC_INPUT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="intId != null">
+        #{intId,jdbcType=VARCHAR},
+      </if>
+      <if test="pjId != null">
+        #{pjId,jdbcType=VARCHAR},
+      </if>
+      <if test="pjName != null">
+        #{pjName,jdbcType=VARCHAR},
+      </if>
+      <if test="goUrl != null">
+        #{goUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="entName != null">
+        #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTime != null">
+        #{inputTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+<!--删除-->
+  <!--分页查询-->
+  <select id="selectJobCollectListByTerms" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_job_collect
+    <where>
+      <if test="pjNameLike !=null">JC_PJ_NAME like '%${pjNameLike}%'</if>/*全模糊查询*/
+      <if test="pjNameLike !=null">and JC_ENT_NAME like '%${entNameLike}%'</if>
+    </where>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="mysql-page.mysql_page" />
+  </select>
+
+
+
   <select id="selectByExample" parameterType="com.duomiao.entity.JobCollectExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

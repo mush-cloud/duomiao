@@ -39,7 +39,7 @@ public interface ResumeInfoMapper {
 
     int  insertMyResumeInfo(Map<String,String> map);
 
-    ResumeInfo selectResumeInfoByIDOrEmail(Map<String,String> map);
+    List<ResumeInfo> selectResumeInfoByIDOrEmail(Map<String,String> map);
 
     int updateMyResumeInfoByEmail(Map<String,String> map);
 }

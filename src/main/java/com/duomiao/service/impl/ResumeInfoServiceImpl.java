@@ -6,6 +6,7 @@ import com.duomiao.service.ResumeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 @Service
 public class ResumeInfoServiceImpl implements ResumeInfoService{
@@ -14,7 +15,8 @@ public class ResumeInfoServiceImpl implements ResumeInfoService{
     //查看简历
     @Override
     public ResumeInfo selectMyResumeInfoByIdOrEmail(Map<String, String> map) {
-        return resumeInfoMapper.selectResumeInfoByIDOrEmail(map);
+        List<ResumeInfo> resumeInfoList =  resumeInfoMapper.selectResumeInfoByIDOrEmail(map);
+        return resumeInfoList.get(0);
     }
 //修改简历
     @Override
