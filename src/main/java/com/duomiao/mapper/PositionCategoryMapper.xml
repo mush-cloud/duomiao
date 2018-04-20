@@ -106,12 +106,42 @@
   <!--根据父类ID删除类别-->
   <delete id="deleteByFatherId" parameterType="java.lang.String">
     delete from dm_position_category
-    where PC_FATHER_ID = #{fatherId,jdbcType=VARCHAR}
+    where PC_FATHER_ID = #{id,jdbcType=VARCHAR}
   </delete>
 
 
   <!--根据父类id查找职位二级列表-->
+  <select id="selectByFatherId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_position_category where  PC_FATHER_ID = #{id,jdbcType=VARCHAR}
+  </select>
 
+  <!--修改-->
+  <update id="updateById" parameterType="map">
+    update dm_position_category
+    <set>
+      <if test="typeName != null">
+        PC_TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherId != null">
+        PC_FATHER_ID = #{fatherId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        PC_URL = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--查找一级类-->
+
+  <select id="selectBaseKinds"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_position_category
+    where PC_FATHER_ID = '0'
+  </select>
   <!--自制-->
 
   <select id="selectByExample" parameterType="com.duomiao.entity.PositionCategoryExample" resultMap="BaseResultMap">
