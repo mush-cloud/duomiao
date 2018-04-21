@@ -75,6 +75,131 @@
     ID, ER_ENT_ID, ER_PJ_ID, ER_RI_ID, ER_ADD_TIME, ER_SEX, ER_AGE, ER_ACADEMIC, ER_ISDEL, 
     ER_DEL_TIME
   </sql>
+  <!--动态sql-->
+
+  <!--系统定时删除无效数据-->
+  <delete id="deleteInvalidData">
+    delete from dm_ent_resume
+    where ER_ISDEL = '1'
+  </delete>
+  <!--投递后插入信息-->
+  <insert id="insertEntResume" parameterType="map">
+    insert into dm_ent_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="entId != null">
+        ER_ENT_ID,
+      </if>
+      <if test="pjId != null">
+        ER_PJ_ID,
+      </if>
+      <if test="riId != null">
+        ER_RI_ID,
+      </if>
+      <if test="addTime != null">
+        ER_ADD_TIME,
+      </if>
+      <if test="sex != null">
+        ER_SEX,
+      </if>
+      <if test="age != null">
+        ER_AGE,
+      </if>
+      <if test="academic != null">
+        ER_ACADEMIC,
+      </if>
+      <if test="isdel != null">
+        ER_ISDEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="pjId != null">
+        #{pjId,jdbcType=VARCHAR},
+      </if>
+      <if test="riId != null">
+        #{riId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="academic != null">
+        #{academic,jdbcType=VARCHAR},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+<!--假删除 设置状态值为1  -->
+  <update id="updateForFakeDel" parameterType="java.util.Map">
+    update dm_ent_resume set
+    ER_ISDEL = '1',ER_DEL_TIME = #{delTime,jdbcType=TIMESTAMP} where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <!--恢复 -->
+  <update id="recoverEntResumeById" parameterType="java.lang.String">
+    update dm_ent_resume set
+    ER_ISDEL = '0' where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+<!--查看有效状态简历，筛选条件 学历和性别，分页-->
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_ent_resume
+    <where>
+      ER_ISDEL = '0'
+    <if test="academic != null and academic != ''">
+      and ER_ACADEMIC = #{academic,jdbcType=VARCHAR}
+    </if>
+      <if test="sex != null and sex != ''">
+       and ER_SEX = #{sex,jdbcType=CHAR}
+      </if>
+      order by ER_ADD_TIME desc
+    </where>
+    <include refid="mysql-page.mysql_page" />
+  </select>
+
+  <!--查看有效状态简历数量，筛选条件 学历和性别-->
+  <select id="getTotal" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    count(ID)
+    from dm_ent_resume
+    <where>
+      ER_ISDEL = '0'
+      <if test="academic != null and academic != ''">
+        and ER_ACADEMIC = #{academic,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null and sex != ''">
+        and ER_SEX = #{sex,jdbcType=CHAR}
+      </if>
+    </where>
+  </select>
+
+  <!--查看无效状态简历 状态1为无效-->
+  <select id="selectDelData"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_ent_resume WHERE
+      ER_ISDEL = '1'
+      order by ER_DEL_TIME DESC
+  </select>
+
+
+  <!--动态sql-->
   <select id="selectByExample" parameterType="com.duomiao.entity.EntResumeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

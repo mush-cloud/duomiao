@@ -146,17 +146,17 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+              <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_HR_INFO.loginName}</span>
             </a>
             <!--  -->
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
+                <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="img-circle" alt="User Image">
                 <p>
-                  ${sessionScope.SESSION_INTERN_INFO.loginName} - Manager Center
+                  ${sessionScope.SESSION_HR_INFO.loginName} - Manager Center
                   <small>Power By DuoMiao</small>
                 </p>
               </li>
@@ -165,15 +165,11 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#"><c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 1}">已激活</c:if>
-                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if>
-                    </a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">标识I</a>
+                    <a href="#">标识H</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -192,7 +188,7 @@
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/HR/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -233,6 +229,7 @@
         <li class="header">HR中心</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="${pageContext.request.contextPath}/hr/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enEnterpriseInfo"><i class="fa fa-link">></i> <span>企业登记</span></a></li>
         <li><a href="${pageContext.request.contextPath}/hr/adminlte/enPublishJob"><i class="fa fa-link">></i> <span>发布职位</span></a></li>
         <li><a href="${pageContext.request.contextPath}/hr/adminlte/enManagePublishJob"><i class="fa fa-link">></i> <span>职位管理</span></a></li>
         <li><a href="${pageContext.request.contextPath}/hr/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
@@ -272,17 +269,17 @@
 <div class="main-body">
 <div class="b1">
 <form id="txsc" enctype="multipart/form-data">
-<div class="touxiang"><img id="imgtx" src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}"/><input class="shangchuan" type="file" name="file"/></div>
+<div class="touxiang"><img id="imgtx" src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}"/><input class="shangchuan" type="file" name="file"/></div>
 <div style="margin-left:30px;margin-top:15px;"><a id="uploadFile" href="javascript:;">上传</a></div>
 </form>
 </div>
 <form id="basicinfo">
 <div class="b2 basic">
 <input type="text" name="imgUrl" id="imgUrl" hidden/><!--value值同上  -->
-<input type="text" name="id" value="${SESSION_INTERN_INFO.id}" hidden />
+<input type="text" name="id" value="${SESSION_HR_INFO.id}" hidden />
 <div class="item"><h5>用户名</h5><font color="#F08080">${SESSION_INTERN_INFO.loginName}</font></div>
-<div class="item"><h5>密码</h5><input type="password" name="loginPwd" value="${SESSION_INTERN_INFO.loginPwd}" id="mima"/></div>
-<div class="item"><h5>真实姓名</h5><input type="text" name="realName" value="${SESSION_INTERN_INFO.realName}" /></div>
+<div class="item"><h5>密码</h5><input type="password" name="loginPwd" value="${SESSION_HR_INFO.loginPwd}" id="mima"/></div>
+  <div class="item"><h5>联系方式</h5><input type="text" name="tel" value="${SESSION_HR_INFO.realName}" /></div>
 </div><div class="basicinfoedit"><input class="btn btn-sm btn-info" type="button" value="提交修改" id="basicinfoedit"/></div>
 </form>
 </div>

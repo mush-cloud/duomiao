@@ -2,16 +2,22 @@ require([ 'layer'],function(layer){
 	$(function(){
             $("#mycollectjob").bootstrapTable({ // 对应table标签的id
                 method: 'post',
-                url: CONSTANT.root_url + "/jobcollect/getJobCollectList", // 获取表格数据的url
+                url: CONSTANT.root_url + "/jobcollect/listJobCollects", // 获取表格数据的url//条件pjNameLike,entNameLike,start,length
                 cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
                 striped: true,  //表格显示条纹，默认为false
                 pagination: true, // 在表格底部显示分页组件，默认false
-                pageList: [10, 20], // 设置页面可以显示的数据条数
+                pageList: [5,10,20,30], // 设置页面可以显示的数据条数
                 pageSize: 10, // 页面数据条数
                 pageNumber: 1, // 首页页码
                 sidePagination: 'server', // 设置为服务器端分页
+                showRefresh:true,//刷新按钮
+                showColumns:true,
+                clickToSelect: true,//是否启用点击选中行
+                toolbarAlign:'right',//工具栏对齐方式
+                buttonsAlign:'right',//按钮对齐方式
+                toolbar:'#toolbar',//指定工作栏
+                search:false,//表格搜素客户端
                 queryParams: function (params) { // 请求服务器数据时发送的参数，可以在这里添加额外的查询参数，返回false则终止请求
-
                     return {
                         pageSize: params.limit, // 每页要显示的数据条数
                         offset: params.offset, // 每页显示数据的开始行号
@@ -52,6 +58,7 @@ require([ 'layer'],function(layer){
                         }
                     }
                 ],
+                locale:'zh-CN',//中文支持,
                 onLoadSuccess: function () {  //加载成功时执行
                     console.info("加载成功");
                 },
@@ -61,7 +68,23 @@ require([ 'layer'],function(layer){
 
             });
 
-
+function  del(id) {
+    $.ajax({
+        async:false,
+        type : "post",
+        url : CONSTANT.root_url + "/jobcollect/delJobCollect?id="+id,
+        dataType : "json",
+        data:$("#basicinfo").serialize(),
+        success : function(result) {
+            layer.alert("删除成功");
+            //刷新
+            $("#mycollectjob").bootstrapTable("refreshOptions",{pageNumber:1,pageSize:10});//便可以了
+        },
+        error : function(){
+            layer.msg("服务器出错!");
+        }
+    });
+}
       /*  //提交修改
 		$("#basicinfoedit").click(function(){
 			if($("#mima").val() == ''){

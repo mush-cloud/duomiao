@@ -32,7 +32,9 @@ public class PublishJobControl {
         BootsTable bootsTable = new BootsTable();
         Map map = new HashMap();
         map.put("entId",hrInfo.getEntid());
-        publishJobService.selectMyPubJobs(map);
+        List<PublishJob> publishJobList = publishJobService.selectMyPubJobs(map);
+        bootsTable.setRows(publishJobList);
+        bootsTable.setTotal(publishJobList.size());
         return  bootsTable;
     }
 
@@ -47,6 +49,16 @@ public class PublishJobControl {
         publishJob.setSendNum(0);
         publishJob.setUpdateTime(DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
         publishJobService.insertPubJob(publishJob);
+        ajaxResult.setSuccess(true);
+        return ajaxResult;
+    }
+
+    //Hr删除职位
+    @RequestMapping("/hr/delPubJob")
+    @ResponseBody
+    public AjaxResult delPubJob(@RequestParam String id,HttpSession session){
+        AjaxResult ajaxResult = new AjaxResult();
+        publishJobService.deleteById(id);
         ajaxResult.setSuccess(true);
         return ajaxResult;
     }

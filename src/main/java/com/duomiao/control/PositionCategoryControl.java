@@ -32,7 +32,6 @@ public class PositionCategoryControl {
     @RequestMapping("/listPositionCategorys")
     @ResponseBody
     public BootsTable listPositionCategory(HttpSession session){
-        HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
         BootsTable bootsTable = new BootsTable();
         List<PositionCategory> baseCateList = positionCategoryService.selectBaseKinds();
         for(PositionCategory positionCategory : baseCateList){

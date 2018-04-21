@@ -1,10 +1,11 @@
 package com.duomiao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class HrInfo {
+public class HrInfo  implements Serializable {
     private String id;
-
+//用户名格式，5-8位的英文字母
     private String hrName;
 
     private String password;

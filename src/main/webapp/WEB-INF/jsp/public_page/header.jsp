@@ -9,7 +9,7 @@
 					<a href="http://www.baidu.com">实习</a>
 					<a href="http://www.baidu.com">校招</a>
 					<a href="http://www.baidu.com">朵喵学院</a>
-					<a href="http://www.baidu.com">猫侍</a>
+					<a href="http://www.baidu.com">友情链接</a>
 				</div>
 				<div class="nav-user">
 					<c:if test="${sessionScope.SESSION_INTERN_INFO == null}">
@@ -29,8 +29,8 @@
                                 <a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo">基本信息</a>
                                 <a href="http://www.ciweishixi.com/company_job/listJob">简历管理</a>
                                 <a href="http://www.ciweishixi.com/company_resume/manager">我的收藏</a>
-                                <a href="http://www.ciweishixi.com/logout">我的猫侍</a>
-                                <a href="http://www.ciweishixi.com/logout">我的课程</a>
+                               <%-- <a href="http://www.ciweishixi.com/logout">我的猫侍</a>
+                                <a href="http://www.ciweishixi.com/logout">我的课程</a>--%>
                                 <a href="${pageContext.request.contextPath}/intern/doLoginOut">退出</a>
                         </dd>
 						</dl>

@@ -49,7 +49,7 @@ public class JobCollectControl {
     //分页查询收藏的职位
     @RequestMapping("/listJobCollects")
     @ResponseBody
-    public BootsTable getJobCollectList(@RequestParam Map<String, Object> map) {
+    public BootsTable getJobCollectList(@RequestParam Map<String, Object> map) {//start,length
         List<JobCollect> jobCollectList = jobCollectService.selectJobCollectListByTerms(map);
         int total = jobCollectService.selectJobCollectListCount(map);
         BootsTable bt = new BootsTable();

@@ -16,7 +16,10 @@ public class ResumeInfoServiceImpl implements ResumeInfoService{
     @Override
     public ResumeInfo selectMyResumeInfoByIdOrEmail(Map<String, String> map) {
         List<ResumeInfo> resumeInfoList =  resumeInfoMapper.selectResumeInfoByIDOrEmail(map);
-        return resumeInfoList.get(0);
+        if(resumeInfoList!=null&& resumeInfoList.size()>0){
+            return resumeInfoList.get(0);
+        }
+        return null;
     }
 //修改简历
     @Override

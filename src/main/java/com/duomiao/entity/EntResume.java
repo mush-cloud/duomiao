@@ -1,8 +1,9 @@
 package com.duomiao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EntResume {
+public class EntResume implements Serializable{
     private String id;
 
     private String entId;

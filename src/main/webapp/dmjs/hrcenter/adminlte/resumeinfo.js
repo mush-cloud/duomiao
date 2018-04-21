@@ -1,8 +1,8 @@
 require([ 'layer'],function(layer){
 	$(function(){
-            $("#mycollectjob").bootstrapTable({ // 对应table标签的id
+            $("#myResumeInfo").bootstrapTable({ // 对应table标签的id
                 method: 'post',
-                url: CONSTANT.root_url + "/jobcollect/getJobCollectList", // 获取表格数据的url
+                url: CONSTANT.root_url + "/entResume/hr/getValidEntResumes", // 获取表格数据的url
                 cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
                 striped: true,  //表格显示条纹，默认为false
                 pagination: true, // 在表格底部显示分页组件，默认false

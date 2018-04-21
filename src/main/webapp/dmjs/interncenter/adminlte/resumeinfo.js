@@ -1,8 +1,77 @@
 require([ 'layer','jquery'],function(layer){
 	$(function(){
+		init();//初始化数据
+		function  init() {
+            $.ajax({
+                async:false,
+                type : "post",
+                url : CONSTANT.root_url + "/resume/intern/getMyResumeInfo?email="+$(".email").text().trim(),
+				dataType:"json",
+                success : function(data) {
+                	console.log(data.proExperience);
+                    $("#rId").val(data.id);
+                      $("#name").val(data.name);
+                    $("#sex").val(data.sex);
+                    $("#age").val(data.age);
+                    $("#hp").val(data.hp);
+                    $("#tel").val(data.tel);
+                    $("#major").val(data.major);
+                    $("#colloge").val(data.colloge);
+                    $("#academic").val(data.academic);
+                    $("#jobName").val(data.jobName);
+                    $("#workplace").val(data.workplace);
+                    $("#motto").val(data.motto);
+                    $("#education").val(data.education);
+                    $("#certReward").val(data.certReward);
+                    $("#workExperience").val(data.workExperience);
+                    $("#proExperience").val(data.proExperience);
+                    $("#skill").val(data.skill);
+                    $("#valuation").val(data.valuation);
+
+                },
+                error : function(){
+                    layer.msg("服务器出错!");
+                }
+            });
+        }
+
 		//提交修改
-		$("#basicinfoedit").click(function(){
-			if($("#mima").val() == ''){
+		$("#resumeinfosubmit").click(function(){
+			//TODO 输入验证
+
+			if($("#rId").val()==''){
+				//执行创建简历
+                $.ajax({
+                    async:false,
+                    type : "post",
+                    url : CONSTANT.root_url + "/resume/intern/doMakeResumeInfo",
+                    dataType:"json",
+                    data:$("#resumeinfo").serialize(),
+                    success : function(result) {
+                        layer.alert("创建成功");
+                    },
+                    error : function(){
+                        layer.msg("服务器出错!");
+                    }
+                });
+			}else{
+				//修改简历
+                $.ajax({
+                    async:false,
+                    type : "post",
+                    url : CONSTANT.root_url + "/resume/intern/doEditResumeInfo",
+                    dataType:"json",
+                    data:$("#basicinfo").serialize(),
+                    success : function(result) {
+                        layer.alert("修改成功");
+                    },
+                    error : function(){
+                        layer.msg("服务器出错!");
+                    }
+                });
+			}
+
+	/*		if($("#mima").val() == ''){
 				layer.msg("密码不能为空");
 				return;
 			}
@@ -10,7 +79,7 @@ require([ 'layer','jquery'],function(layer){
 				async:false,
 				type : "post",
 				url : CONSTANT.root_url + "/intern/adminlte/doEditMainInfo",
-				dataType : "json", 
+				dataType : "json",
 				data:$("#basicinfo").serialize(),
 				success : function(result) {
 				layer.alert("修改成功");
@@ -20,7 +89,7 @@ require([ 'layer','jquery'],function(layer){
 				error : function(){
 					layer.msg("服务器出错!");
 				}
-			});
+			});*/
 		});
 		
 		

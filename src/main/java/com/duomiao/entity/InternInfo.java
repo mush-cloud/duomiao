@@ -1,10 +1,11 @@
 package com.duomiao.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class InternInfo {
+public class InternInfo implements Serializable {
     private String id;
 
     private String loginName;

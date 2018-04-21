@@ -235,6 +235,7 @@
         <li class="header">HR中心</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="${pageContext.request.contextPath}/hr/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enEnterpriseInfo"><i class="fa fa-link">></i> <span>企业登记</span></a></li>
         <li><a href="${pageContext.request.contextPath}/hr/adminlte/enPublishJob"><i class="fa fa-link">></i> <span>发布职位</span></a></li>
         <li><a href="${pageContext.request.contextPath}/hr/adminlte/enManagePublishJob"><i class="fa fa-link">></i> <span>职位管理</span></a></li>
         <li class="active"><a href="${pageContext.request.contextPath}/hr/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
@@ -273,7 +274,7 @@
     <section class="content container-fluid">
 <div class="main-body" style="margin-top: -10px">
 <!--主体内容-->
-<table id="mycollectjob">
+<table id="myResumeInfo">
 </table>
 </div>
       <!--------------------------
