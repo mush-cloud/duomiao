@@ -6,24 +6,24 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实习生管理中心</title>
+  <title>后台管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/bootstrap.min.css">
+ <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/bootstrap.min.css">--%>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/font-awesome.min.css">
+  <!-- bstable \表格-->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.min.css">
+  <!-- bstable-->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/ionicons.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/AdminLTE.min.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/skin-blue.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/mycollect.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/AdminLTE.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/skin-blue.min.css">
   <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/special.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.css">
+        href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/special.css">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -148,12 +148,12 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+             <%-- <img src="${pageContext.request.contextPath}${SESSION_admin_INFO.imgUrl}" class="user-image" alt="User Image">--%>
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_ADMIN_INFO.adminName}</span>
             </a>
             <!--  -->
-            <ul class="dropdown-menu">
+         <%--   <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
@@ -189,12 +189,12 @@
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li> -->
-            </ul>
+            </ul>--%>
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/admin/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -232,13 +232,14 @@
 
       <!-- Sidebar Menu 右侧导航栏-->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">个人中心</li>
+        <li class="header">管理中心</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
-        <li  class="active"><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>我的收藏</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/admin/adminlte/enManageEnt"><i class="fa fa-link">></i> <span>企业信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageHr"><i class="fa fa-link">></i> <span>HR用户管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageIntern"><i class="fa fa-link">></i> <span>实习生用户管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageAdmin"><i class="fa fa-link">></i> <span>管理员信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageCategory"><i class="fa fa-link">></i> <span>职位类别管理</span></a></li>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -265,8 +266,8 @@
         <small>Optional description</small>
       </h1> 
       <ol class="breadcrumb">
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enIndex"> <i class="fa fa-dashboard"></i>个人中心</a></li>
-        <li class="active">我的收藏</li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enIndex"> <i class="fa fa-dashboard"></i>管理中心</a></li>
+        <li class="active">企业信息管理</li>
       </ol>
     </section>
 
@@ -274,7 +275,7 @@
     <section class="content container-fluid">
 <div class="main-body" style="margin-top: -10px">
 <!--主体内容-->
-<table id="mycollectjob">
+<table id="entList">
 </table>
 </div>
       <!--------------------------
@@ -371,16 +372,11 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <jsp:include page="../../public_page/public_js.jsp" />
-<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<%--<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/jquery.min.js"></script>--%>
-<!-- Bootstrap 3.3.7 -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/adminlte.min.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/mycollect.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table-zh-CN.js"></script>
-
-
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/jquery-3.0.0.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table-zh-CN.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/manageent.js"></script>
 </body>
 </html>

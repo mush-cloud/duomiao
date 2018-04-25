@@ -108,7 +108,12 @@
     delete from dm_position_category
     where PC_FATHER_ID = #{id,jdbcType=VARCHAR}
   </delete>
-
+<!--c查找所有二级类别-->
+  <select id="selectAllChild" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_position_category where  PC_FATHER_ID != '0'
+  </select>
 
   <!--根据父类id查找职位二级列表-->
   <select id="selectByFatherId" parameterType="java.lang.String" resultMap="BaseResultMap">

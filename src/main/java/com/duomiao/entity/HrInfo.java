@@ -20,6 +20,8 @@ public class HrInfo  implements Serializable {
 
     private Date regtime;
 
+    private EnterpriseInfo enterpriseInfo;
+
     public String getId() {
         return id;
     }
@@ -82,5 +84,13 @@ public class HrInfo  implements Serializable {
 
     public void setRegtime(Date regtime) {
         this.regtime = regtime;
+    }
+
+    public EnterpriseInfo getEnterpriseInfo() {
+        return enterpriseInfo;
+    }
+
+    public void setEnterpriseInfo(EnterpriseInfo enterpriseInfo) {
+        this.enterpriseInfo = enterpriseInfo;
     }
 }

@@ -6,6 +6,10 @@ import java.util.Map;
 import com.duomiao.entity.InternInfo;
 
 public interface InternInfoService {
+	//删除实习生用户
+	int delIntern(String id);
+	//总记录数
+	int selectInternInfoListCount(Map<String,Object> qryMap);
 	//查询列表
 	public List<InternInfo> getInternInfoList(Map<String,Object> qryMap);
 	//批量删除

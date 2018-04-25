@@ -148,17 +148,17 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+              <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_HR_INFO.hrName}</span>
             </a>
             <!--  -->
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
+                <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="img-circle" alt="User Image">
                 <p>
-                  ${sessionScope.SESSION_INTERN_INFO.loginName} - Manager Center
+                  ${sessionScope.SESSION_HR_INFO.hrName} - Manager Center
                   <small>Power By DuoMiao</small>
                 </p>
               </li>
@@ -167,15 +167,12 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#"><c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 1}">已激活</c:if>
-                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if>
-                    </a>
+
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">标识I</a>
+                    <a href="#">标识H</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -194,7 +191,7 @@
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/hr/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>

@@ -1,6 +1,6 @@
 require(
-		[ 'layer','jquery'],
-		function(layer) {
+		[ 'layer','util'],
+		function(layer,util) {
 			$(function() {			
 				// 绑定a标签点击事件
 				$(".lr-box-choice a").click(function(e) {
@@ -27,7 +27,7 @@ require(
 				function createCode() {
 					code = "";
 					var codeLength = 4;// 验证码的长度
-					var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A',
+					var random = new Array('0', '1', '2', '3', '4', '5', '6', '7', '8','9', 'A',
 							'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 							'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
 							'V', 'W', 'X', 'Y', 'Z');// 随机数
@@ -42,17 +42,6 @@ require(
 				$(".special span").click(function() {
 					$(".special span").text(createCode());
 				});
-				// 条件验证正则表达式
-				function testEmail(str) {
-					var format = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@[A-Za-z\d]+.[A-Za-z]{2,5}$/;
-					var end = format.test(str);
-					return end;
-				}
-				function testMiMa(str) {
-					var format = /^[A-Za-z\d]{6,8}$/;
-					var end = format.test(str);
-					return end;
-				}
 				function testCode(str) {
 					var code = $(".special span").text();
 					if(code.length>4){
@@ -69,7 +58,7 @@ require(
 					$.ajax({
 						async:false,
 						type : "get",
-						url : CONSTANT.root_url + "/intern/doCheckSameName?name="+name,
+						url : CONSTANT.root_url + "/hr/doCheckSameName?hrName="+name,
 						dataType : "json",
 						success : function(result) {
 							end = result.success;
@@ -80,11 +69,7 @@ require(
 				// 判断登录是否合法
 				function checkLogin() {
                  if($("#loginName").val() == ''){
-                	 layer.msg("邮箱号码不能为空!");
-                	 return false;
-                 }
-                 if(!testEmail($("#loginName").val())){
-                	 layer.msg("邮箱格式错误!");
+                	 layer.msg("用户名不能为空!");
                 	 return false;
                  }
                  if($("#loginPwd").val() == ''){
@@ -99,28 +84,28 @@ require(
 				}
                 $("input[type='text']").blur(function(e){
                 	if($(e.target).attr("id") == "loginName"){
-                		 if(!testEmail($("#loginName").val())){
-                			 console.log($("#loginName").val()+" 邮箱");
-                        	 layer.msg("邮箱格式错误!");
+                		 if(!util.testName($("#loginName").val())){
+                        	 layer.msg("用户名可能不存在!");
+                        	 return;
                          }
                 	}else if($(e.target).attr("id") == "loginName_r"){
-                		if(!testEmail($("#loginName_r").val())){
+                		if(!util.testName($("#loginName_r").val())){
                			 console.log($("#loginName_r").val()+" 邮箱");
-                       	 layer.msg("邮箱格式错误!");
+                       	 layer.msg("注册名只能以字母开头(5位以上)!");
                        	 return;
                         }
                 		if(haveSameEmail($("#loginName_r").val())){
-               			 layer.msg("该邮箱已注册!");
+               			 layer.msg("该用户名已注册!");
                		 }
                 	}
                 	else if($(e.target).attr("id") == "loginPwd"){
-                		if(!testMiMa($("#loginPwd").val())){
+                		if(!util.testMiMa($("#loginPwd").val())){
                 			console.log($("#loginPwd").val()+" 密码");
                        	 layer.msg("密码只能是6-8的数字或字母!");                    
                         }
                 		return;
                 	}else if($(e.target).attr("id") == "loginPwd_r"){
-                		if(!testMiMa($("#loginPwd_r").val())){
+                		if(!util.testMiMa($("#loginPwd_r").val())){
                 			console.log($("#loginPwd_r").val()+" 密码");
                        	 layer.msg("密码只能是6-8的数字或字母!");                    
                         }
@@ -142,18 +127,18 @@ require(
 				// 判断注册是否合法
 				function checkRegister() {
                  if($("#loginName_r").val() == ''){
-                	 layer.msg("邮箱号码不能为空!");
+                	 layer.msg("用户名不能为空!");
                 	 return false;
                  }
-                 if(!testEmail($("#loginName_r").val())){
-                	 layer.msg("邮箱格式错误!");
+                 if(!util.testName($("#loginName_r").val())){
+                	 layer.msg("用户名只能以字母开头(5位以上)!");
                 	 return false;
                  }
                  if(haveSameEmail($("#loginName_r").val())){
-                	 layer.msg("该邮箱已注册!");
+                	 layer.msg("该用户名已注册!");
                 	 return false;
                  }
-                 if(!testMiMa($("#loginPwd_r").val())){
+                 if(!util.testMiMa($("#loginPwd_r").val())){
                 	 layer.msg("密码只能是6-8位的数字或字母!");
                 	 return false;
                  }
@@ -172,7 +157,7 @@ require(
 						}
 						$.ajax({// 默认异步,表单序列化方式传输
 							type : "post",
-							url : CONSTANT.root_url + "/intern/doLogin",
+							url : CONSTANT.root_url + "/hr/doLogin",
 							data : $("#form_l").serialize(),
 							dataType : "json",
 							success : function(result) {
@@ -192,12 +177,12 @@ require(
 						}
 						$.ajax({// 默认异步
 							type : "post",
-							url : CONSTANT.root_url + "/intern/doRegister",
+							url : CONSTANT.root_url + "/hr/doRegister",
 							data : $("#form_r").serialize(),
 							dataType : "json",
 							success : function(result) {
 								if(result.success){
-									layer.alert("注册成功！需要前往邮箱激活账号");
+									layer.alert("注册成功！");
 									$(".l-button").click();
 								}else{
 									layer.msg("注册失败!");

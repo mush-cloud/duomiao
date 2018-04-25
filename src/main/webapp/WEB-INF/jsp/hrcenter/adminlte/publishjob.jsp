@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实习生管理中心</title>
+  <title>HR管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/bootstrap.min.css">
@@ -147,17 +147,17 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+              <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_HR_INFO.hrName}</span>
             </a>
             <!--  -->
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
+                <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="img-circle" alt="User Image">
                 <p>
-                  ${sessionScope.SESSION_INTERN_INFO.loginName} - Manager Center
+                  ${sessionScope.SESSION_HR_INFO.hrName} - Manager Center
                   <small>Power By DuoMiao</small>
                 </p>
               </li>
@@ -166,15 +166,12 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#"><c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 1}">已激活</c:if>
-                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if>
-                    </a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>
+                   <%-- <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>--%>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">标识I</a>
+                    <a href="#">标识H</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -193,7 +190,7 @@
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/hr/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -272,14 +269,15 @@
     <!-- Main content width:1170px-->
     <section class="content container-fluid">
 <div class="main-body" style="margin-top: -10px">
-<form id="resumeinfo">
-  <input type="text" name="id" value="" hidden />
+<form id="jobinfo">
+  <input type="text" id="entid" value="${requestScope.entid}" hidden />
   <table cellspacing="5" cellpadding="5">
    <tr class="first_tr">
       <td><font color="#a52a2a" size="5px">*</font>职位名称:</td><td><input type="text" name="name" placeholder="职位名称" id="name"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>所属职位类别:</td><td><select>
-     <option value="0">java开发</option>
-     <option value="1">财务专员</option>
+      <td><font color="#a52a2a" size="5px">*</font>所属职位类别:</td><td><select name="pcId">
+     <c:forEach var="poscat" items="${requestScope.posCateList}">
+       <option value="${poscat.id}">${poscat.typeName}</option>
+     </c:forEach>
    </select></td>
       <td><font color="#a52a2a" size="5px">*</font>最低薪水:</td><td><input type="text" name="minSalary" id="minSalary"/></td>
       <td><font color="#a52a2a" size="5px">*</font>最高薪水:</td><td><input type="text" name="maxSalary" id="maxSalary"/></td>
@@ -291,14 +289,14 @@
       <td><font color="#a52a2a" size="5px">*</font>每周工作天数:</td><td><input type="text" name="colloge" id="colloge"/></td>
       <td><font color="#a52a2a" size="5px">*</font>工作月数:</td><td><input type="text" name="academic" id="academic"/></td>
       <td><font color="#a52a2a" size="5px">*</font>截止日期：</td><td><input type="date" name="jobName"  id="jobName"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>是否急招:</td><td>是</td>
+      <td></td><td></td>
       <td></td><td></td>
     </tr>
     <tr class="tr3">
       <td><font color="#a52a2a" size="5px">*</font>职位描述:</td><td colspan="5"><textarea  name="education" id="education" cols="50" rows="4"></textarea></td>
       <td></td><td colspan="5"></td>
     </tr>
-    <tr><td colspan="12"><center><input class="btn resume_btn" type="button" value="提交" id="resumeinfosubmit"/></center></td></tr>
+    <tr><td colspan="12"><center><input class="btn resume_btn" type="button" value="提交" id="publishjobsubmit"/></center></td></tr>
   </table>
 </form>
 </div>
@@ -396,8 +394,8 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <jsp:include page="../../public_page/public_js.jsp" />
-<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/jquery-3.0.0.js"></script>
 <script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/adminlte.min.js"></script>

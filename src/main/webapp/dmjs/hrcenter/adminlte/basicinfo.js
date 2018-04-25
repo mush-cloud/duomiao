@@ -1,4 +1,4 @@
-require([ 'layer','jquery'],function(layer){
+require([ 'layer','util'],function(layer,util){
 	$(function(){
 		//临时展示上传图片
 		//全局变量
@@ -24,7 +24,7 @@ require([ 'layer','jquery'],function(layer){
 			$.ajax({
 				async:false,
 				type : "post",
-				url : CONSTANT.root_url + "/intern/adminlte/doUpImg",
+				url : CONSTANT.root_url + "/hr/adminlte/doUpImg",
 				dataType : "json",
 				cache: false,  
 				data:formData,
@@ -50,10 +50,17 @@ require([ 'layer','jquery'],function(layer){
 				layer.msg("密码不能为空");
 				return;
 			}
+            if(!util.testMiMa($("#mima").val())){
+                layer.msg("密码格式为6-8位的数字或字母");
+                return;
+            } if(!util.testTel($("#tel").val())){
+                layer.msg("号码格式错误（7-11位）");
+                return;
+            }
 			$.ajax({
 				async:false,
 				type : "post",
-				url : CONSTANT.root_url + "/intern/adminlte/doEditMainInfo",
+				url : CONSTANT.root_url + "/hr/adminlte/doEditMainInfo",
 				dataType : "json", 
 				data:$("#basicinfo").serialize(),
 				success : function(result) {

@@ -13,6 +13,17 @@ import com.duomiao.service.InternInfoService;
 public class InternInfoServiceImpl implements InternInfoService{
 	@Autowired
     private InternInfoMapper internInfoMapper;
+
+	@Override
+	public int delIntern(String id) {
+		return internInfoMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int selectInternInfoListCount(Map<String, Object> qryMap) {
+		return internInfoMapper.selectInternInfoListCount(qryMap);
+	}
+
 	//查询
 	@Override
 	public List<InternInfo> getInternInfoList(Map<String, Object> qryMap) {

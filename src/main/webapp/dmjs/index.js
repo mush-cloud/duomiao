@@ -10,7 +10,7 @@ $(function(){
 	init();
    function init(){
    	//测试代码
-	$newdiv = $("#type-item").clone();
+/*	$newdiv = $("#type-item").clone();
 	$("#type-item").after($newdiv);
 	$newdiv = $("#type-item").clone();
 	$("#type-item").after($newdiv);
@@ -25,17 +25,17 @@ $(function(){
 		$newdiv = $("#type-item").clone();
 	$("#type-item").after($newdiv);
 	$newdiv = $("#type-item").clone();
-	$("#type-item").after($newdiv);
+	$("#type-item").after($newdiv);*/
 	
 	/*测试代码*/
-	$ndiv = $(".left .item").clone();
+/*	$ndiv = $(".left .item").clone();
 	$(".left .item").after($ndiv);
 		$ndiv = $(".left .item").clone();
 	$(".left .item").after($ndiv);
 	$ndiv = $("#item").clone();
 	$("#item").after($ndiv);
 	$ndiv = $("#item").clone();
-	$("#item").after($ndiv);
+	$("#item").after($ndiv);*/
 	
 	//有用的部分
 	//第一个span默认样式

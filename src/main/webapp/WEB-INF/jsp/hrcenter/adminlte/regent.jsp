@@ -6,23 +6,23 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实习生管理中心</title>
+  <title>HR管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/HRcenter/adminlte/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/ionicons.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/AdminLTE.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/skin-blue.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/resumeinfo.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/skin-blue.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/regent.css">
   <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/special.css">
+        href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/special.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -147,17 +147,17 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+              <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_HR_INFO.hrName}</span>
             </a>
             <!--  -->
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
+                <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="img-circle" alt="User Image">
                 <p>
-                  ${sessionScope.SESSION_INTERN_INFO.loginName} - Manager Center
+                  ${sessionScope.SESSION_HR_INFO.hrName} - Manager Center
                   <small>Power By DuoMiao</small>
                 </p>
               </li>
@@ -166,15 +166,12 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#"><c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 1}">已激活</c:if>
-                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if>
                     </a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">标识I</a>
+                    <a href="#">标识H</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -193,7 +190,7 @@
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/hr/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -231,13 +228,13 @@
 
       <!-- Sidebar Menu 右侧导航栏-->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">个人中心</li>
+        <li class="header">HR中心</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
-        <li class="active"><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>我的收藏</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/hr/adminlte/enEnterpriseInfo"><i class="fa fa-link">></i> <span>企业登记</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enPublishJob"><i class="fa fa-link">></i> <span>发布职位</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enManagePublishJob"><i class="fa fa-link">></i> <span>职位管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -264,46 +261,38 @@
         <small>Optional description</small>
       </h1> 
       <ol class="breadcrumb">
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enIndex"> <i class="fa fa-dashboard"></i>个人中心</a></li>
-        <li class="active">简历管理</li>
+        <li><a href="${pageContext.request.contextPath}/hr/adminlte/enIndex"> <i class="fa fa-dashboard"></i>HR中心</a></li>
+        <li class="active">企业登记</li>
       </ol>
     </section>
 
     <!-- Main content width:1170px-->
     <section class="content container-fluid">
 <div class="main-body" style="margin-top: -10px">
-<form id="resumeinfo">
-  <input type="text" name="id" value="" hidden />
+<form id="entinfo">
+  <input type="text" name="id" value="${sessionScope.SESSION_HR_INFO.entid}" id="eId" hidden />
   <table cellspacing="5" cellpadding="5">
     <tr class="first_tr">
-      <td><font color="#a52a2a" size="5px">*</font>姓名:</td><td><input type="text" name="name" placeholder="真实姓名" id="name"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>性别:</td><td>男<input style="width:40px;" type="radio" name="sex" value="1" id="man"/>女<input style="width:40px;" type="radio" name="sex" value="0" id="woman"/></td>
-      <td>年龄:</td><td><input type="number" name="age" id="age"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>籍贯:</td><td><input type="text" name="hp" id="hp"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>手机号码:</td><td><input type="text" name="tel"  id="tel"/></td>
-      <td>邮箱:</td><td><input type="text" name="email"  id="email"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>企业名称:</td><td><input type="text" name="eniname" placeholder="高通" id="eniname"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>简要一句话概述:</td><td><input  type="text" name="resume" placeholder="如游戏热爱群体" id="resume"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>地址:</td><td><input type="text" name="address" id="address"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>员工数:</td><td><input type="text" name="employeenum" id="employeenum"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>联系方式:</td><td><input type="text" name="tel"  id="tel"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>行业领域方向:</td><td><input type="text" name="industry"  id="industry" value=""/></td>
     </tr>
     <tr class="tr2">
-      <td><font color="#a52a2a" size="5px">*</font>专业:</td><td><input type="text" name="major" id="major"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>学校:</td><td><input type="text" name="colloge" id="colloge"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>学历:</td><td><input type="text" name="academic" id="academic"/></td>
-      <td>期望职位:</td><td><input type="text" name="jobName"  id="jobName"/></td>
-      <td>期望工作地点:</td><td><input type="text" name="workplace"  id="workplace"/></td>
-      <td>人生格言:</td><td><input type="text" name="motto" id="motto"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>统一社会信用代码:</td><td><input type="text" name="uniscid" id="uniscid"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>注册资本:</td><td><input type="text" name="regCapital" id="regCapital"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>成立日期:</td><td><input type="date" name="regtime" id="regtime"/></td>
+      <td></td><td></td>
+      <td></td><td></td>
+      <td></td><td></td>
     </tr>
     <tr class="tr3">
-      <td>教育经历:</td><td colspan="5"><textarea  name="education" id="education" cols="50" rows="4"></textarea></td>
-      <td>证书奖励:</td><td colspan="5"><textarea  name="certReward" id="certReward" cols="50" rows="4"></textarea></td>
+      <td><font color="#a52a2a" size="5px">*</font>详细介绍:</td><td colspan="5"><textarea  name="introduction" id="introduction" cols="50" rows="4"></textarea></td>
+      <td><font color="#a52a2a" size="5px">*</font>企业福利:</td><td colspan="5"><textarea  name="welfare" id="welfare" cols="50" rows="4"></textarea></td>
     </tr>
-    <tr class="tr4">
-      <td>工作经历:</td><td colspan="5"><textarea  name="workExperience" id="workExperience" cols="50" rows="4"></textarea></td>
-      <td>项目经验:</td><td colspan="5"><textarea  name="proExperience" id="proExperience" cols="50" rows="4"></textarea></td>
-    </tr>
-    <tr class="tr4">
-      <td><font color="#a52a2a" size="5px">*</font>专业技能:</td><td colspan="5"><textarea  name="skill" id="skill" cols="50" rows="4"></textarea></td>
-      <td>自我评价:</td><td colspan="5"><textarea  name="valuation" id="valuation" cols="50" rows="4"></textarea></td>
-    </tr>
-    <tr><td colspan="12"><center><input class="btn resume_btn" type="button" value="提交" id="resumeinfosubmit"/></center></td></tr>
+    <tr><td colspan="12"><center><input class="btn resume_btn" type="button" value="提交" id="entinfosubmit"/></center></td></tr>
   </table>
 </form>
 </div>
@@ -401,11 +390,11 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <jsp:include page="../../public_page/public_js.jsp" />
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/adminlte.min.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/resumeinfo.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/regent.js"></script>
 </body>
 </html>

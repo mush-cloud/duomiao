@@ -9,19 +9,19 @@
   <title>后台管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/ionicons.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/AdminLTE.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/ADMINLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/skin-blue.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/skin-blue.min.css">
   <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/special.css">
+        href="${pageContext.request.contextPath}/dmcss/admincenter/adminlte/special.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -146,17 +146,17 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+              <%--<img src="${pageContext.request.contextPath}${SESSION_ADMIN_INFO.imgUrl}" class="user-image" alt="User Image">--%>
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_ADMIN_INFO.adminName}</span>
             </a>
             <!--  -->
-            <ul class="dropdown-menu">
+           <%-- <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
+                &lt;%&ndash;<img src="${pageContext.request.contextPath}${SESSION_ADMIN_INFO.imgUrl}" class="img-circle" alt="User Image">&ndash;%&gt;
                 <p>
-                  ${sessionScope.SESSION_INTERN_INFO.loginName} - Manager Center
+                  ${sessionScope.SESSION_ADMIN_INFO.loginName} - Manager Center
                   <small>Power By DuoMiao</small>
                 </p>
               </li>
@@ -165,14 +165,11 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#"><c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 1}">已激活</c:if>
-                    <c:if test="${sessionScope.SESSION_INTERN_INFO.state eq 0}">未激活</c:if></a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">${sessionScope.SESSION_INTERN_INFO.db} 朵币</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">标识I</a>
+                    <a href="#">标识A</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -186,12 +183,12 @@
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li> -->
-            </ul>
+            </ul>--%>
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/admin/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -231,13 +228,13 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">管理中心</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>企业信息管理</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>HR用户管理</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>实习生用户管理</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>管理员信息管理</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>职位类别管理</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>企业增值服务统计</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageEnt"><i class="fa fa-link">></i> <span>企业信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageHr"><i class="fa fa-link">></i> <span>HR用户管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageIntern"><i class="fa fa-link">></i> <span>实习生用户管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageAdmin"><i class="fa fa-link">></i> <span>管理员信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageCategory"><i class="fa fa-link">></i> <span>职位类别管理</span></a></li>
+       <%-- <li><a href="#"><i class="fa fa-link">></i> <span>企业增值服务统计</span></a></li>--%>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -273,13 +270,14 @@
     <section class="content container-fluid">
 <div class="main-body">
 <div class="b1"><img width="250px" height="100px" src="${pageContext.request.contextPath}/imgs/index_header_bottom/logo.png"/></div>
-<div class="b2"><center><div style="font-size:20px" >@</div></center><div>
+<div class="b2"><center><div style="font-size:20px" ></div></center><div>
 <ul>
 <li><small>后</small></li>
 <li><small>台</small></li>
 <li><small>管</small></li>
 <li><small>理</small></li>
-<li><small>@</small></li>
+<li><small>系</small></li>
+  <li><small>统</small></li>
 </ul>
 </div></div>
 </div>
@@ -377,10 +375,10 @@
   <div class="control-sidebar-bg"></div>
 </div>
 
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/adminlte.min.js"></script>
 </body>
 </html>

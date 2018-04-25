@@ -45,8 +45,13 @@ public class PublishJobControl {
         AjaxResult ajaxResult = new AjaxResult();
         publishJob.setId(UUIDBuilder.createUUID());
         HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
-        publishJob.setEntId(hrInfo.getEntid());
+        String entId = "";
+        if(hrInfo!=null){
+            entId = hrInfo.getEntid();
+        }
+        publishJob.setEntId(entId);
         publishJob.setSendNum(0);
+        publishJob.setUrgency("1");//默认1位急招
         publishJob.setUpdateTime(DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
         publishJobService.insertPubJob(publishJob);
         ajaxResult.setSuccess(true);

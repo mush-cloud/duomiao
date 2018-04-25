@@ -1,7 +1,9 @@
 package com.duomiao.control;
 
 import com.duomiao.entity.HrInfo;
+import com.duomiao.entity.PositionCategory;
 import com.duomiao.service.HrInfoService;
+import com.duomiao.service.PositionCategoryService;
 import com.duomiao.util.AjaxResult;
 import com.duomiao.util.Constant;
 import com.duomiao.util.DateHelper;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +33,8 @@ public class HrInfoControl {
 	private AjaxResult ajaxResult = new AjaxResult();;
 	@Autowired
 	private HrInfoService hrInfoService;
-	
+	@Autowired
+	private PositionCategoryService positionCategoryService;
     @RequestMapping("/enLoginAndRegister")
 	public String enLoginAndRegisterPage() {
 		return "hrcenter/login_register";
@@ -43,7 +48,8 @@ public class HrInfoControl {
     	   System.err.println("ok");
     	   ajaxResult.setSuccess(true);
     	   session.setAttribute(Constant.SESSION_HR_INFO, hrInfo2);
-    	   session.removeValue(Constant.SESSION_HR_INFO);
+    	   session.removeValue(Constant.SESSION_INTERN_INFO);
+		   session.removeValue(Constant.SESSION_ADMIN_INFO);
        }else {
     	   ajaxResult.setSuccess(false);
        }
@@ -67,14 +73,14 @@ public class HrInfoControl {
     	}
     	return ajaxResult;
     }
-    
+
     @RequestMapping("/doRegister")
     @ResponseBody
     public AjaxResult doRegister(@ModelAttribute HrInfo hrInfo) {
     	hrInfo.setRegtime(DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
     	hrInfo.setId(UUIDBuilder.createUUID());
     	hrInfo.setFlag("H");//唯一标识
-    	hrInfo.setImgUrl("/imgs/index_header_bottom/default.png");//图像默认
+    	hrInfo.setImgUrl("/imgs/imgs_server/hr/hrdefault.jpg");//图像默认
         int result = hrInfoService.insertHrInfo(hrInfo);
         if(result>0) {
         	ajaxResult.setSuccess(true);
@@ -110,6 +116,11 @@ public class HrInfoControl {
     	return "hrcenter/adminlte/basicinfo";
     }
 
+	//访问企业登记页面
+	@RequestMapping("/adminlte/enEnterpriseInfo")
+	public String enRegEnt() {
+		return "hrcenter/adminlte/regent";
+	}
 	//访问简历管理页面
 	@RequestMapping("/adminlte/enResumeInfo")
 	public String enResumeInfo() {
@@ -118,8 +129,16 @@ public class HrInfoControl {
 
 	//访问发布职位页面
 	@RequestMapping("/adminlte/enPublishJob")
-	public String enPublishJob() {
-		return "hrcenter/adminlte/publishjob";
+	public String enPublishJob(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException {
+    	HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
+		String entid = "";
+    	if(hrInfo!=null){
+			entid = hrInfo.getEntid();
+		}
+    	List<PositionCategory> positionCategoryList =   positionCategoryService.selectAllChild();
+		request.setAttribute("entid",entid);
+		request.setAttribute("posCateList",positionCategoryList);
+    	return "hrcenter/adminlte/publishjob";
 	}
 
 	//访问职位管理页面

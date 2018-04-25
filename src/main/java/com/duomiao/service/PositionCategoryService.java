@@ -20,4 +20,5 @@ public interface PositionCategoryService {
     int updateById(Map map);
     //职位一级集合
     List<PositionCategory> selectBaseKinds();
+   List<PositionCategory> selectAllChild();
 }

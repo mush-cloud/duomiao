@@ -196,7 +196,7 @@
     from dm_enterprise_info
 <where>
   <if test="addressLike != null and addressLike != ''">EI_ADDRESS like '%${addressLike}%'</if>
-  <if test="eninameLike != null and eninameLike != ''">and EI_ENINAME like '%${eninameLike}%'</if>/*根据企业名字模糊查询*/
+  <if test="eninameLike != null and eninameLike != ''">and EI_ENINAME like '%${eninameLike}%'</if>
 </where>
     <if test="orderByClause != null">
       order by ${orderByClause}
@@ -210,7 +210,7 @@
     from dm_enterprise_info
     <where>
       <if test="addressLike != null and addressLike != ''">EI_ADDRESS like '%${addressLike}%'</if>
-      <if test="eninameLike != null and eninameLike != ''">and EI_ENINAME like '%${eninameLike}%'</if>/*根据企业名字模糊查询*/
+      <if test="eninameLike != null and eninameLike != ''">and EI_ENINAME like '%${eninameLike}%'</if>
     </where>
   </select>
 

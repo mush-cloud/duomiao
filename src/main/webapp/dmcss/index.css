@@ -46,6 +46,9 @@
 	border:1px solid #F08080;
 	border-right:1px solid #FFFFFF;
 }
+.type-item a:hover{
+	text-decoration:underline;
+}
 .type-item>a{
 	    display: inline-block;
 	    margin-left: 15px;

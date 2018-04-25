@@ -102,7 +102,19 @@
       <if test="_parameter != null">
       <include refid="SelectInternInfoListWhereSql" />
     </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
     <include refid="mysql-page.mysql_page" />
+  </select>
+
+  <!-- 查询列表 总记录 -->
+  <select id="selectInternInfoListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(ID)
+    from dm_intern_info
+    <if test="_parameter != null">
+      <include refid="SelectInternInfoListWhereSql" />
+    </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>

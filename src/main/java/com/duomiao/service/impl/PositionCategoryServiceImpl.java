@@ -46,4 +46,9 @@ public class PositionCategoryServiceImpl implements PositionCategoryService {
     public List<PositionCategory> selectBaseKinds() {
         return positionCategoryMapper.selectBaseKinds();
     }
+
+    @Override
+    public List<PositionCategory> selectAllChild() {
+        return positionCategoryMapper.selectAllChild();
+    }
 }

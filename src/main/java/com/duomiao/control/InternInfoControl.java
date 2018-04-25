@@ -46,6 +46,7 @@ public class InternInfoControl {
     	   ajaxResult.setSuccess(true);
     	   session.setAttribute(Constant.SESSION_INTERN_INFO, internInfos.get(0));
     	   session.removeValue(Constant.SESSION_HR_INFO);
+		   session.removeValue(Constant.SESSION_ADMIN_INFO);
        }else {
     	   ajaxResult.setSuccess(false);
        }

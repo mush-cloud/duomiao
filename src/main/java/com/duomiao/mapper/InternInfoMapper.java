@@ -34,6 +34,7 @@ public interface InternInfoMapper {
      * 自定义方法
      */
     List<InternInfo> selectInternInfoList(Map<String,Object> qryMap);
+    int selectInternInfoListCount(Map<String,Object> qryMap);
     int batchDelInternInfos(List<Integer> ids);
     int updateInternInfoForOwn(InternInfo internInfo);
     int specialUpdateInternInfo(Map<String,Object> qryMap);

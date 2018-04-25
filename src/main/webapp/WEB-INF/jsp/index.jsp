@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,42 +16,29 @@
 	     <div class="intern-type">
 	   	  	<!--4+10-->
 	   	  	<div class="type-head"><span class="typefont">全部分类</span><img src="${pageContext.request.contextPath}/imgs/index_header_bottom/type.png" class="typepic"/></div>
-	   	    <div class="type-item" data-type="" id="type-item">
-	            <a href="" target="_blank" class="one-level">IT互联网</a>
-	   	    	<a href="" target="_blank" class="one-level">软件</a>
-	   	    	<a href="" target="_blank" class="one-level">运营</a>
-	   	    	<a href="" target="_blank" class="one-level">硬件</a>	   	    
-	   	    	<div class="type-list" id="type-list">
-	   	    	<div>
-	   	    		<a href="" target="_blank" class="one-level">IT互联网</a>
-	   	    		<a href="/interns?k=%E6%95%B0%E6%8D%AE%E5%BA%93&p=1" target="_blank">数据库</a>
-                    <a href="/interns?k=C%23%2F.NET&p=1" target="_blank">C#/.NET</a>
-                    <a href="/interns?k=Hadoop&p=1" target="_blank">Hadoop</a>
-                    <a href="/interns?k=Android&p=1" target="_blank">Android</a>
-                    <a href="/interns?k=%E7%AE%97%E6%B3%95&p=1" target="_blank">算法</a>
-                     <a href="/interns?k=iOS&p=1" target="_blank">iOS</a>
-                     <a href="/interns?k=IT%E8%BF%90%E7%BB%B4&p=1" target="_blank">IT运维</a>
-	   	    	</div>
-	   	    	 <div>
-	   	    		<a href="" target="_blank" class="one-level">软件</a>	   	  
-                    <a href="/interns?k=%E7%AE%97%E6%B3%95&p=1" target="_blank">算法</a>
-                     <a href="/interns?k=iOS&p=1" target="_blank">iOS</a>
-                     <a href="/interns?k=IT%E8%BF%90%E7%BB%B4&p=1" target="_blank">IT运维</a>
-	   	    	</div>
-	   	    	 	 <div>
-	   	    		<a href="" target="_blank" class="one-level">运营</a>	   	  
-                    <a href="/interns?k=%E7%AE%97%E6%B3%95&p=1" target="_blank">算法</a>
-                     <a href="/interns?k=iOS&p=1" target="_blank">iOS</a>
-                     <a href="/interns?k=IT%E8%BF%90%E7%BB%B4&p=1" target="_blank">IT运维</a>
-	   	    	</div>
-	   	    	 	 <div>
-	   	    		<a href="" target="_blank" class="one-level">硬件</a>	   	  
-                    <a href="/interns?k=%E7%AE%97%E6%B3%95&p=1" target="_blank">算法</a>
-                     <a href="/interns?k=iOS&p=1" target="_blank">iOS</a>
-                     <a href="/interns?k=IT%E8%BF%90%E7%BB%B4&p=1" target="_blank">IT运维</a>
-	   	    	</div>
-	   	    	</div>
-	   	    </div> 
+
+				 <c:forEach    begin="0" end="${rows-1}" varStatus="st1">
+					 <div class="type-item" data-type="" id="type-item">
+						 <c:forEach items="${requestScope.allPosCate}" begin="${4*(st1.index)}" end="${4*(st1.index)+3}" var="cateList" varStatus="st2">
+							 <c:forEach items="${cateList}" end="0" var="cate">
+						 <a href="${pageContext.request.contextPath}${cate.url}?id=${cate.id}" target="_blank" class="one-level">${cate.typeName}</a>
+							 </c:forEach>
+						<%-- <a href="" target="_blank" class="one-level">软件</a>
+						 <a href="" target="_blank" class="one-level">运营</a>
+						 <a href="" target="_blank" class="one-level">硬件</a>--%>
+						 </c:forEach>
+						 <div class="type-list" id="type-list">
+					 <c:forEach items="${requestScope.allPosCate}" begin="${4*(st1.index)}" end="${4*(st1.index)+3}" var="cateList" varStatus="st2">
+						 <div>
+							 <c:forEach items="${cateList}"  var="cate" varStatus="st3">
+								 <c:if test="${st3.index eq 0}"><a href="${pageContext.request.contextPath}${cate.url}?id=${cate.id}" target="_blank" class="one-level">${cate.typeName}</a></c:if>
+								 <c:if test="${st3.index != 0}"><a href="${pageContext.request.contextPath}${cate.url}?id=${cate.id}" target="_blank">${cate.typeName}</a></c:if>
+							 </c:forEach>
+							 </div>
+					 </c:forEach>
+						 </div>
+					 </div>
+				 </c:forEach>
 	     </div>
 	    <div class="banner" >
 	     <div class="ban_top">

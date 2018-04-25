@@ -40,15 +40,15 @@
 					<c:if test="${!empty sessionScope.SESSION_HR_INFO}">
 					<!--企业登录  -->
 				    <div class="stu">
-						<div class="stu-pic"><img src="${pageContext.request.contextPath}/imgs/index_header_bottom/default.png"/></div>
+						<div class="stu-pic"><img class="txpic" src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}"/></div>
 						<div class="stu-body" id="stu-body"><dl class="stu-info">
-							<dt><a>HR中心</a><img src="${pageContext.request.contextPath}/imgs/index_header_bottom/jiantou.png" class="jiantou" id="jiantou"/></dt>
+							<dt><a href="${pageContext.request.contextPath}/hr/adminlte/enIndex">HR中心</a><img src="${pageContext.request.contextPath}/imgs/index_header_bottom/jiantou.png" class="jiantou" id="jiantou"/></dt>
 							 <dd id="stu-dd">
-                                <a href="http://www.ciweishixi.com/company_job/add">基本信息</a>
-                                <a href="http://www.ciweishixi.com/company_job/listJob">发布职位</a>
-                                <a href="http://www.ciweishixi.com/company_resume/manager">职位管理</a>
-                                <a href="http://www.ciweishixi.com/user">简历管理</a>
-                                <a href="http://www.ciweishixi.com/logout">退出</a>
+                                <a href="${pageContext.request.contextPath}/hr/adminlte/enBasicInfo">基本信息</a>
+                                <a href="${pageContext.request.contextPath}/hr/adminlte/enPublishJob">发布职位</a>
+                                <a href="${pageContext.request.contextPath}/hr/adminlte/enManagePublishJob">职位管理</a>
+                                <a href="${pageContext.request.contextPath}/hr/adminlte/enResumeInfo">简历管理</a>
+                                <a href="${pageContext.request.contextPath}/hr/doLoginOut">退出</a>
                         </dd>
 						</dl>
 						</div>

@@ -8,10 +8,7 @@ import com.duomiao.service.PublishJobService;
 import com.duomiao.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -28,6 +25,14 @@ public class PositionCategoryControl {
 
 
 
+    //首页获取相对应的二级类别
+    @RequestMapping("/listChildPositionCategorys")
+    @ResponseBody
+    public List<PositionCategory>  listPositionCategory(@RequestParam String id){
+        List<PositionCategory> baseCateList = positionCategoryService.selectByFatherId(id);
+        return  baseCateList;
+    }
+
     //首页获取所有的职位类别信息
     @RequestMapping("/listPositionCategorys")
     @ResponseBody
@@ -39,17 +44,12 @@ public class PositionCategoryControl {
         return  bootsTable;
     }
 
-    //admin获取所有的职位类别信息 zTree插件展示
-    @RequestMapping("/admin/listPositionCategorys")
+    //admin获取所有的大类职位类别信息
+    @RequestMapping("/admin/listBigPositionCategorys")
     @ResponseBody
-    public BootsTable listPositionCategorys(HttpSession session){
-        HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
-        BootsTable bootsTable = new BootsTable();
+    public   List<PositionCategory>  listBigPositionCategorys(){
         List<PositionCategory> baseCateList = positionCategoryService.selectBaseKinds();
-        for(PositionCategory positionCategory : baseCateList){
-
-        }
-        return  bootsTable;
+        return  baseCateList;
     }
 
     //admin修改职位类别
@@ -62,10 +62,22 @@ public class PositionCategoryControl {
         return ajaxResult;
     }
 
-    //admin新增类别
-    @RequestMapping("/admin/addPosCate")
+    //admin新增一级类别
+    @RequestMapping("/admin/addBasePosCate")
     @ResponseBody
     public AjaxResult addPosCate(@ModelAttribute PositionCategory positionCategory){
+        AjaxResult ajaxResult = new AjaxResult();
+        positionCategory.setId(UUIDBuilder.createUUID());
+        positionCategory.setFatherId("0");
+        positionCategoryService.insertCategory(positionCategory);
+        ajaxResult.setSuccess(true);
+        return ajaxResult;
+    }
+
+    //admin新增二级类别
+    @RequestMapping("/admin/addChildPosCate")
+    @ResponseBody
+    public AjaxResult addChildPosCate(@ModelAttribute PositionCategory positionCategory){
         AjaxResult ajaxResult = new AjaxResult();
         positionCategory.setId(UUIDBuilder.createUUID());
         positionCategoryService.insertCategory(positionCategory);

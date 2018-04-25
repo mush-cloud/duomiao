@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实习生管理中心</title>
+  <title>HR管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/bootstrap.min.css">
@@ -148,7 +148,7 @@
               <!-- The user image in the navbar-->
               <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_HR_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_HR_INFO.hrName}</span>
             </a>
             <!--  -->
             <ul class="dropdown-menu">
@@ -156,7 +156,7 @@
               <li class="user-header">
                 <img src="${pageContext.request.contextPath}${SESSION_HR_INFO.imgUrl}" class="img-circle" alt="User Image">
                 <p>
-                  ${sessionScope.SESSION_HR_INFO.loginName} - Manager Center
+                  ${sessionScope.SESSION_HR_INFO.hrName} - Manager Center
                   <small>Power By DuoMiao</small>
                 </p>
               </li>
@@ -188,7 +188,7 @@
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/HR/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/hr/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -277,9 +277,9 @@
 <div class="b2 basic">
 <input type="text" name="imgUrl" id="imgUrl" hidden/><!--value值同上  -->
 <input type="text" name="id" value="${SESSION_HR_INFO.id}" hidden />
-<div class="item"><h5>用户名</h5><font color="#F08080">${SESSION_INTERN_INFO.loginName}</font></div>
-<div class="item"><h5>密码</h5><input type="password" name="loginPwd" value="${SESSION_HR_INFO.loginPwd}" id="mima"/></div>
-  <div class="item"><h5>联系方式</h5><input type="text" name="tel" value="${SESSION_HR_INFO.realName}" /></div>
+<div class="item"><h5>用户名</h5><font color="#F08080">${SESSION_HR_INFO.hrName}</font></div>
+<div class="item"><h5>密码</h5><input type="password" name="password" value="${SESSION_HR_INFO.password}" id="mima"/></div>
+  <div class="item"><h5>联系方式</h5><input type="text" name="tel" value="${SESSION_HR_INFO.tel}" id="tel"/></div>
 </div><div class="basicinfoedit"><input class="btn btn-sm btn-info" type="button" value="提交修改" id="basicinfoedit"/></div>
 </form>
 </div>

@@ -38,6 +38,7 @@ public interface PositionCategoryMapper {
     //修改根据Id
     int updateById(Map map);
     List<PositionCategory> selectBaseKinds();
+    List<PositionCategory> selectAllChild();
 
 
 

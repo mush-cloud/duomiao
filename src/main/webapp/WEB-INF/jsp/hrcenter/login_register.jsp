@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/common/common.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/login_register.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/login_register.css" />
 </head>
 <body bgcolor="#f8f8f8">
 <center>
@@ -21,15 +21,15 @@
 <div class="clearfix"></div>
 <div class="lr-box-main-l">
 <form id="form_l">
- <div><input type="text" placeholder="请输入邮箱号码" name="loginName" id="loginName"/></div>
-<div><input type="password" placeholder="请输入密码(数字或字母6-8位)" name="loginPwd" id="loginPwd"/></div>
+ <div><input type="text" placeholder="请输入用户名（字母开头）" name="hrName" id="hrName"/></div>
+<div><input type="password" placeholder="请输入密码(数字或字母6-8位)" name="password" id="loginPwd"/></div>
 <div class="special"><input type="text" placeholder="请输入验证码(区分大小写)" id="verify" class="verify"/><span>4543</span></div>
 <div class="btn"><input type="button" class="btn_lr" value="登录" id="btn_l"/></div>
 </form>
 </div>
 <div class="lr-box-main-r" style="display:none;"><form id="form_r">
-<div><input type="text" placeholder="请输入邮箱号码" name="loginName" id="loginName_r"/></div>
-<div><input type="password" placeholder="请输入密码(数字或字母6-8位)" name="loginPwd" id="loginPwd_r"/></div>
+<div><input type="text" placeholder="请输入用户名（字母开头）" name="hrName" id="loginName_r"/></div>
+<div><input type="password" placeholder="请输入密码(数字或字母6-8位)" name="password" id="loginPwd_r"/></div>
 <div class="special"><input type="text" placeholder="请输入验证码(区分大小写)" id="verify_r" class="verify"/><span>4543</span></div>
 <div class="btn"><input type="button" class="btn_lr" value="注册" id="btn_r"/></div>
 </form>
@@ -37,6 +37,6 @@
 </div>
 </center>
 <jsp:include page="../public_page/public_js.jsp" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/dmjs/interncenter/login_register.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/dmjs/hrcenter/login_register.js" ></script>
 </body>
 </html>

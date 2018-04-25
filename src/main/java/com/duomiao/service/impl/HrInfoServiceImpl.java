@@ -30,7 +30,11 @@ public class HrInfoServiceImpl implements HrInfoService {
 
     @Override
     public HrInfo selectMyHrInfo(HrInfo hrInfo) {
-        return hrInfoMapper.selectMyHrInfo(hrInfo).get(0);
+        List<HrInfo> hrInfoList = hrInfoMapper.selectMyHrInfo(hrInfo);
+        if(hrInfoList!=null&&hrInfoList.size()>0){
+            return hrInfoList.get(0);
+        }
+        return null;
     }
 //根据ID修改
     @Override

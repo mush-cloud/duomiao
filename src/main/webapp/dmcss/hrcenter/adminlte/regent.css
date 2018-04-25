@@ -1,0 +1,18 @@
+.main-body table .first_tr input{
+    width:100px;
+}
+.tr2 input{
+    width:100px;
+}
+
+.main-body table td{
+    /*border: 1px darkgrey solid;*/
+    padding-top:20px;
+    padding-left:10px;
+}
+textarea{
+    resize:none;
+}
+.resume_btn{background-color:#00c0ef;border-color:#00acd6;display: block;margin-top:10px;
+    color: #ffffff; }
+.resume_btn:hover,.resume_btn:active,.resume_btn.hover{background-color:#00acd6}

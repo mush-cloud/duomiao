@@ -1,0 +1,39 @@
+/*.main-body .catelist{
+    float: left;
+    width:300px;
+    height: auto;
+    border: 1px solid black;
+}
+.main-body .ztree{
+    font-size: 15px;
+}
+.main-body .ztree img {width: 15px;height: 15px;}
+dd{margin-left:12px; }
+.main-body .right{
+    margin-left: 20px;
+    float: left;
+    width:300px;
+    height: 500px;
+    border: 1px solid black;
+}
+ .btn-cate{
+    display:block; margin-left: 110px;
+ }*/
+.layer_check{
+  /*  border: 1px solid #1a2226;*/
+}
+.layer_addbase{
+    width: auto;
+    height:auto ;
+}.layer_addbase input{
+    display: inline-block;
+    margin-top: 20px;
+     margin-left: 50px;
+ }
+.layer_addbase button{
+    display: block;
+    margin-top: 10px;
+    margin-left: 100px;
+    width: 50px;
+    height: 30px;
+ }

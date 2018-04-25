@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实习生管理中心</title>
+  <title>后台管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/interncenter/adminlte/bootstrap.min.css">
@@ -146,12 +146,12 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">
+           <%--   <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="user-image" alt="User Image">--%>
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">${sessionScope.SESSION_INTERN_INFO.loginName}</span>
+              <span class="hidden-xs">${sessionScope.SESSION_ADMIN_INFO.adminName}</span>
             </a>
             <!--  -->
-            <ul class="dropdown-menu">
+            <%--<ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}" class="img-circle" alt="User Image">
@@ -187,12 +187,12 @@
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li> -->
-            </ul>
+            </ul>--%>
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
           <!-- 退出 -->
-            <a href="${pageContext.request.contextPath}/intern/doLoginOut" ><i class="fa fa-gears">退出</i></a>
+            <a href="${pageContext.request.contextPath}/admin/doLoginOut" ><i class="fa fa-gears">退出</i></a>
           </li>
         </ul>
       </div>
@@ -230,13 +230,14 @@
 
       <!-- Sidebar Menu 右侧导航栏-->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">个人中心</li>
+        <li class="header">管理中心</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>我的收藏</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/admin/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageEnt"><i class="fa fa-link">></i> <span>企业信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageHr"><i class="fa fa-link">></i> <span>HR用户管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageIntern"><i class="fa fa-link">></i> <span>实习生用户管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageAdmin"><i class="fa fa-link">></i> <span>管理员信息管理</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enManageCategory"><i class="fa fa-link">></i> <span>职位类别管理</span></a></li>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -263,7 +264,7 @@
         <small>Optional description</small>
       </h1> 
       <ol class="breadcrumb">
-        <li><a href="${pageContext.request.contextPath}/intern/adminlte/enIndex"> <i class="fa fa-dashboard"></i>个人中心</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/adminlte/enIndex"> <i class="fa fa-dashboard"></i>管理中心</a></li>
         <li class="active">基本信息</li>
       </ol>
     </section>
@@ -272,18 +273,12 @@
     <section class="content container-fluid">
 <div class="main-body">
 <div class="b1">
-<form id="txsc" enctype="multipart/form-data">
-<div class="touxiang"><img id="imgtx" src="${pageContext.request.contextPath}${SESSION_INTERN_INFO.imgUrl}"/><input class="shangchuan" type="file" name="file"/></div>
-<div style="margin-left:30px;margin-top:15px;"><a id="uploadFile" href="javascript:;">上传</a></div>
-</form>
 </div>
 <form id="basicinfo">
 <div class="b2 basic">
-<input type="text" name="imgUrl" id="imgUrl" hidden/><!--value值同上  -->
-<input type="text" name="id" value="${SESSION_INTERN_INFO.id}" hidden />
-<div class="item"><h5>用户名</h5><font color="#F08080">${SESSION_INTERN_INFO.loginName}</font></div>
-<div class="item"><h5>密码</h5><input type="password" name="loginPwd" value="${SESSION_INTERN_INFO.loginPwd}" id="mima"/></div>
-<div class="item"><h5>真实姓名</h5><input type="text" name="realName" value="${SESSION_INTERN_INFO.realName}" /></div>
+<input type="text" name="id" value="${SESSION_ADMIN_INFO.id}" hidden/>
+<div class="item"><h5>用户名</h5><input type="text" name="adminName" value="${SESSION_ADMIN_INFO.adminName}" id="adminName"/></div>
+<div class="item"><h5>密码</h5><input type="password" name="adminPwd" value="${SESSION_ADMIN_INFO.adminPwd}" id="pwd"/></div>
 </div><div class="basicinfoedit"><input class="btn btn-sm btn-info" type="button" value="提交修改" id="basicinfoedit"/></div>
 </form>
 </div></div>
@@ -382,11 +377,11 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <jsp:include page="../../public_page/public_js.jsp" />
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/adminlte.min.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/interncenter/adminlte/basicinfo.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/admincenter/adminlte/basicinfo.js"></script>
 </body>
 </html>

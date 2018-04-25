@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duomiao.mapper.AdminInfoMapper">
+  <resultMap id="BaseResultMap" type="com.duomiao.entity.AdminInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="AI_ADMIN_NAME" jdbcType="VARCHAR" property="adminName" />
+    <result column="AI_ADMIN_PWD" jdbcType="VARCHAR" property="adminPwd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, AI_ADMIN_NAME, AI_ADMIN_PWD
+  </sql>
+
+  <!--sql-->
+
+  <!--查询管理员信息 无条件查询-->
+<select id="selectAdmins"  parameterType="java.util.Map" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from dm_admin_info
+  <where>
+    <if test="adminNameLike != null and adminNameLike != ''">AI_ADMIN_NAME like '%${adminNameLike,jdbcType=VARCHAR}%'</if>
+  </where>
+  <include refid="mysql-page.mysql_page" />
+</select>
+
+  <!--重名校验-->
+  <select id="selectRepeatAdmin"  parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_admin_info where AI_ADMIN_NAME = #{adminName,jdbcType=VARCHAR}
+  </select>
+  <!--登录-->
+  <select id="selectLoginAdmin"  parameterType="com.duomiao.entity.AdminInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dm_admin_info where AI_ADMIN_NAME = #{adminName,jdbcType=VARCHAR} and AI_ADMIN_PWD = #{adminPwd,jdbcType=VARCHAR}
+  </select>
+  <!--添加-->
+<insert id="insertAdmin" parameterType="com.duomiao.entity.AdminInfo">
+  insert into dm_admin_info
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+    <if test="id != null">
+      ID,
+    </if>
+    <if test="adminName != null">
+      AI_ADMIN_NAME,
+    </if>
+    <if test="adminPwd != null">
+      AI_ADMIN_PWD,
+    </if>
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides=",">
+    <if test="id != null">
+      #{id,jdbcType=VARCHAR},
+    </if>
+    <if test="adminName != null">
+      #{adminName,jdbcType=VARCHAR},
+    </if>
+    <if test="adminPwd != null">
+      #{adminPwd,jdbcType=VARCHAR},
+    </if>
+  </trim>
+</insert>
+
+
+  <!--修改-->
+  <update id="updateAdmin" parameterType="com.duomiao.entity.AdminInfo">
+    update dm_admin_info
+    <set>
+      <if test="adminName != null">
+        AI_ADMIN_NAME = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        AI_ADMIN_PWD = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+
+  <!--sql-->
+
+  <select id="selectByExample" parameterType="com.duomiao.entity.AdminInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dm_admin_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dm_admin_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dm_admin_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.duomiao.entity.AdminInfoExample">
+    delete from dm_admin_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.duomiao.entity.AdminInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dm_admin_info (AI_ADMIN_NAME, AI_ADMIN_PWD)
+    values (#{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.duomiao.entity.AdminInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dm_admin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminName != null">
+        AI_ADMIN_NAME,
+      </if>
+      <if test="adminPwd != null">
+        AI_ADMIN_PWD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.duomiao.entity.AdminInfoExample" resultType="java.lang.Long">
+    select count(*) from dm_admin_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dm_admin_info
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminName != null">
+        AI_ADMIN_NAME = #{record.adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminPwd != null">
+        AI_ADMIN_PWD = #{record.adminPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dm_admin_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      AI_ADMIN_NAME = #{record.adminName,jdbcType=VARCHAR},
+      AI_ADMIN_PWD = #{record.adminPwd,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.duomiao.entity.AdminInfo">
+    update dm_admin_info
+    <set>
+      <if test="adminName != null">
+        AI_ADMIN_NAME = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        AI_ADMIN_PWD = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.duomiao.entity.AdminInfo">
+    update dm_admin_info
+    set AI_ADMIN_NAME = #{adminName,jdbcType=VARCHAR},
+      AI_ADMIN_PWD = #{adminPwd,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

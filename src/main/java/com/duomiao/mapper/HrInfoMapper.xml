@@ -10,6 +10,7 @@
     <result column="HI_FLAG" jdbcType="CHAR" property="flag" />
     <result column="HI_TEL" jdbcType="VARCHAR" property="tel" />
     <result column="HI_REGTIME" jdbcType="TIMESTAMP" property="regtime" />
+    <association property="enterpriseInfo" column="HI_ENTID" javaType="com.duomiao.entity.EnterpriseInfo" select="com.duomiao.mapper.EnterpriseInfoMapper.selectByEntId"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -102,7 +103,7 @@
   </select>
 <!--注册HR-->
   <insert id="insertHrInfo" parameterType="com.duomiao.entity.HrInfo">
-   insert into dm_hr_info (ID,HI_HR_NAME,HI_PASSWORD,HI_FLAG,HI_REGTIME) values(#{id,jdbcType=VARCHAR},#{hrName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{flag,jdbcType=VARCHAR},#{regtime,jdbcType=TIMESTAMP})
+   insert into dm_hr_info (ID,HI_HR_NAME,HI_PASSWORD,HI_IMG_URL,HI_FLAG,HI_REGTIME) values(#{id,jdbcType=VARCHAR},#{hrName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{imgUrl,jdbcType=VARCHAR},#{flag,jdbcType=VARCHAR},#{regtime,jdbcType=TIMESTAMP})
   </insert>
 <!--登录验证-->
   <select id="selectMyHrInfo" parameterType="com.duomiao.entity.HrInfo" resultMap="BaseResultMap">
