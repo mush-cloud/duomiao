@@ -23,7 +23,7 @@ public interface EnterpriseInfoMapper {
 
     List<EnterpriseInfo> selectByExample(EnterpriseInfoExample example);
 
-    EnterpriseInfoWithBLOBs selectByPrimaryKey(String id);
+    EnterpriseInfo selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") EnterpriseInfoWithBLOBs record, @Param("example") EnterpriseInfoExample example);
 
@@ -36,6 +36,9 @@ public interface EnterpriseInfoMapper {
     int updateByPrimaryKeyWithBLOBs(EnterpriseInfoWithBLOBs record);
 
     int updateByPrimaryKey(EnterpriseInfo record);
+    //hr修改公司信息
+    int updateById(EnterpriseInfo enterpriseInfo);
+
 
     //hr查看公司信息
     List<EnterpriseInfo> selectByEntId(String id);

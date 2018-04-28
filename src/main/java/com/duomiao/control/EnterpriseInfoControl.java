@@ -37,6 +37,15 @@ public class EnterpriseInfoControl {
     public AjaxResult delEntInfoById(@RequestParam String id) {
         AjaxResult ajaxResult = new AjaxResult();
         enterpriseInfoService.deleteEnterpriseInfoById(id);
+        Map map = new HashMap();
+        Map map2 = new HashMap();
+        map2.put("entid",id);
+        List<HrInfo> hrInfoList = hrInfoService.selectHrInfoList(map2);
+        if(hrInfoList!=null){
+            map.put("id",hrInfoList.get(0).getId());
+            map.put("entid","");
+            hrInfoService.updateMyHrInfo(map);//更新hr信息
+        }
         ajaxResult.setSuccess(true);
         return ajaxResult;
     }
@@ -52,7 +61,7 @@ public class EnterpriseInfoControl {
             //企业图像与Hr图像一致
             enterpriseInfo.setImgUrl(hrInfo.getImgUrl());
         }
-        enterpriseInfoService.insertEnterpriseInfo(enterpriseInfo);
+        enterpriseInfoService.updateById(enterpriseInfo);
         ajaxResult.setSuccess(true);
         return ajaxResult;
     }
@@ -62,22 +71,34 @@ public class EnterpriseInfoControl {
     @RequestMapping("/hr/addEntInfo")
     @ResponseBody
     public AjaxResult addEntInfo(@ModelAttribute EnterpriseInfo enterpriseInfo, HttpSession session) {
-        enterpriseInfo.setId(UUIDBuilder.createUUID());
+        String entid = UUIDBuilder.createUUID();
+        enterpriseInfo.setId(entid);
         //进行企业审核,这里设为有效
         enterpriseInfo.setStatus("1");
         AjaxResult ajaxResult = new AjaxResult();
+
         HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
+      /*  System.err.println("公司");
+        System.err.println(hrInfo.getId()+"公司");*/
+        String id = hrInfo.getId();
+       /* System.err.println(id+"更新");*/
         if(hrInfo!=null){
             Map map = new HashMap();
-            String entid = enterpriseInfo.getId();
-            map.put("id",hrInfo.getId());
+            map.put("id",id);
+            /*System.err.println(map.get("id")+"账户id");*/
             map.put("entid",entid);
             hrInfoService.updateMyHrInfo(map);
+          /*  System.err.println(entid+"wukun");*/
             //企业图像与Hr图像一致
             enterpriseInfo.setImgUrl(hrInfo.getImgUrl());
 
         }
         enterpriseInfoService.insertEnterpriseInfo(enterpriseInfo);
+        //hr session更新
+        Map qry = new HashMap();
+        qry.put("id",hrInfo.getId());
+        List<HrInfo> newHrInfos =  hrInfoService.selectHrInfoList(qry);
+        session.setAttribute(Constant.SESSION_HR_INFO,newHrInfos.get(0));
         ajaxResult.setSuccess(true);
         return ajaxResult;
     }

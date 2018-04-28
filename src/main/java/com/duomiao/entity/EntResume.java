@@ -24,6 +24,8 @@ public class EntResume implements Serializable{
 
     private Date delTime;
 
+    private PublishJob publishJob;
+
     public String getId() {
         return id;
     }
@@ -102,5 +104,13 @@ public class EntResume implements Serializable{
 
     public void setDelTime(Date delTime) {
         this.delTime = delTime;
+    }
+
+    public PublishJob getPublishJob() {
+        return publishJob;
+    }
+
+    public void setPublishJob(PublishJob publishJob) {
+        this.publishJob = publishJob;
     }
 }

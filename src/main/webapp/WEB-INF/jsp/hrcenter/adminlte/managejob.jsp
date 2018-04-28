@@ -9,7 +9,9 @@
   <title>实习生管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/bootstrap.min.css">
+  <!-- bstable \表格-->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/font-awesome.min.css">
   <!-- Ionicons -->
@@ -20,10 +22,10 @@
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/skin-blue.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/mycollect.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/managejob.css">
   <link rel="stylesheet"
         href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/special.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.css">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -270,8 +272,43 @@
     <section class="content container-fluid">
 <div class="main-body" style="margin-top: -10px">
 <!--主体内容-->
-<table id="mycollectjob">
+<table id="mypubjob">
 </table>
+
+  <div class="layer_editJob" hidden><form id="jobEdit">
+
+    <table cellspacing="5" cellpadding="5">
+      <tr class="first_tr">
+        <td><font color="#a52a2a" size="5px">*</font>职位名称:</td><td><input type="text" name="jobName" placeholder="职位名称" id="jobName"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>所属职位类别:</td><td><select name="pcId" id="pcList">
+        <c:forEach var="poscat" items="${requestScope.posCateList}">
+          <option value="${poscat.id}">${poscat.typeName}</option>
+        </c:forEach>
+      </select></td>
+        <td><font color="#a52a2a" size="5px">*</font>最低薪水:</td><td><input type="text" name="minSalary" id="minSalary"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>最高薪水:</td><td><input type="text" name="maxSalary" id="maxSalary"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>最低学位要求:</td><td><input type="text" name="minEducationLev"  id="minEducationLev"/></td>
+        <td></td><td></td>
+      </tr>
+      <tr class="tr2">
+        <td><font color="#a52a2a" size="5px">*</font>工作地点:</td><td><input type="text" name="workPlace" id="workPlace"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>每周工作天数:</td><td><input type="text" name="workDays" id="workDays"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>工作月数:</td><td><input type="text" name="workMonth" id="workMonth"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>截止日期：</td><td><input type="date" name="cutDate"  id="cutDate"/></td>
+        <td></td><td></td>
+        <td></td><td></td>
+      </tr>
+      <tr class="tr3">
+        <td><font color="#a52a2a" size="5px">*</font>职位描述:</td><td colspan="5"><textarea  name="describe" id="describe" cols="50" rows="4"></textarea></td>
+        <td></td><td colspan="5"></td>
+      </tr>
+      <%--<tr><td colspan="12"><center><input class="btn resume_btn" type="button" value="提交" id="publishjobsubmit"/></center></td></tr>--%>
+    </table>
+<%--    <div><font color="#a52a2a" size="3px">*</font>类别名称：<input name="typeName" id="typeNameEdit" class="editName"/></div>
+    <div><font color="#a52a2a" size="3px">*</font>去向路径：<input name="url" id="urlEdit" class="editUrl"/></div>--%>
+    <input name="id" id="jobId" hidden/>
+    <%--  <button class="" id="subBaseCate">提交</button>--%>
+  </form></div>
 </div>
       <!--------------------------
         | Your Page Content Here |
@@ -367,16 +404,12 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <jsp:include page="../../public_page/public_js.jsp" />
-<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<%--<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/jquery.min.js"></script>--%>
-<!-- Bootstrap 3.3.7 -->
-<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/jquery-3.0.0.js"></script>
 <script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table-zh-CN.min.js"></script>
 <script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/managejob.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table-zh-CN.js"></script>
-
-
 </body>
 </html>

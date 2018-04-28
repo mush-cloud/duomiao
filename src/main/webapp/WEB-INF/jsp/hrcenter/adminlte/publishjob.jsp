@@ -270,25 +270,25 @@
     <section class="content container-fluid">
 <div class="main-body" style="margin-top: -10px">
 <form id="jobinfo">
-  <input type="text" id="entid" value="${requestScope.entid}" hidden />
+  <input type="text" id="entid" value="${requestScope.entid}" hidden/>
   <table cellspacing="5" cellpadding="5">
    <tr class="first_tr">
-      <td><font color="#a52a2a" size="5px">*</font>职位名称:</td><td><input type="text" name="name" placeholder="职位名称" id="name"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>职位名称:</td><td><input type="text" name="jobName" placeholder="职位名称" id="name"/></td>
       <td><font color="#a52a2a" size="5px">*</font>所属职位类别:</td><td><select name="pcId">
      <c:forEach var="poscat" items="${requestScope.posCateList}">
        <option value="${poscat.id}">${poscat.typeName}</option>
      </c:forEach>
    </select></td>
-      <td><font color="#a52a2a" size="5px">*</font>最低薪水:</td><td><input type="text" name="minSalary" id="minSalary"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>最高薪水:</td><td><input type="text" name="maxSalary" id="maxSalary"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>最低学位要求:</td><td><input type="text" name="tel"  id="tel"/></td>
-      <td></td><td></td>
+     <td><font color="#a52a2a" size="5px">*</font>最低薪水:</td><td><input type="text" name="minSalary" id="minSalary"/></td>
+     <td><font color="#a52a2a" size="5px">*</font>最高薪水:</td><td><input type="text" name="maxSalary" id="maxSalary"/></td>
+     <td><font color="#a52a2a" size="5px">*</font>最低学位要求:</td><td><input type="text" name="minEducationLev"  id="minEducationLev"/></td>
+     <td></td><td></td>
     </tr>
     <tr class="tr2">
-      <td><font color="#a52a2a" size="5px">*</font>工作地点:</td><td><input type="text" name="major" id="major"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>每周工作天数:</td><td><input type="text" name="colloge" id="colloge"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>工作月数:</td><td><input type="text" name="academic" id="academic"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>截止日期：</td><td><input type="date" name="jobName"  id="jobName"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>工作地点:</td><td><input type="text" name="workPlace" id="workPlace"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>每周工作天数:</td><td><input type="text" name="workDays" id="workDays"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>工作月数:</td><td><input type="text" name="workMonth" id="workMonth"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>截止日期：</td><td><input type="date" name="cutDate"  id="cutDate"/></td>
       <td></td><td></td>
       <td></td><td></td>
     </tr>

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 //已发布职位控制类
 @Controller
@@ -23,19 +23,17 @@ import java.util.Map;
 public class PublishJobControl {
     @Autowired
     private PublishJobService publishJobService;
+    DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
     //Hr获取自己发布的所有职位信息,前端分页。无条件查询（只有一个公司id）
     @RequestMapping("/hr/getMyPubJobs")
     @ResponseBody
-    public BootsTable getMyPubJobs(HttpSession session){
+    public List<PublishJob>  getMyPubJobs(HttpSession session){
         HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
-        BootsTable bootsTable = new BootsTable();
         Map map = new HashMap();
         map.put("entId",hrInfo.getEntid());
         List<PublishJob> publishJobList = publishJobService.selectMyPubJobs(map);
-        bootsTable.setRows(publishJobList);
-        bootsTable.setTotal(publishJobList.size());
-        return  bootsTable;
+        return  publishJobList;
     }
 
     //Hr发布职位
@@ -71,7 +69,10 @@ public class PublishJobControl {
     //Hr修改职位，根据职位id
     @RequestMapping("/hr/editMyPubJob")
     @ResponseBody
-    public AjaxResult editMyPubJob(@RequestParam Map map){
+    public AjaxResult editMyPubJob(@RequestParam Map map) throws ParseException {
+        String cut = map.get("cutDate").toString();
+        map.put("cutDate",format1.parse(cut));
+       /* map.put("cutDate",DateHelper.getFormatDate("yyyy-MM-dd",(Date)map.get("cutDate")));*/
         AjaxResult ajaxResult = new AjaxResult();
         map.put("updateTime",DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
         publishJobService.updateMyPubJobById(map);
@@ -94,9 +95,19 @@ public class PublishJobControl {
     @RequestMapping("/searchPubJobs")
     @ResponseBody
     public AjaxResult searchPubJobs(@RequestParam Map map){//表单还是json格式 每页8条数据
+        int arrLength = Integer.parseInt(map.get("arrLength").toString());
+        List arrId = new ArrayList();
+        for(int i=0;i<arrLength;i++){
+            String aid = map.get("arrId["+i+"]").toString();
+            arrId.add(aid);
+        }
+        if(arrId.size()>0){
+            map.put("arrId",arrId);
+        }
+        System.err.println("wukun"+map.get("currentPage"));
         AjaxResult ajaxResult = new AjaxResult();
         map.put("length",8);
-        map.put("start",(int)map.get("currentPage")*8);
+        map.put("start",(Integer.parseInt(map.get("currentPage").toString())-1)*8);
         List<PublishJob> publishJobList = publishJobService.selectPublicMethodTwo(map);//当前页的数据
         Map<String,Object> resMap = new HashMap<String,Object>();
         int total = publishJobService.selectPublicMethodTwoCount(map);//总记录数
@@ -129,7 +140,7 @@ public class PublishJobControl {
         PublishJob publishJob = publishJobService.selectPubJobById(id);
         return publishJob;
     }
-    //8个热门职位
+    //8个热门职位，ajax请求
     @RequestMapping("/getHotPubJob")
     @ResponseBody
     public List<PublishJob> getHotPubJob(){

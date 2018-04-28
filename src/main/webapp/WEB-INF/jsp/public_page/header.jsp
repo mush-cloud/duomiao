@@ -5,13 +5,15 @@
 			<div class="container">
 				<a href="${pageContext.request.contextPath}/public/index"><div class="nav-logo"><img src="${pageContext.request.contextPath}/imgs/index_header_bottom/logo.png"/></div></a>
 				<div class="nav-menu">
-					<a href="http://www.baidu.com">首页</a>
-					<a href="http://www.baidu.com">实习</a>
-					<a href="http://www.baidu.com">校招</a>
-					<a href="http://www.baidu.com">朵喵学院</a>
-					<a href="http://www.baidu.com">友情链接</a>
+					<a href="${pageContext.request.contextPath}/public/index">首页</a>
+					<a href="${pageContext.request.contextPath}/public/mainSearch">实习</a>
+					<a href="https://www.xiaoyuanzhao.com/" target="_blank">校招</a>
+					<a href="#">朵喵学院</a>
+					<a href="http://www.yingjiesheng.com/" target="_blank">友情链接</a>
 				</div>
 				<div class="nav-user">
+					<input value="${sessionScope.SESSION_INTERN_INFO.id}" id="internId" hidden/>
+					<input value="${sessionScope.SESSION_INTERN_INFO.loginName}" id="loginName" hidden/>
 					<c:if test="${sessionScope.SESSION_INTERN_INFO == null}">
 					<c:if  test="${sessionScope.SESSION_HR_INFO == null}">
 					<!--未登录时状态-->
@@ -27,8 +29,8 @@
 							<dt><a href="${pageContext.request.contextPath}/intern/adminlte/enIndex">个人中心</a><img src="${pageContext.request.contextPath}/imgs/index_header_bottom/jiantou.png" class="jiantou" id="jiantou"/></dt>
 							 <dd id="stu-dd">
                                 <a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo">基本信息</a>
-                                <a href="http://www.ciweishixi.com/company_job/listJob">简历管理</a>
-                                <a href="http://www.ciweishixi.com/company_resume/manager">我的收藏</a>
+                                <a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo">简历管理</a>
+                                <a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect">我的收藏</a>
                                <%-- <a href="http://www.ciweishixi.com/logout">我的猫侍</a>
                                 <a href="http://www.ciweishixi.com/logout">我的课程</a>--%>
                                 <a href="${pageContext.request.contextPath}/intern/doLoginOut">退出</a>

@@ -95,6 +95,55 @@
     from dm_enterprise_info
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  <!--修改企业-->
+  <update id="updateById" parameterType="com.duomiao.entity.EnterpriseInfo">
+    update dm_enterprise_info
+    <set>
+      <if test="eniname != null">
+        EI_ENINAME = #{eniname,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null">
+        EI_RESUME = #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        EI_IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        EI_ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        EI_TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="employeenum != null">
+        EI_EMPLOYEENUM = #{employeenum,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null">
+        EI_INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="uniscid != null">
+        EI_UNISCID = #{uniscid,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null">
+        EI_REGTIME = #{regtime,jdbcType=DATE},
+      </if>
+      <if test="regCapital != null">
+        EI_REG_CAPITAL = #{regCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        EI_STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="introduction != null">
+        EI_INTRODUCTION = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="welfare != null">
+        EI_WELFARE = #{welfare,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+ where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+
 <!--HR注册企业-->
   <insert id="insertMyEnt" parameterType="com.duomiao.entity.EnterpriseInfo">
     insert into dm_enterprise_info
@@ -244,11 +293,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+ select ID, EI_ENINAME, EI_RESUME, EI_IMG_URL, EI_ADDRESS, EI_TEL, EI_EMPLOYEENUM, EI_INDUSTRY,
+    EI_UNISCID, EI_REGTIME, EI_REG_CAPITAL, EI_STATUS,EI_INTRODUCTION, EI_WELFARE
     from dm_enterprise_info
     where ID = #{id,jdbcType=VARCHAR}
   </select>

@@ -19,6 +19,16 @@ define(['jquery'],function(){//define定义的js可以被其他模块引用   AM
     function dateFormat(date,frm) {
 		return new Date(date).Format(frm);
     }
+    //时间戳转日期
+    function caseDate(timestamp){
+        var d = new Date(timestamp * 1000);    //根据时间戳生成的日期对象
+        var date = (d.getFullYear()) + "-" +
+            (d.getMonth() + 1) + "-" +
+            (d.getDate());
+         return date;
+    }
+
+
     //注册名验证 只能以字母开头 5位以上
     function testName(str) {
         var format = /^[A-Za-z][A-Za-z\d]{4,10}$/;
@@ -52,13 +62,23 @@ define(['jquery'],function(){//define定义的js可以被其他模块引用   AM
 			}
 		});
 	}
+
+	//json对象转js对象
+	function jsonCaseJs(json){
+        var js= eval('(' + json + ')');
+        return js;
+    }
+
+
 	return{
      //绑定多个事件
 	  bindEvents:bindEvents,
 		dateFormat:dateFormat,
         testName:testName,
         testMiMa:testMiMa,
-        testTel:testTel
+        testTel:testTel,
+        caseDate:caseDate,
+        jsonCaseJs:jsonCaseJs
 	}
 	
 });

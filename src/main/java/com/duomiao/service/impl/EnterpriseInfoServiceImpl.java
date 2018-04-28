@@ -14,7 +14,11 @@ public class EnterpriseInfoServiceImpl implements EnterpriseInfoService {
     private EnterpriseInfoMapper enterpriseInfoMapper;
     @Override
     public EnterpriseInfo selectByEntId(String id) {
-        return enterpriseInfoMapper.selectByEntId(id).get(0);
+        List<EnterpriseInfo> enterpriseInfos = enterpriseInfoMapper.selectByEntId(id);
+        if(enterpriseInfos!=null && enterpriseInfos.size()>0){
+            return enterpriseInfoMapper.selectByEntId(id).get(0);
+        }
+        return new EnterpriseInfo();
     }
 
     @Override
@@ -35,5 +39,10 @@ public class EnterpriseInfoServiceImpl implements EnterpriseInfoService {
     @Override
     public int selectEntInfoListCount(Map map) {
         return enterpriseInfoMapper.selectEntInfoListCount(map);
+    }
+
+    @Override
+    public int updateById(EnterpriseInfo enterpriseInfo) {
+        return enterpriseInfoMapper.updateById(enterpriseInfo);
     }
 }

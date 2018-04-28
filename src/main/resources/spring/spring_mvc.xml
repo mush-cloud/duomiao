@@ -48,8 +48,35 @@
          <mvc:resources location="/dmcss/" mapping="/dmcss/**"/>
          <mvc:resources location="/dmjs/" mapping="/dmjs/**"/>
           <mvc:resources location="/imgs/" mapping="/imgs/**"/>
-          <mvc:resources location="/NewFile.html" mapping="/NewFile.html"/> 
-         <!--  配置mvc的拦截器 可以配置多个 -->  
+          <mvc:resources location="/NewFile.html" mapping="/NewFile.html"/>
+
+<!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--  需要被拦截的路径 -->
+            <mvc:mapping path="/intern/adminlte/**" />
+            <mvc:mapping path="/resume/intern/**" />
+            <!-- 拦截处理的interceptor -->
+            <bean class="com.duomiao.interceptor.InternInterceptor" />
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!--  需要被拦截的路径 -->
+            <mvc:mapping path="/admin/adminlte/**" />
+            <!-- 拦截处理的interceptor -->
+            <bean class="com.duomiao.interceptor.AdminInterceptor" />
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!--  需要被拦截的路径 -->
+            <mvc:mapping path="/hr/adminlte/**" />
+            <mvc:mapping path="/pubJob/hr/**" />
+            <!-- 拦截处理的interceptor -->
+            <bean class="com.duomiao.interceptor.HrInterceptor" />
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+    <!--  配置mvc的拦截器 可以配置多个 -->
  <!--    <mvc:interceptors>  
         <mvc:interceptor>  
              需要被拦截的路径  

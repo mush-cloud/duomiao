@@ -277,8 +277,8 @@
 <form id="basicinfo">
 <div class="b2 basic">
 <input type="text" name="id" value="${SESSION_ADMIN_INFO.id}" hidden/>
-<div class="item"><h5>用户名</h5><input type="text" name="adminName" value="${SESSION_ADMIN_INFO.adminName}" id="adminName"/></div>
-<div class="item"><h5>密码</h5><input type="password" name="adminPwd" value="${SESSION_ADMIN_INFO.adminPwd}" id="pwd"/></div>
+<div class="item"><h5><font color="#a52a2a" size="5px">*</font>用户名</h5><input type="text" name="adminName" value="${SESSION_ADMIN_INFO.adminName}" id="adminName"/></div>
+<div class="item"><h5><font color="#a52a2a" size="5px">*</font>密码</h5><input type="password" name="adminPwd" value="${SESSION_ADMIN_INFO.adminPwd}" id="pwd"/></div>
 </div><div class="basicinfoedit"><input class="btn btn-sm btn-info" type="button" value="提交修改" id="basicinfoedit"/></div>
 </form>
 </div></div>

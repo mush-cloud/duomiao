@@ -43,4 +43,6 @@ public interface EntResumeMapper {
     int deleteInvalidData();
     //总记录数
     int getTotal(Map map);
+
+    int checkSend(Map map);
  }

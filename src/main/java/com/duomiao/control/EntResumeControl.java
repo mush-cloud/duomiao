@@ -1,6 +1,7 @@
 package com.duomiao.control;
 
 import com.duomiao.entity.EntResume;
+import com.duomiao.entity.HrInfo;
 import com.duomiao.entity.ResumeInfo;
 import com.duomiao.service.EntResumeService;
 import com.duomiao.service.ResumeInfoService;
@@ -32,13 +33,22 @@ public class EntResumeControl {
     //Hr分页获取有效的信息,map（“”，“”，“”）
     @RequestMapping("/hr/getValidEntResumes")
     @ResponseBody
-    public BootsTable getValidEntResumes(HttpSession session,@RequestParam Map map){
-        BootsTable bootsTable = new BootsTable();
+    public  List<EntResume>  getValidEntResumes(HttpSession session,@RequestParam Map map){
+        HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
+        map.put("entId",hrInfo.getEntid());
         List<EntResume> entResumeList = entResumeService.selectByMap(map);
-        bootsTable.setTotal(entResumeService.getTotal(map));
-        bootsTable.setRows(entResumeList);
-        return  bootsTable;
+        return  entResumeList;
     }
+
+
+    @RequestMapping("/hr/checkResume")
+    @ResponseBody
+    public ResumeInfo checkResume(@RequestParam String id){
+        Map map = new HashMap();
+        map.put("id",id);
+        return  resumeInfoService.selectMyResumeInfoByIdOrEmail(map);
+    }
+
 
     //Hr删除数据(假删除 ，根据id删除)
     @RequestMapping("/hr/updateForFakeDel")
@@ -55,20 +65,34 @@ public class EntResumeControl {
     @RequestMapping("/intern/createEntResume")
     @ResponseBody
     public AjaxResult createEntResume(@RequestParam Map map,HttpSession session){
+        Map qry = new HashMap();
         AjaxResult ajaxResult = new AjaxResult();
         Map<String,String> map2 = new HashMap<>();
         map2.put("email",(String)map.get("email"));
         ResumeInfo resumeInfo = resumeInfoService.selectMyResumeInfoByIdOrEmail(map2);
-        map.put("sex",resumeInfo.getSex());
-        map.put("id",UUIDBuilder.createUUID());
-        map.put("academic",resumeInfo.getAcademic());
-        map.put("age",resumeInfo.getAge());
-        map.put("isdel","0");
-        map.put("id",UUIDBuilder.createUUID());
-        map.put("addTime",DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
-        entResumeService.insertEntResume(map);
-        ajaxResult.setSuccess(true);
-        return ajaxResult;
+        if(resumeInfo!=null){
+            qry.put("riId",resumeInfo.getId());
+        }else{
+            qry.put("riId","");
+        }
+        qry.put("pjId",map.get("pjId"));
+        int count = entResumeService.checkSend(qry);
+        if(count>0){
+            ajaxResult.setSuccess(false);
+            return  ajaxResult;
+        }else {
+            map.put("riId",resumeInfo.getId());
+            map.put("sex", resumeInfo.getSex());
+            map.put("id", UUIDBuilder.createUUID());
+            map.put("academic", resumeInfo.getAcademic());
+            map.put("age", resumeInfo.getAge());
+            map.put("isdel", "0");
+            map.put("id", UUIDBuilder.createUUID());
+            map.put("addTime", DateHelper.getFormatDate("yyyy-MM-dd HH:mm:ss", new Date()));
+            entResumeService.insertEntResume(map);
+            ajaxResult.setSuccess(true);
+            return ajaxResult;
+        }
     }
 
     //恢复已删除数据

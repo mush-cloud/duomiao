@@ -9,7 +9,9 @@
   <title>实习生管理中心</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/bootstrap.min.css">
+  <!-- bstable \表格-->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/font-awesome.min.css">
   <!-- Ionicons -->
@@ -20,10 +22,9 @@
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/skin-blue.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/mycollect.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/resumeinfo.css">
   <link rel="stylesheet"
         href="${pageContext.request.contextPath}/dmcss/hrcenter/adminlte/special.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -273,6 +274,40 @@
 <!--主体内容-->
 <table id="myResumeInfo">
 </table>
+  <div id="resumeCheck" hidden>
+
+    <table cellspacing="5" cellpadding="5">
+      <tr class="first_tr">
+        <td><font color="#a52a2a" size="5px">*</font>姓名:</td><td><input type="text" name="name" placeholder="真实姓名" id="name"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>性别:</td><td><input  type="text" name="sex" placeholder="男或女" id="sex"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>年龄:</td><td><input type="text" name="age" id="age"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>籍贯:</td><td><input type="text" name="hp" id="hp"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>手机号码:</td><td><input type="text" name="tel"  id="tel"/></td>
+        <td>邮箱:</td><td><font color="#a52a2a" class="email">${sessionScope.SESSION_INTERN_INFO.loginName}</font><input type="text" name="email"  id="email" value="${sessionScope.SESSION_INTERN_INFO.loginName}" hidden/></td>
+      </tr>
+      <tr class="tr2">
+        <td><font color="#a52a2a" size="5px">*</font>专业:</td><td><input type="text" name="major" id="major"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>学校:</td><td><input type="text" name="colloge" id="colloge"/></td>
+        <td><font color="#a52a2a" size="5px">*</font>学历:</td><td><input type="text" name="academic" id="academic"/></td>
+        <td>期望职位:</td><td><input type="text" name="jobName"  id="jobName"/></td>
+        <td>期望工作地点:</td><td><input type="text" name="workplace"  id="workplace"/></td>
+        <td>人生格言:</td><td><input type="text" name="motto" id="motto"/></td>
+      </tr>
+      <tr class="tr3">
+        <td>教育经历:</td><td colspan="5"><textarea  name="education" id="education" cols="50" rows="4"></textarea></td>
+        <td>证书奖励:</td><td colspan="5"><textarea  name="certReward" id="certReward" cols="50" rows="4"></textarea></td>
+      </tr>
+      <tr class="tr4">
+        <td>工作经历:</td><td colspan="5"><textarea  name="workExperience" id="workExperience" cols="50" rows="4"></textarea></td>
+        <td>项目经验:</td><td colspan="5"><textarea  name="proExperience" id="proExperience" cols="50" rows="4"></textarea></td>
+      </tr>
+      <tr class="tr4">
+        <td><font color="#a52a2a" size="5px">*</font>专业技能:</td><td colspan="5"><textarea  name="skill" id="skill" cols="50" rows="4"></textarea></td>
+        <td>自我评价:</td><td colspan="5"><textarea  name="valuation" id="valuation" cols="50" rows="4"></textarea></td>
+      </tr>
+    </table>
+
+  </div>
 </div>
       <!--------------------------
         | Your Page Content Here |
@@ -368,15 +403,13 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <jsp:include page="../../public_page/public_js.jsp" />
-<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<%--<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/jquery.min.js"></script>--%>
-<!-- Bootstrap 3.3.7 -->
-<script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
+
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/jquery-3.0.0.js"></script>
 <script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/adminlte.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.min.js"></script>
+<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table-zh-CN.min.js"></script>
 <script src="${pageContext.request.contextPath}/dmjs/hrcenter/adminlte/resumeinfo.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table.js"></script>
-<script src="${pageContext.request.contextPath}/dmjs/common/bstable/bootstrap-table-zh-CN.js"></script>
 
 
 </body>

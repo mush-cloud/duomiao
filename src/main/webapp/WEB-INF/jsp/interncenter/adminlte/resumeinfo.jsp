@@ -236,8 +236,8 @@
         <li><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
         <li class="active"><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
         <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>我的收藏</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>
+        <%--<li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
+        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>--%>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -277,7 +277,8 @@
   <table cellspacing="5" cellpadding="5">
     <tr class="first_tr">
       <td><font color="#a52a2a" size="5px">*</font>姓名:</td><td><input type="text" name="name" placeholder="真实姓名" id="name"/></td>
-      <td><font color="#a52a2a" size="5px">*</font>性别:</td><td><input  type="text" name="sex" placeholder="男或女" id="sex"/></td>
+      <td><font color="#a52a2a" size="5px">*</font>性别:</td><td>
+      <input  type="text" name="sex" placeholder="男或女" id="sex"/></td>
       <td><font color="#a52a2a" size="5px">*</font>年龄:</td><td><input type="text" name="age" id="age"/></td>
       <td><font color="#a52a2a" size="5px">*</font>籍贯:</td><td><input type="text" name="hp" id="hp"/></td>
       <td><font color="#a52a2a" size="5px">*</font>手机号码:</td><td><input type="text" name="tel"  id="tel"/></td>

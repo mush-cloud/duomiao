@@ -65,7 +65,7 @@ input[name='loginName']{
 	height:40px;
 	width:78px;
 	line-height:40px;
-	vertical-align:midden;
+	vertical-align:middle;
 	text-align:center;
 	background-color:#FFFFFF;
 	border:1px solid #EBEDEC;

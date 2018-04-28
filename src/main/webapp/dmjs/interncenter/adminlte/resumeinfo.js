@@ -34,10 +34,42 @@ require([ 'layer','jquery'],function(layer){
                 }
             });
         }
-
+        function checkAge(age){
+		    var format = /^[123456789]\d$/;
+		   return format.test(age);
+        }
+        function checkPhone(phone){
+            var format = /^1[34578]\d{9}$/;
+            return format.test(phone);
+        }
+        function checkSex(sex) {
+            if(sex=="男"||sex=="女"){
+                return true;
+            }else{
+                return false;
+            }
+        }
 		//提交修改
 		$("#resumeinfosubmit").click(function(){
-			//TODO 输入验证
+		    console.log($("#name").val());
+		    if($("#name").val()=='' ||$("#sex").val()==''||$("#hp").val()==''||$("#major").val()==''||$("#colloge").val()==''||$("#skill").val()==''){
+                layer.msg("加*的数据不能为空");
+                return;
+            }
+		    if(!checkAge($("#age").val())){
+		        layer.msg("年龄只能是2位数字,不能为0开头");
+		        return;
+            }
+            if(!checkPhone($("#tel").val())){
+                layer.msg("手机号码格式错误1[34578]开头的11数字");
+                return;
+            }if(!checkSex($("#sex").val())){
+                layer.msg("性别：男或女");
+                return;
+            }
+
+
+            //TODO 输入验证
 
 			if($("#rId").val()==''){
 				//执行创建简历

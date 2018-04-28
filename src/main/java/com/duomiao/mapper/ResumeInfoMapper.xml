@@ -276,7 +276,7 @@
     from dm_resume_info
     <where>
       <if test="id != null and id != ''">ID = #{id,jdbcType=VARCHAR}</if>
-      <if test="id != null and id != ''">AND RI_EMAIL = #{email,jdbcType=VARCHAR}</if>
+      <if test="email != null and email != ''">AND RI_EMAIL = #{email,jdbcType=VARCHAR}</if>
     </where>
   </select>
 

@@ -35,7 +35,7 @@ public class AdminControl {
 	
     @RequestMapping("/enLogin")
 	public String enLoginPage() {
-		return "hrcenter/login";
+		return "admincenter/login_register";
 	}
 	
     @RequestMapping("/doLogin")

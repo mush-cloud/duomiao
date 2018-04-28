@@ -143,7 +143,14 @@ public class HrInfoControl {
 
 	//访问职位管理页面
 	@RequestMapping("/adminlte/enManagePublishJob")
-	public String enMyCollect() {
+	public String enManagePublishJob(HttpSession session,HttpServletRequest request) {
+		HrInfo hrInfo = (HrInfo) session.getAttribute(Constant.SESSION_HR_INFO);
+		String entid = "";
+		if(hrInfo!=null){
+			entid = hrInfo.getEntid();
+		}
+		List<PositionCategory> positionCategoryList =   positionCategoryService.selectAllChild();
+		request.setAttribute("posCateList",positionCategoryList);
 		return "hrcenter/adminlte/managejob";
 	}
 
@@ -160,7 +167,7 @@ public class HrInfoControl {
     		dir.mkdirs();
     	}
     	file.transferTo(dir);
-    	String enPath = "/imgs/imgs_server/hr"+ file.getOriginalFilename();
+    	String enPath = "/imgs/imgs_server/hr/"+ file.getOriginalFilename();
     	map.put("imgPath", enPath);
     	ajaxResult.setMessage(map);
     	ajaxResult.setSuccess(true);

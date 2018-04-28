@@ -8,109 +8,30 @@
 	background-color:#f8f8f8;
 	position: relative;
 }
-
-.index .intern-type{
-	height:410px;
-	width: 260px;
-	margin-top: 20px;
-	float: left;
-	background-color: #FFFFFF;
-}
-.index .intern-type .type-head{
-	height: 40px;
-	line-height: 40px;
-    width:260px;
-	color:#666666;
-	vertical-align: center;
-}
-.type-head .typefont{
-	float: left;
-	display: block;
-	margin-left: 15px;
-}
-.type-head .typepic{
-	width: 12px;
-	height: 12px;
-	display: block;
-	float: left;
-	margin-left: 160px;
-	margin-top: 13px;
-}
-.type-item{
-	height: 40px;
-	line-height: 40px;
-	position: relative;
-	/*border-bottom:1px solid #F0F0F0;*/
-}
-.type-item:hover{
-	border:1px solid #F08080;
-	border-right:1px solid #FFFFFF;
-}
-.type-item a:hover{
-	text-decoration:underline;
-}
-.type-item>a{
-	    display: inline-block;
-	    margin-left: 15px;
-}
-/*分类隐藏的列表长度需要调整*/
-.type-list {
-	width: 520px;
-	position: absolute;
-	left:258px;
-	background-color: #FFFFFF;
-	top:-1px;
-	border-bottom:1px solid #F08080;
-	display: none;
-}
-.type-list>div{
-	border:1px solid #F08080;
-	border-top:none ;
-	border-bottom:none ;
-}
-.type-list>div:first-child{border-left:none ;border-bottom:none ;
-border-top:1px solid #F08080;
-}
-.type-list a{
-	 display: inline-block;
-	    margin-left: 12px;
-	    color:#666666;
-	    }
-.type-list > div a:first-child{
-	color:#333;
-}
-.type-list > div a:first-child:hover{
-	color:#F08080;
-}
 /*搜索样式*/
 .banner{
 	float: left;
-	width:800px;
+	width:1080px;
 	height:410px;
 	position: absolute;
 	margin-top: 20px;
 	/*background-color: #FFFFFF;*/
-	margin-left: 275px;
+	/*margin-left: 275px;*/
 }
 .banner .ban_top{
 	width: 800px;
-	height: 100px;
+	height: 80px;
+	margin-left: 150px;
 	background-color: #FFFFFF;
 }
 
 /*图片策划展示台*/
 .banner .ban_body{
-	width: 800px;
-	height: 295px;
+	width: 1080px;
+	height: 220px;
 	margin-top: 15px;
 	background-color: #FFFFFF;
 	position: relative;
-}
-.ban_body .showcase{
-	width: 100%;
-	height: 100%;
-	background-image:url(../imgs/index_header_bottom/ban_1.jpg);
-	background-repeat: no-repeat;
 }
 .ban_body .content{
 	width:100%;
@@ -137,13 +58,40 @@ border-top:1px solid #F08080;
 	background-color: rgba(189,45,48,.5);
 	cursor:default;
 }
+.fix{
+	display: block;
+	clear: both;
+	font-size: 15px;
+	padding-top: 30px;
+	padding-left: 25px;
+}
+.fix span{float: left;}
+	/*搜索条件部分*/
+.fix .list-item{
+	display: inline;
+	color: #666666;
+	cursor: pointer;
+}
+.fix .list-item li{
+	display: inline;
+  float: left;
+	margin-left: 25px;
+}
+.active{
+	color: #F08080;
+	border: 1px solid #F08080;
+}
+
+
+
+
 
 /*搜索部分*/
 .search{
 	width: 800px;
 	height: 65px;
 }
-.search input{
+.search .srh{
 	display: block;
 }
 .search .inp_srh{
@@ -169,30 +117,13 @@ border-top:1px solid #F08080;
     border-top-right-radius:4px;
 	background-color:#F08080;
 }
-.ban_top .heat_word{
-	width: 800px;
-	height:35px ;
-	color: #F08080;
-}
-.heat_word span{
-	float: left;
-	margin-left:15px ;
-}
-.ban_top .heat_word a{
-	display: block;
-	float: left;
-	margin-left: 20px;
-}
-.ban_top .heat_word a:hover{
-	text-decoration: underline;
-}
 
 /*company展示部分*/
 .index .company-show{
 	width: 100%;
 	height: 985px;
 	position: absolute;
-	margin-top: 455px;
+	margin-top: 350px;
 }
 .company-show .company-list{
 	width: 100%;
@@ -254,6 +185,38 @@ border-top:1px solid #F08080;
 	line-height: 38px;
 	text-align: center;
 }
+/*页码*/
+.pages{
+	width:100%;
+	height: 40px;
+	/*border: 1px solid #00B83F;*/
+	position: absolute;
+	margin-top:15px;
+	color: #FFFFFF;
+}
+.pages .page{
+	width: 30px;
+	height: 30px;
+	background: rgba(189,45,48,.4);
+	float: left;
+	text-align: center;
+	line-height: 30px;
+	vertical-align: middle;
+	margin-left: 20px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.pages .page:hover{
+	background: #F27379;
+}
+.pages .pageafter{
+	background: #F27379;
+}
+.nodate{
+	font-size: 16px;
+	color: #9f191f;
+}
 /*点击之后样式变化*/
 .after_c1{
 	border-top:3px solid #F08080;
@@ -289,7 +252,7 @@ border-top:1px solid #F08080;
 /*hot职位*/
 .job-list .left{
      width: 100%;
-	height: 830px;
+	height: auto;
 }
 .job-list .left .item{
 	width: 1080px;

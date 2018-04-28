@@ -13,10 +13,12 @@
     <result column="PJ_WORK_DAYS" jdbcType="VARCHAR" property="workDays" />
     <result column="PJ_WORK_MONTH" jdbcType="VARCHAR" property="workMonth" />
     <result column="PJ_UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="PJ_CUT_DATE" jdbcType="TIMESTAMP" property="cutDate" />
+    <result column="PJ_CUT_DATE" jdbcType="DATE" property="cutDate" />
     <result column="PJ_URGENCY" jdbcType="CHAR" property="urgency" />
     <result column="PJ_SEND_NUM" jdbcType="INTEGER" property="sendNum" />
     <result column="PJ_DESCRIBE" jdbcType="LONGVARCHAR" property="describe" />
+    <association property="enterpriseInfo" column="PJ_ENT_ID" javaType="com.duomiao.entity.EnterpriseInfo" select="com.duomiao.mapper.EnterpriseInfoMapper.selectByPrimaryKey"/>
+    <association property="positionCategory" column="PJ_PC_ID" javaType="com.duomiao.entity.PositionCategory" select="com.duomiao.mapper.PositionCategoryMapper.selectByPrimaryKey"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duomiao.entity.PublishJob">
     <result column="PJ_DESCRIBE" jdbcType="LONGVARCHAR" property="describe" />
@@ -190,7 +192,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="cutDate != null">
-        #{cutDate,jdbcType=TIMESTAMP},
+        #{cutDate,jdbcType=DATE},
       </if>
       <if test="urgency != null">
         #{urgency,jdbcType=CHAR},
@@ -236,7 +238,7 @@
         PJ_UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="cutDate != null">
-        PJ_CUT_DATE = #{cutDate,jdbcType=TIMESTAMP},
+        PJ_CUT_DATE = #{cutDate,jdbcType=DATE},
       </if>
       <if test="urgency != null">
         PJ_URGENCY = #{urgency,jdbcType=CHAR},
@@ -274,19 +276,26 @@
     <include refid="Base_Columns" />
     from dm_publish_job
     <where>
-    <if test="jobNameLike != null">
+    <if test="jobNameLike != null and jobNameLike !=''">
       PJ_JOB_NAME like '%${jobNameLike}%'
     </if>
-    <if test="pcId != null">
+    <if test="pcId != null and pcId !=''">
      AND PJ_PC_ID = #{pcId,jdbcType=VARCHAR}
     </if>
-    <if test="minSalary != null">
-     AND CAST(PJ_MIN_SALARY as INT) >= CAST(#{minSalary,jdbcType=VARCHAR} as INT )
+      <if test="arrId != null">
+        AND PJ_PC_ID IN
+        <foreach collection="arrId"  item="id" separator="," open="(" close=")">
+          #{id}
+        </foreach>
+      </if>
+
+    <if test="minSalary != null and minSalary != ''">
+     AND PJ_MAX_SALARY  >= #{minSalary}
     </if>
-    <if test="maxSalary != null">
-     AND <![CDATA[ CAST(PJ_MAX_SALARY as INT )<= CAST(#{maxSalary,jdbcType=VARCHAR} as INT )]]>
+    <if test="maxSalary != null and maxSalary != ''">
+     AND <![CDATA[ PJ_MAX_SALARY <= #{maxSalary}]]>
     </if>
-    <if test="minEducationLev != null">
+    <if test="minEducationLev != null and minEducationLev!= ''">
       and PJ_MIN_EDUCATION_LEV = #{minEducationLev,jdbcType=VARCHAR}
     </if>
     <if test="workPlace != null">
@@ -312,13 +321,13 @@
       <if test="pcId != null">
         AND PJ_PC_ID = #{pcId,jdbcType=VARCHAR}
       </if>
-      <if test="minSalary != null">
-        AND CAST(PJ_MIN_SALARY as INT) >= CAST(#{minSalary,jdbcType=VARCHAR} as INT )
+      <if test="minSalary != null and minSalary != ''">
+        AND PJ_MAX_SALARY >= #{minSalary}
       </if>
-      <if test="maxSalary != null">
-        AND <![CDATA[ CAST(PJ_MAX_SALARY as INT )<= CAST(#{maxSalary,jdbcType=VARCHAR} as INT )]]>
+      <if test="maxSalary != null and maxSalary != ''">
+        AND <![CDATA[ PJ_MAX_SALARY <= #{maxSalary}]]>
       </if>
-      <if test="minEducationLev != null">
+      <if test="minEducationLev != null and minEducationLev!= ''">
         and PJ_MIN_EDUCATION_LEV = #{minEducationLev,jdbcType=VARCHAR}
       </if>
       <if test="workPlace != null">

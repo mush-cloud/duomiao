@@ -47,4 +47,9 @@ public class EntResumeServiceImpl implements EntResumeService{
     public int getTotal(Map map) {
         return entResumeMapper.getTotal(map);
     }
+
+    @Override
+    public int checkSend(Map map) {
+        return entResumeMapper.checkSend(map);
+    }
 }

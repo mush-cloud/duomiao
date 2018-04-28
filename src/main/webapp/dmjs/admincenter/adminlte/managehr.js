@@ -30,10 +30,10 @@ require([ 'layer','util'],function(layer,util){
             },
             sortName: 'id', // 要排序的字段
             sortOrder: 'desc', // 排序规则
-            /*   responseHandler:function (res) {
-                   layer.alert(res.DATA);
-                   return res.DATA;
-               },*///返回数据处理
+          /*   responseHandler:function (res) {
+                   layer.alert(res.data.rows);
+                   return res.data;
+               },*/
             columns: [
                 {
                     //field: 'Number',//可不加
@@ -55,7 +55,10 @@ require([ 'layer','util'],function(layer,util){
                     field: 'enterpriseInfo',
                     title: '登记企业',
                     formatter: function (value, row, index) {
-                        return row.enterpriseInfo.eniname;
+                        if(value!=null){
+                            return row.enterpriseInfo.eniname;
+                        }
+                        return "";
                     },
                     align: 'center',
                     valign: 'middle'
@@ -79,7 +82,7 @@ require([ 'layer','util'],function(layer,util){
                     valign: 'middle',
                     width: 160, // 定义列的宽度，单位为像素px
                     formatter: function (value, row, index) {
-                        return '<button class="btn btn-primary btn-sm" onclick="delEnt(\''+row.id+'\')">删除</button>';
+                        return '<button class="btn btn-primary btn-sm" onclick="delHr(\''+row.id+'\')">删除</button>';
                     }
                 }
             ],
@@ -95,7 +98,8 @@ require([ 'layer','util'],function(layer,util){
 	});
 	
 });
-function  delEnt(id) {
+
+function  delHr(id) {
     console.log("del");
     $.ajax({
         async:false,

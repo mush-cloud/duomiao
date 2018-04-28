@@ -234,8 +234,8 @@
         <li><a href="${pageContext.request.contextPath}/intern/adminlte/enBasicInfo"><i class="fa fa-link">></i> <span>基本信息</span></a></li>
         <li><a href="${pageContext.request.contextPath}/intern/adminlte/enResumeInfo"><i class="fa fa-link">></i> <span>简历管理</span></a></li>
         <li><a href="${pageContext.request.contextPath}/intern/adminlte/enMyCollect"><i class="fa fa-link">></i> <span>我的收藏</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
-        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>
+       <%-- <li><a href="#"><i class="fa fa-link">></i> <span>我的猫侍</span></a></li>
+        <li><a href="#"><i class="fa fa-link">></i> <span>我的课程</span></a></li>--%>
     <!--     <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">

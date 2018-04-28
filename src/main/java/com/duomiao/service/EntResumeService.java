@@ -21,5 +21,6 @@ public interface EntResumeService {
     int deleteInvalidData();
     //获取总记录数
     int getTotal(Map map);
+    int checkSend(Map map);
 
 }

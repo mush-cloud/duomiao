@@ -35,6 +35,9 @@ public class PublishJob {
     private Integer sendNum;
 
     private String describe;
+    private EnterpriseInfo enterpriseInfo;
+
+    private PositionCategory positionCategory;
 
     public String getId() {
         return id;
@@ -154,5 +157,21 @@ public class PublishJob {
 
     public void setDescribe(String describe) {
         this.describe = describe == null ? null : describe.trim();
+    }
+
+    public EnterpriseInfo getEnterpriseInfo() {
+        return enterpriseInfo;
+    }
+
+    public void setEnterpriseInfo(EnterpriseInfo enterpriseInfo) {
+        this.enterpriseInfo = enterpriseInfo;
+    }
+
+    public PositionCategory getPositionCategory() {
+        return positionCategory;
+    }
+
+    public void setPositionCategory(PositionCategory positionCategory) {
+        this.positionCategory = positionCategory;
     }
 }

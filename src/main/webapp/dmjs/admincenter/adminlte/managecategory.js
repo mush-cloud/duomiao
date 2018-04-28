@@ -42,6 +42,7 @@ require([ 'layer'],function(layer){
                         success : function(result) {
                             if(result.success){
                                 layer.alert("添加成功！");
+                                $("#cateList").bootstrapTable('refresh');
                         /*        setTimeout(function () {
                                     /!*layer.closeAll();*!/
                                     $(".layui-layer-close1").click();

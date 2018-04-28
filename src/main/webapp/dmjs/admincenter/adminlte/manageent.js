@@ -58,7 +58,7 @@ require([ 'layer'],function(layer){
                 },
                 {
                     field: 'tel',
-                    title: '手机号码',
+                    title: '联系方式',
                     align: 'center',
                     valign: 'middle'
                 }, {

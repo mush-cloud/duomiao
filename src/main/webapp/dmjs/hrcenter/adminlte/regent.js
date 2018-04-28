@@ -47,7 +47,7 @@ require([ 'layer','jquery'],function(layer){
                         layer.alert("创建成功");
                     },
                     error : function(){
-                        layer.msg("服务器出错!，创建失败");
+                        layer.msg("服务器出错![可能由于公司名称已被注册],创建失败");
                     }
                 });
 			}else{
@@ -62,7 +62,7 @@ require([ 'layer','jquery'],function(layer){
                         layer.alert("修改成功");
                     },
                     error : function(){
-                        layer.msg("服务器出错,修改失败!");
+                        layer.msg("服务器出错![可能由于公司名称已被注册]，修改失败!");
                     }
                 });
 			}

@@ -9,6 +9,7 @@
 					<li><span>关于朵喵</span></li>
 					<li><a>了解我们</a></li>
 					<li><a>加入我们</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/enLogin" target="_blank">服务支持</a></li>
 				</ul>
 			</div>
 			

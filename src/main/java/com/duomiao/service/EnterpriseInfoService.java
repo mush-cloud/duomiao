@@ -22,6 +22,7 @@ public interface EnterpriseInfoService {
     //查看总记录数
    public int selectEntInfoListCount(Map map);
 
-   //
+    //hr修改公司信息
+    int updateById(EnterpriseInfo enterpriseInfo);
 
 }

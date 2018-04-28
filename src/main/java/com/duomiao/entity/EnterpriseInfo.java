@@ -22,7 +22,7 @@ public class EnterpriseInfo {
     private String industry;
 
     private String uniscid;
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date regtime;
 //注册资本
     private String regCapital;
